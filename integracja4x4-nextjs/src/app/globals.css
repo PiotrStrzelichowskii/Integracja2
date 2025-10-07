@@ -1,0 +1,383 @@
+/* Local fonts are loaded via Next.js font optimization in layout.tsx */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Offroad/Mud theme design system with earthy colors */
+
+@layer base {
+  :root {
+    /* Offroad mud/earth theme */
+    --background: 30 8% 15%;  /* Dark earth brown */
+    --foreground: 33 25% 90%; /* Sand/cream text */
+
+    --card: 30 15% 20%;
+    --card-foreground: 33 25% 90%;
+
+    --popover: 30 15% 18%;
+    --popover-foreground: 33 25% 90%;
+
+    /* Primary - Mud brown */
+    --primary: 30 65% 20%;
+    --primary-foreground: 33 25% 95%;
+
+    /* Secondary - Sand/cream */
+    --secondary: 33 25% 88%;
+    --secondary-foreground: 30 65% 15%;
+
+    /* Muted earth tones */
+    --muted: 30 15% 25%;
+    --muted-foreground: 33 20% 65%;
+
+    /* Accent - Orange highlight */
+    --accent: 33 96% 60%;
+    --accent-foreground: 33 25% 95%;
+
+    --destructive: 0 65% 45%;
+    --destructive-foreground: 33 25% 95%;
+
+    --border: 30 15% 30%;
+    --input: 30 15% 22%;
+    --ring: 33 96% 60%;
+
+    --radius: 0.75rem;
+
+    /* Custom offroad colors */
+    --mud-dark: 0 0% 11%;
+    --mud-medium: 30 35% 20%;
+    --sand-light: 33 25% 88%;
+    --sand-dark: 33 20% 75%;
+    --rust-orange: 33 96% 60%;
+    --rust-orange-dark: 33 96% 50%;
+    
+    /* Gradients */
+    --gradient-mud: linear-gradient(135deg, hsl(var(--mud-dark)), hsl(var(--mud-medium)));
+    --gradient-sand: linear-gradient(135deg, hsl(var(--sand-dark)), hsl(var(--sand-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--mud-dark)) 0%, hsl(var(--mud-medium)) 50%, hsl(30 45% 25%) 100%);
+    
+    /* Shadows with mud theme */
+    --shadow-soft: 0 4px 20px hsl(var(--mud-dark) / 0.3);
+    --shadow-strong: 0 10px 40px hsl(var(--mud-dark) / 0.5);
+    --shadow-glow: 0 0 30px hsl(var(--rust-orange) / 0.3);
+    
+    --sidebar-background: 30 15% 18%;
+    --sidebar-foreground: 33 25% 85%;
+    --sidebar-primary: 33 96% 60%;
+    --sidebar-primary-foreground: 33 25% 95%;
+    --sidebar-accent: 30 15% 25%;
+    --sidebar-accent-foreground: 33 25% 85%;
+    --sidebar-border: 30 15% 30%;
+    --sidebar-ring: 33 96% 60%;
+  }
+
+  .light {
+    /* Light theme variant - sand/cream focused */
+    --background: 33 25% 95%;
+    --foreground: 30 65% 15%;
+    
+    --card: 33 25% 98%;
+    --card-foreground: 30 65% 15%;
+    
+    --primary: 33 96% 60%;
+    --primary-foreground: 33 25% 95%;
+    
+    --secondary: 33 15% 88%;
+    --secondary-foreground: 30 65% 15%;
+    
+    --muted: 33 15% 90%;
+    --muted-foreground: 30 35% 45%;
+    
+    --accent: 30 45% 25%;
+    --accent-foreground: 33 25% 95%;
+    
+    --border: 33 15% 85%;
+    --input: 33 15% 88%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-mud-dark text-foreground font-roboto-slab;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-staatliches;
+  }
+}
+
+@layer components {
+  /* Hero section styles */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .mud-gradient {
+    background: var(--gradient-mud);
+  }
+  
+  .sand-gradient {
+    background: var(--gradient-sand);
+  }
+  
+  /* Custom shadows */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Animations */
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  /* Background image for Offer and Gallery sections */
+  .bg-offroad {
+    background-image: url('/9002834_4060493.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+  }
+  
+  /* Hero image with jagged bottom edge */
+  .hero-jagged {
+    clip-path: polygon(
+      0% 0%, 
+      100% 0%, 
+      100% 85%, 
+      95% 90%, 
+      90% 88%, 
+      85% 92%, 
+      80% 89%, 
+      75% 94%, 
+      70% 91%, 
+      65% 96%, 
+      60% 93%, 
+      55% 98%, 
+      50% 95%, 
+      45% 100%, 
+      40% 97%, 
+      35% 100%, 
+      30% 98%, 
+      25% 100%, 
+      20% 99%, 
+      15% 100%, 
+      10% 98%, 
+      5% 100%, 
+      0% 100%
+    );
+  }
+  
+  /* Simple black overlay */
+  .hero-gradient-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    mask: url('/herotorna .png') no-repeat center;
+    mask-size: cover;
+    -webkit-mask: url('/herotorn.png') no-repeat center;
+    -webkit-mask-size: cover;
+  }
+  
+  .text-shadow-soft {
+    text-shadow: 0 2px 4px hsl(var(--mud-dark) / 0.5);
+  }
+  
+  .bg-mud-dark {
+    background-color: hsl(var(--mud-dark));
+  }
+  
+  .bg-mud-medium {
+    background-color: hsl(var(--mud-medium));
+  }
+  
+  .bg-sand-light {
+    background-color: hsl(var(--sand-light));
+  }
+  
+  .text-sand-light {
+    color: hsl(var(--sand-light));
+  }
+  
+  .text-rust-orange {
+    color: hsl(var(--rust-orange));
+  }
+  
+  /* Liquid Glass Effect */
+  .liquidGlass-wrapper {
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    overflow: hidden;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+    border-radius: 0.75rem;
+  }
+
+  .liquidGlass-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 12px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .liquidGlass-effect {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    backdrop-filter: blur(3px);
+    filter: url(#glass-distortion);
+    overflow: hidden;
+  }
+
+  .liquidGlass-tint {
+    z-index: 1;
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.20);
+  }
+
+  .liquidGlass-shine {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow: hidden;
+    box-shadow: inset 2px 2px 1px 0 rgba(255, 255, 255, 0.25),
+                inset -1px -1px 1px 1px rgba(255, 255, 255, 0.25);
+  }
+
+  .liquidGlass-content {
+    z-index: 3;
+    position: relative;
+    color: black;
+    width: 100%;
+  }
+
+  /* Custom button shape with cut corners */
+  .btn-notched {
+    position: relative;
+    background: hsl(var(--accent));
+    border: none;
+    padding: 12px 32px 12px 24px;
+    color: hsl(var(--accent-foreground));
+    font-weight: 600;
+    transition: all 0.3s ease;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 12px) 0,
+      100% 12px,
+      100% 100%,
+      12px 100%,
+      0 calc(100% - 12px)
+    );
+  }
+  
+  .btn-notched:hover {
+    background: hsl(var(--accent) / 0.9);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px hsl(var(--accent) / 0.5);
+  }
+  
+  /* Hero buttons with cut corners */
+  .btn-offroad-primary {
+    background: hsl(var(--accent));
+    color: hsl(var(--primary-foreground));
+    border: none;
+    padding: 16px 32px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: all 0.3s ease;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 12px) 0,
+      100% 12px,
+      100% 100%,
+      12px 100%,
+      0 calc(100% - 12px)
+    );
+  }
+  
+  .btn-offroad-primary:hover {
+    background: transparent;
+    transform: scale(1.05);
+    border: 2px solid hsl(var(--accent));
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5);
+  }
+  
+  .btn-offroad-outline {
+    background: transparent;
+    color: hsl(var(--sand-light));
+    border: 2px solid hsl(var(--accent));
+    padding: 16px 32px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    transition: all 0.3s ease;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 12px) 0,
+      100% 12px,
+      100% 100%,
+      12px 100%,
+      0 calc(100% - 12px)
+    );
+  }
+  
+  .btn-offroad-outline:hover {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    transform: scale(1.05);
+    box-shadow: 0 0 30px hsl(var(--accent) / 0.5);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

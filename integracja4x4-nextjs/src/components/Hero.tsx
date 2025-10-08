@@ -21,11 +21,11 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full aspect-[16/9] flex items-center justify-center z-20 mt-8">
+    <section className="relative w-full aspect-[16/9] flex items-center justify-center z-20 mt-0">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image 
-          src="/herotorn.png"
+          src="/heropicture.png"
           alt="Toyota Land Cruiser 70 offroad training"
           fill
           className="object-cover"

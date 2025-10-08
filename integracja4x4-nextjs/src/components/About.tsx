@@ -1,29 +1,77 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { Award, Shield, Users, MapPin } from 'lucide-react';
+'use client';
+
+import Image from 'next/image';
+import { useState } from 'react';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+
+const testimonials = [
+  {
+    name: "Katarzyna W.",
+    rating: 5,
+    quote: "Niezapomniane przeżycia, Mąż zadowolony z jazdy w terenie! W przyszłym roku wracamy nie na godzinkę, ale na dwie 😁 Super instruktor i luźna atmosfera ❤️ Polecamy z całego off road'owego serduszka! 🔥"
+  },
+  {
+    name: "Anna N.",
+    rating: 5,
+    quote: "Mega wrażenia! ❤️ Super instruktor, Mąż zadowolony z prezentu! Na pewno wrócimy jeszcze nie jeden raz 😁"
+  },
+  {
+    name: "Paulina B.",
+    rating: 5,
+    quote: "Genialna zabawa! Jazda 4x4 zakupiona dla męża na urodziny. Absolutnie polecam wszystkim kobietom - jeśli chcecie zrobić super prezent swojemu mężowi, narzeczonemu, chłopakowi, to jest to strzał w dziesiątkę! Dziękuję bardzo Mariuszowi za realizację niespodzianki 🙂 Było mega!"
+  },
+  {
+    name: "Angela Z.",
+    rating: 5,
+    quote: "Bardzo polecamy! Mega profesjonalnie. Jednym słowem było czadowo. 💪🥰"
+  },
+  {
+    name: "Robert Ś",
+    rating: 5,
+    quote: "Jazda samochodem terenowym super, duża wyrozumiałość. Trasy Bomba, dużo zjazdów jak i wjazdów czasem trzeba się nieźle nakombinować żeby wyjechać. Polecam każdemu kto nie był i tym co byli ;D warto wrócić i trochę poupalać terenówkę. Następnym razem biorę Quady 😉"
+  }
+];
 
 const About = () => {
-  const features = [
-    {
-      icon: Award,
-      title: "30+ Lat Doświadczenia",
-      description: "Ponad trzy dekady w organizacji wypraw i szkoleń terenowych"
-    },
-    {
-      icon: Shield,
-      title: "Bezpieczeństwo",
-      description: "Najwyższe standardy bezpieczeństwa i profesjonalne wyposażenie"
-    },
-    {
-      icon: Users,
-      title: "Doświadczeni Instruktorzy",
-      description: "Zespół wykwalifikowanych instruktorów z certyfikatami"
-    },
-    {
-      icon: MapPin,
-      title: "Różnorodne Tereny",
-      description: "Dostęp do najlepszych tras offroad w całej Polsce"
+  const [currentIndex, setCurrentIndex] = useState(2);
+
+  const handlePrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
+
+  const getCardStyle = (index: number) => {
+    const diff = index - currentIndex;
+    
+    if (diff === 0) {
+      return {
+        transform: 'translateX(0) scale(1)',
+        zIndex: 30,
+        opacity: 1,
+      };
+    } else if (diff === 1 || diff === -(testimonials.length - 1)) {
+      return {
+        transform: 'translateX(30%) scale(0.85)',
+        zIndex: 10,
+        opacity: 0.6,
+      };
+    } else if (diff === -1 || diff === testimonials.length - 1) {
+      return {
+        transform: 'translateX(-30%) scale(0.85)',
+        zIndex: 10,
+        opacity: 0.6,
+      };
+    } else {
+      return {
+        transform: 'translateX(0) scale(0.7)',
+        zIndex: 0,
+        opacity: 0,
+      };
     }
-  ];
+  };
 
   return (
     <section id="about" className="py-20 bg-muted/30">
@@ -64,37 +112,29 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Content - Features Grid */}
-          <div className="grid sm:grid-cols-2 gap-6">
-            {features.map((feature, index) => {
-              const IconComponent = feature.icon;
-              return (
-                <Card key={index} className="bg-card border-border shadow-soft hover:shadow-strong transition-all duration-300 group">
-                  <CardContent className="p-6 text-center">
-                    <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition-colors">
-                      <IconComponent className="h-8 w-8 text-accent" />
-                    </div>
-                    <h3 className="font-staatliches text-lg text-card-foreground mb-3">
-                      {feature.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground font-roboto-slab leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              );
-            })}
+          {/* Right Content - Image */}
+          <div className="relative">
+            <div className="relative overflow-hidden rounded-lg shadow-2xl">
+              <Image 
+                src="/olddays.Webp"
+                alt="Old days"
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover"
+                priority
+              />
+            </div>
           </div>
         </div>
 
         {/* Statistics */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">500+</div>
+            <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">600+</div>
             <div className="text-muted-foreground font-roboto-slab">Ukończonych kursów</div>
           </div>
           <div>
-            <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">50+</div>
+            <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">100+</div>
             <div className="text-muted-foreground font-roboto-slab">Eventów firmowych</div>
           </div>
           <div>
@@ -104,6 +144,88 @@ const About = () => {
           <div>
             <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">100%</div>
             <div className="text-muted-foreground font-roboto-slab">Zadowolenia</div>
+          </div>
+        </div>
+
+        {/* Testimonials Carousel */}
+        <div className="mt-32">
+          <h2 className="font-staatliches text-3xl md:text-5xl text-center text-foreground mb-16">
+            CO <span className="text-accent">MÓWIĄ</span> NASI KLIENCI
+          </h2>
+          
+          <div className="relative h-[500px] flex items-center justify-center overflow-hidden">
+            {/* Cards */}
+            <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="absolute w-full max-w-2xl transition-all duration-500 ease-out cursor-pointer"
+                  style={getCardStyle(index)}
+                  onClick={() => {
+                    if (index !== currentIndex) {
+                      setCurrentIndex(index);
+                    }
+                  }}
+                >
+                  <div className="bg-gradient-to-br from-neutral-800 via-neutral-900 to-stone-900 border border-accent rounded-lg shadow-2xl p-8 md:p-12">
+                    {/* Name */}
+                    <div className="text-center mb-4">
+                      <h3 className="font-staatliches text-2xl text-white">
+                        {testimonial.name}
+                      </h3>
+                    </div>
+
+                    {/* Rating Stars */}
+                    <div className="flex justify-center gap-1 mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-5 h-5 fill-accent text-accent"
+                        />
+                      ))}
+                    </div>
+
+                    {/* Quote */}
+                    <p className="text-center text-slate-200 font-roboto-slab italic leading-relaxed text-lg">
+                      "{testimonial.quote}"
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={handlePrevious}
+              className="absolute left-4 md:left-8 z-40 bg-accent hover:bg-accent/80 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button
+              onClick={handleNext}
+              className="absolute right-4 md:right-8 z-40 bg-accent hover:bg-accent/80 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Dots Navigation */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex
+                    ? 'bg-accent w-8'
+                    : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>

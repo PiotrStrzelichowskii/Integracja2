@@ -10,7 +10,7 @@ function Model() {
   const meshRef = useRef<THREE.Group>(null);
   
   // Ładujemy model GLB (zawiera geometrię, materiały i tekstury)
-  const gltf = useLoader(GLTFLoader, '/models/Toyota70.glb');
+  const gltf = useLoader(GLTFLoader, '/models/Toyota70_2.glb');
 
   useEffect(() => {
     if (gltf) {

@@ -52,7 +52,7 @@ const Offer = () => {
   };
 
   return (
-    <section id="offer" className="py-40 bg-background bg-offroad z-10 -mt-32 sm:-mt-36 md:-mt-40 lg:-mt-44 xl:-mt-48">
+    <section className="py-40 bg-background bg-offroad z-10 -mt-32 sm:-mt-36 md:-mt-40 lg:-mt-44 xl:-mt-48">
       {/* SVG Filter for Liquid Glass Effect */}
       <svg style={{ display: 'none' }}>
         <filter
@@ -81,7 +81,7 @@ const Offer = () => {
             surfaceScale="5"
             specularConstant="1"
             specularExponent="100"
-            lightingColor="white"
+            lightingColor="#f59e0b"
             result="specLight"
           >
             <fePointLight x="-200" y="-200" z="300" />
@@ -104,13 +104,13 @@ const Offer = () => {
           />
         </filter>
       </svg>
-      <div className="container mx-auto px-4 mt-20">
+      <div id="offer" className="container mx-auto px-4 mt-20 scroll-mt-24">
         <div className="text-center mb-16">
           <h2 className="font-staatliches text-3xl md:text-5xl text-foreground mb-6 mt-40">
             NASZA <span className="text-accent">OFERTA</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
-            Ponad 700 zrealizowanych projektów w Polsce i Europie. Profesjonalny sprzęt, doświadczeni instruktorzy i niezapomniane przygody w terenie.
+            Ponad 700 zrealizowanych eventów w Polsce i Europie. Profesjonalny sprzęt, doświadczeni instruktorzy i niezapomniane przygody w terenie.
           </p>
         </div>
 
@@ -118,11 +118,10 @@ const Offer = () => {
           {offers.map((offer, index) => {
             const IconComponent = offer.icon;
             return (
-              <div key={index} className="liquidGlass-wrapper relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-400 group">
-                <div className="liquidGlass-effect absolute inset-0 z-0 backdrop-blur-[3px]" style={{filter: 'url(#glass-distortion)'}}></div>
-                <div className="liquidGlass-tint absolute inset-0 z-[1] bg-white/20"></div>
+              <div key={index} className="liquidGlass-wrapper relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-400 group bg-gradient-to-br from-neutral-800/95 via-stone-900/95 to-neutral-900/95">
+                <div className="liquidGlass-effect absolute inset-0 z-0 backdrop-blur-[2px]" style={{filter: 'url(#glass-distortion)'}}></div>
                 <div className="liquidGlass-shine absolute inset-0 z-[2]" style={{
-                  boxShadow: 'inset 2px 2px 1px 0 rgba(255, 255, 255, 0.25), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.25)'
+                  boxShadow: 'inset 2px 2px 1px 0 rgba(245, 158, 11, 0.2), inset -1px -1px 1px 1px rgba(245, 158, 11, 0.15)'
                 }}></div>
                 <div className="liquidGlass-content relative z-[3]">
                   <div className="relative overflow-hidden rounded-t-lg">

@@ -22,6 +22,11 @@ const robotoSlab = localFont({
 export const metadata: Metadata = {
   title: "Integracja4x4 - Profesjonalne szkolenia offroad",
   description: "Profesjonalne szkolenia jazdy terenowej. Samochody 4x4, quady ATV i niezapomniane przygody w trudnym terenie.",
+  icons: {
+    icon: '/logo.webp',
+    shortcut: '/logo.webp',
+    apple: '/logo.webp',
+  },
 };
 
 export default function RootLayout({

@@ -193,9 +193,9 @@
   /* Simple black overlay */
   .hero-gradient-overlay {
     background: rgba(0, 0, 0, 0.6);
-    mask: url('/herotorna .png') no-repeat center;
+    mask: url('/heropicture.png') no-repeat center;
     mask-size: cover;
-    -webkit-mask: url('/herotorn.png') no-repeat center;
+    -webkit-mask: url('/heropicture.png') no-repeat center;
     -webkit-mask-size: cover;
   }
   

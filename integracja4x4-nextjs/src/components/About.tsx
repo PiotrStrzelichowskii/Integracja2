@@ -74,36 +74,32 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 bg-muted/30">
+    <section className="py-40 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div>
-            <h2 className="font-staatliches text-3xl md:text-5xl text-foreground mb-6">
+      <h2 id="about" className="font-staatliches text-3xl md:text-5xl text-foreground mb-16 text-center scroll-mt-[100px]">
               O <span className="text-accent">INTEGRACJA4X4</span>
             </h2>
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          {/* Left Content */}
+          <div>
             
-            <div className="space-y-6 text-muted-foreground font-roboto-slab leading-relaxed">
+            
+            <div className="space-y-8 text-muted-foreground font-roboto-slab leading-relaxed">
               <p className="text-lg">
                 Jesteśmy pionierami w organizacji profesjonalnych szkoleń offroad w Polsce. 
-                Od ponad 30 lat pomagamy ludziom odkrywać fascynujący świat jazdy terenowej.
+                Nasza firma została założona w 1993 roku przez Mariusza Strzelichowskiego – doświadczonego off-roadowca, uczestnika i organizatora rajdów terenowych.
               </p>
               
               <p>
-                Nasza pasja do motoryzacji i przyrody zaowocowała stworzeniem unikalnych 
-                programów szkoleniowych, które łączą naukę z niezapomnianą przygodą. 
-                Każdy kurs prowadzony jest przez doświadczonych instruktorów w bezpiecznym 
-                i kontrolowanym środowisku.
+                Przez lata zbudowaliśmy zespół profesjonalnych instruktorów, którzy uczą, jak pewnie i bezpiecznie poruszać się w trudnym terenie. Nasza pasja do motoryzacji i przyrody zaowocowała stworzeniem unikalnych programów szkoleniowych, które łączą naukę z niezapomnianą przygodą.
               </p>
               
               <p>
-                Specjalizujemy się w szkoleniach indywidualnych oraz eventach firmowych, 
-                oferując kompleksową obsługę od podstaw jazdy terenowej po zaawansowane 
-                techniki pokonywania najtrudniejszych przeszkód.
+                Specjalizujemy się w szkoleniach indywidualnych oraz eventach firmowych, oferując kompleksową obsługę od podstaw jazdy terenowej po zaawansowane techniki pokonywania najtrudniejszych przeszkód. Działamy na terenie całej Polski i zrealizowaliśmy już ponad XXX imprez integracyjnych.
               </p>
             </div>
 
-            <div className="mt-8 p-6 bg-accent/10 rounded-lg border border-accent/20">
+            <div className="mt-12 p-6 bg-accent/10 rounded-lg border border-accent/20">
               <h3 className="font-staatliches text-xl text-accent mb-3">Nasze Motto</h3>
               <p className="text-muted-foreground font-roboto-slab italic">
                 "Bezpieczeństwo, profesjonalizm i niezapomniane doświadczenia - 
@@ -123,12 +119,17 @@ const About = () => {
                 className="w-full h-auto object-cover"
                 priority
               />
+              
+              {/* Author Overlay */}
+              <div className="absolute bottom-4 right-4 bg-black/70 text-muted-foreground px-3 py-2 rounded-lg text-sm font-roboto-slab">
+                Mariusz Strzelichowski lata 2000
+              </div>
             </div>
           </div>
         </div>
 
         {/* Statistics */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
           <div>
             <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">600+</div>
             <div className="text-muted-foreground font-roboto-slab">Ukończonych kursów</div>
@@ -148,8 +149,8 @@ const About = () => {
         </div>
 
         {/* Testimonials Carousel */}
-        <div className="mt-32">
-          <h2 className="font-staatliches text-3xl md:text-5xl text-center text-foreground mb-16">
+        <div className="mt-40">
+          <h2 className="font-staatliches text-3xl md:text-5xl text-center text-foreground mb-20">
             CO <span className="text-accent">MÓWIĄ</span> NASI KLIENCI
           </h2>
           

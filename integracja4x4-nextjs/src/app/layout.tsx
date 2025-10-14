@@ -47,22 +47,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl" className="overflow-x-hidden">
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/Staatliches/Staatliches-Regular.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf"
-          as="font"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className={`${staatliches.variable} ${robotoSlab.variable} overflow-x-hidden`}>
         <Providers>
           <TooltipProvider>

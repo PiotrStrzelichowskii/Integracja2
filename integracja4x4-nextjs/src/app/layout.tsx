@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -28,13 +28,16 @@ export const metadata: Metadata = {
     apple: '/logo.webp',
   },
   manifest: '/manifest.json',
-  themeColor: '#252525', // Ciemny szary kolor odpowiadający bg-mud-dark
   other: {
     'msapplication-navbutton-color': '#252525',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-title': 'Integracja4x4',
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#252525', // Ciemny szary kolor odpowiadający bg-mud-dark
 };
 
 export default function RootLayout({

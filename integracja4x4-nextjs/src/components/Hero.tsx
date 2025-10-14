@@ -3,7 +3,12 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 import Image from 'next/image';
-import Model3D from './Model3D';
+import dynamic from 'next/dynamic';
+
+const Model3D = dynamic(() => import('./Model3D'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-mud-dark/50 animate-pulse rounded-lg" />
+});
 
 const Hero = () => {
   const scrollToOffer = () => {

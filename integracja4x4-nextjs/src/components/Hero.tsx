@@ -30,7 +30,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image 
-          src="/heropicture.webp"
+          src="/Heropicture.webp"
           alt="Toyota Land Cruiser 70 offroad training"
           fill
           className="object-cover"

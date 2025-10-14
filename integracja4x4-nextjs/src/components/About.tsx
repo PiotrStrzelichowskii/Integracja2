@@ -111,7 +111,7 @@ const About = () => {
           <div className="relative order-first lg:order-last">
             <div className="relative overflow-hidden rounded-lg shadow-2xl">
               <Image 
-                src="/olddays.Webp"
+                src="/olddays.webp"
                 alt="Old days"
                 width={600}
                 height={400}

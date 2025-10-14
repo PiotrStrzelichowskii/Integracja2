@@ -1,90 +1,220 @@
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, MessageCircle } from 'lucide-react';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
     <footer className="bg-mud-dark text-sand-light">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
-                <span className="text-accent-foreground font-staatliches text-lg font-bold">4X4</span>
-              </div>
-              <div className="font-staatliches text-xl">
+      <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12">
+        {/* Mobile Layout */}
+        <div className="md:hidden">
+          {/* Company Info - Compact */}
+          <div className="text-center mb-6">
+            <div className="flex items-center justify-center space-x-2 mb-3">
+              <Image 
+                src="/logo.webp" 
+                alt="Integracja4x4 Logo" 
+                width={32} 
+                height={32}
+                className="object-contain rounded-full"
+              />
+              <div className="font-staatliches text-lg tracking-[0.02em]">
                 INTEGRACJA4X4
               </div>
             </div>
-            <p className="text-sand-light/80 font-roboto-slab leading-relaxed mb-6">
-              Profesjonalne szkolenia offroad, eventy firmowe i niezapomniane przygody w trudnym terenie. 
-              Ponad 30 lat doświadczenia w organizacji wypraw terenowych.
+            <p className="text-sand-light/80 font-roboto-slab text-sm leading-relaxed mb-4">
+              Profesjonalne szkolenia offroad, eventy firmowe i niezapomniane przygody w trudnym terenie.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-sand-light/60 hover:text-accent transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                </svg>
+            <div className="flex justify-center space-x-4">
+              <a 
+                href="https://www.facebook.com/integracja4x4" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-sand-light/60 hover:text-accent transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="text-sand-light/60 hover:text-accent transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
-                </svg>
+              <a 
+                href="https://m.me/integracja4x4" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-sand-light/60 hover:text-accent transition-colors"
+                aria-label="Messenger"
+              >
+                <MessageCircle className="w-5 h-5" />
               </a>
-              <a href="#" className="text-sand-light/60 hover:text-accent transition-colors">
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.461.017.394-.053.394-.121.633-.394.422-.394 1.372-.394 1.372-.663-.105-1.336-.421-1.964-.864C3.79 17.838 1.925 14.866 1.925 11.671 1.925 6.937 5.535 2.893 12.353 2.893c6.104 0 10.847 4.347 10.847 10.134 0 6.051-3.808 10.92-9.086 10.92-1.775 0-3.449-.922-4.017-2.023 0 0-.88 3.351-1.094 4.18-.394 1.512-1.459 3.394-2.173 4.544C8.458 23.57 10.195 24 12.017 24c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/>
-                </svg>
+              <a 
+                href="https://www.instagram.com/integracja4x4.pl/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-sand-light/60 hover:text-accent transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a 
+                href="mailto:info@integracja4x4.pl"
+                className="text-sand-light/60 hover:text-accent transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-staatliches text-lg text-accent mb-4">Szybkie linki</h3>
-            <ul className="space-y-3 font-roboto-slab">
-              <li>
-                <a href="#offer" className="text-sand-light/80 hover:text-accent transition-colors">Oferta</a>
-              </li>
-              <li>
-                <a href="#about" className="text-sand-light/80 hover:text-accent transition-colors">O nas</a>
-              </li>
-              <li>
-                <a href="#gallery" className="text-sand-light/80 hover:text-accent transition-colors">Galeria</a>
-              </li>
-              <li>
-                <a href="#contact" className="text-sand-light/80 hover:text-accent transition-colors">Kontakt</a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-staatliches text-lg text-accent mb-4">Kontakt</h3>
-            <div className="space-y-3 font-roboto-slab">
-              <div className="flex items-center text-sand-light/80">
-                <Phone size={16} className="mr-3 text-accent" />
-                <span>+48 123 456 789</span>
-              </div>
-              <div className="flex items-center text-sand-light/80">
-                <Mail size={16} className="mr-3 text-accent" />
-                <span>kontakt@integracja4x4.pl</span>
-              </div>
-              <div className="flex items-start text-sand-light/80">
-                <MapPin size={16} className="mr-3 text-accent mt-1 flex-shrink-0" />
-                <span>Różne lokalizacje w Polsce</span>
+          {/* Links and Contact - Horizontal Layout */}
+          <div className="grid grid-cols-2 gap-6 mb-6">
+            <div>
+              <h3 className="font-staatliches text-sm text-accent mb-2">Szybkie linki</h3>
+              <ul className="space-y-1 font-roboto-slab text-sm">
+                <li><a href="#offer" className="text-sand-light/80 hover:text-accent transition-colors">Oferta</a></li>
+                <li><a href="#about" className="text-sand-light/80 hover:text-accent transition-colors">O nas</a></li>
+                <li><a href="#gallery" className="text-sand-light/80 hover:text-accent transition-colors">Galeria</a></li>
+                <li><a href="#contact" className="text-sand-light/80 hover:text-accent transition-colors">Kontakt</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-staatliches text-sm text-accent mb-2">Kontakt</h3>
+              <div className="space-y-1 font-roboto-slab text-sm">
+                <div className="flex items-center text-sand-light/80">
+                  <Phone size={12} className="mr-2 text-accent flex-shrink-0" />
+                  <span>+48 501 318 521</span>
+                </div>
+                <div className="flex items-center text-sand-light/80">
+                  <Mail size={12} className="mr-2 text-accent flex-shrink-0" />
+                  <a href="mailto:info@integracja4x4.pl" className="hover:text-accent transition-colors text-xs">
+                    info@integracja4x4.pl
+                  </a>
+                </div>
+                <div className="flex items-start text-sand-light/80">
+                  <MapPin size={12} className="mr-2 text-accent mt-0.5 flex-shrink-0" />
+                  <div className="text-xs">
+                    <div>ul. Powstania Styczniowego 12a</div>
+                    <div>30-298 Kraków</div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+
+          {/* Copyright - Compact */}
+          <hr className="border-sand-light/20 my-4" />
+          <div className="text-center text-sand-light/60 font-roboto-slab text-xs">
+            <p className="mb-1">© 2025 Integracja4x4. Wszelkie prawa zastrzeżone.</p>
+            <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">Polityka prywatności</a>
           </div>
         </div>
 
-        <hr className="border-sand-light/20 my-8" />
+        {/* Desktop Layout */}
+        <div className="hidden md:block">
+          <div className="grid md:grid-cols-4 gap-8">
+            {/* Company Info */}
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-6">
+                <Image 
+                  src="/logo.webp" 
+                  alt="Integracja4x4 Logo" 
+                  width={48} 
+                  height={48}
+                  className="object-contain rounded-full"
+                />
+                <div className="font-staatliches text-xl tracking-[0.02em]">
+                  INTEGRACJA4X4
+                </div>
+              </div>
+              <p className="text-sand-light/80 font-roboto-slab leading-relaxed mb-6">
+                Profesjonalne szkolenia offroad, eventy firmowe i niezapomniane przygody w trudnym terenie. 
+                Ponad 30 lat doświadczenia w organizacji wypraw terenowych.
+              </p>
+              <div className="flex space-x-4">
+                <a 
+                  href="https://www.facebook.com/integracja4x4" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sand-light/60 hover:text-accent transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-6 h-6" />
+                </a>
+                <a 
+                  href="https://m.me/integracja4x4" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sand-light/60 hover:text-accent transition-colors"
+                  aria-label="Messenger"
+                >
+                  <MessageCircle className="w-6 h-6" />
+                </a>
+                <a 
+                  href="https://www.instagram.com/integracja4x4.pl/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sand-light/60 hover:text-accent transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <a 
+                  href="mailto:info@integracja4x4.pl"
+                  className="text-sand-light/60 hover:text-accent transition-colors"
+                  aria-label="Email"
+                >
+                  <Mail className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center text-sand-light/60 font-roboto-slab text-sm">
-          <p>© 2024 Integracja4x4. Wszelkie prawa zastrzeżone.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-accent transition-colors">Polityka prywatności</a>
-            <a href="#" className="hover:text-accent transition-colors">Regulamin</a>
-            <a href="#" className="hover:text-accent transition-colors">Cookies</a>
+            {/* Quick Links */}
+            <div>
+              <h3 className="font-staatliches text-lg text-accent mb-4">Szybkie linki</h3>
+              <ul className="space-y-3 font-roboto-slab">
+                <li>
+                  <a href="#offer" className="text-sand-light/80 hover:text-accent transition-colors">Oferta</a>
+                </li>
+                <li>
+                  <a href="#about" className="text-sand-light/80 hover:text-accent transition-colors">O nas</a>
+                </li>
+                <li>
+                  <a href="#gallery" className="text-sand-light/80 hover:text-accent transition-colors">Galeria</a>
+                </li>
+                <li>
+                  <a href="#contact" className="text-sand-light/80 hover:text-accent transition-colors">Kontakt</a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Contact Info */}
+            <div>
+              <h3 className="font-staatliches text-lg text-accent mb-4">Kontakt</h3>
+              <div className="space-y-3 font-roboto-slab">
+                <div className="flex items-center text-sand-light/80">
+                  <Phone size={16} className="mr-3 text-accent flex-shrink-0" />
+                  <span>+48 501 318 521</span>
+                </div>
+                <div className="flex items-center text-sand-light/80">
+                  <Mail size={16} className="mr-3 text-accent flex-shrink-0" />
+                  <a href="mailto:info@integracja4x4.pl" className="hover:text-accent transition-colors">
+                    info@integracja4x4.pl
+                  </a>
+                </div>
+                <div className="flex items-start text-sand-light/80">
+                  <MapPin size={16} className="mr-3 text-accent mt-1 flex-shrink-0" />
+                  <div>
+                    <div>ul. Powstania Styczniowego 12a</div>
+                    <div>30-298 Kraków</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr className="border-sand-light/20 my-8" />
+
+          <div className="flex flex-col md:flex-row justify-between items-center text-sand-light/60 font-roboto-slab text-sm">
+            <p>© 2025 Integracja4x4. Wszelkie prawa zastrzeżone.</p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">Polityka prywatności</a>
+            </div>
           </div>
         </div>
       </div>

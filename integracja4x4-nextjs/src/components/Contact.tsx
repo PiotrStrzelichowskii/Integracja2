@@ -84,18 +84,198 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-40 bg-muted/30">
+    <section className="py-20 sm:py-32 md:py-40 bg-muted/30">
       <div id="contact" className="container mx-auto px-4 scroll-mt-[100px]">
-        <div className="text-center mb-20">
-          <h2 className="font-staatliches text-3xl md:text-5xl text-foreground mb-8">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
+          <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-4 sm:mb-6 md:mb-8">
             <span className="text-accent">KONTAKT</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
             Skontaktuj się z nami, aby umówić szkolenie lub dowiedzieć się więcej o naszej ofercie
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-16">
+        {/* Mobile Layout */}
+        <div className="lg:hidden">
+          {/* Contact Form - First on Mobile */}
+          <div className="mb-8">
+            <Card className="bg-card border-border shadow-soft">
+              <CardHeader className="pb-4">
+                <CardTitle className="font-staatliches text-lg sm:text-xl text-card-foreground tracking-[0.02em]">
+                  Wyślij wiadomość
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="font-roboto-slab font-medium text-sm">
+                      Imię i nazwisko *
+                    </Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Twoje imię i nazwisko"
+                      required
+                      className="bg-input border-border font-roboto-slab text-sm"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="font-roboto-slab font-medium text-sm">
+                      Email *
+                    </Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="twoj@email.com"
+                      required
+                      className="bg-input border-border font-roboto-slab text-sm"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="font-roboto-slab font-medium text-sm">
+                      Telefon
+                    </Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="+48 123 456 789"
+                      className="bg-input border-border font-roboto-slab text-sm"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="subject" className="font-roboto-slab font-medium text-sm">
+                      Temat
+                    </Label>
+                    <Input
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      placeholder="Temat wiadomości"
+                      className="bg-input border-border font-roboto-slab text-sm"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="font-roboto-slab font-medium text-sm">
+                      Wiadomość *
+                    </Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Opisz czego potrzebujesz..."
+                      rows={4}
+                      required
+                      className="bg-input border-border font-roboto-slab resize-none text-sm"
+                    />
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-roboto-slab font-semibold text-sm py-2"
+                  >
+                    {isSubmitting ? "Wysyłanie..." : "Wyślij wiadomość"}
+                  </Button>
+
+                  <p className="text-xs text-muted-foreground font-roboto-slab text-center">
+                    * - pola wymagane. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim.
+                  </p>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Contact Information - Compact Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Card className="bg-card border-border shadow-soft">
+              <CardHeader className="pb-2">
+                <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
+                  <Phone className="mr-2 h-4 w-4 text-accent" />
+                  Telefon
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <p className="text-muted-foreground font-roboto-slab text-sm">
+                  +48 501 318 521
+                </p>
+                <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
+                  PS Bikes Mariusz Strzelichowski
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card border-border shadow-soft">
+              <CardHeader className="pb-2">
+                <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
+                  <Mail className="mr-2 h-4 w-4 text-accent" />
+                  Email
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <p className="text-muted-foreground font-roboto-slab text-sm">
+                  info@integracja4x4.pl
+                </p>
+                <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
+                  Odpowiadamy w ciągu 24h
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card border-border shadow-soft sm:col-span-2">
+              <CardHeader className="pb-2">
+                <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
+                  <MapPin className="mr-2 h-4 w-4 text-accent" />
+                  Główna siedziba firmy
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <p className="text-muted-foreground font-roboto-slab text-sm">
+                  ul. Powstania Styczniowego 12a
+                </p>
+                <p className="text-muted-foreground font-roboto-slab text-sm">
+                  30-298 Kraków
+                </p>
+                <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
+                  Miejsce eventu dopasowujemy do potrzeb klienta
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card border-border shadow-soft sm:col-span-2">
+              <CardHeader className="pb-2">
+                <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
+                  <CreditCard className="mr-2 h-4 w-4 text-accent" />
+                  Płatności
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <p className="text-muted-foreground font-roboto-slab font-mono text-xs break-all">
+                  76 2490 0005 0000 4000 1600 9299
+                </p>
+                <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
+                  Nr konta bankowego
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid lg:grid-cols-3 gap-16">
           {/* Contact Information */}
           <div className="space-y-8">
             <Card className="bg-card border-border shadow-soft">
@@ -168,7 +348,6 @@ const Contact = () => {
                 </p>
               </CardContent>
             </Card>
-
           </div>
 
           {/* Contact Form */}

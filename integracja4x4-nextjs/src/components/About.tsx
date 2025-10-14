@@ -74,34 +74,33 @@ const About = () => {
   };
 
   return (
-    <section className="py-40 bg-muted/30">
+    <section className="py-20 sm:py-32 md:py-40 bg-muted/30">
       <div className="container mx-auto px-4">
-      <h2 id="about" className="font-staatliches text-3xl md:text-5xl text-foreground mb-16 text-center scroll-mt-[100px]">
-              O <span className="text-accent">INTEGRACJA4X4</span>
-            </h2>
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <h2 id="about" className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-8 sm:mb-12 md:mb-16 text-center scroll-mt-[100px]">
+          O <span className="text-accent">INTEGRACJA4X4</span>
+        </h2>
+        
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
           {/* Left Content */}
           <div>
-            
-            
-            <div className="space-y-8 text-muted-foreground font-roboto-slab leading-relaxed">
-              <p className="text-lg">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 text-muted-foreground font-roboto-slab leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg">
                 Jesteśmy pionierami w organizacji profesjonalnych szkoleń offroad w Polsce. 
                 Nasza firma została założona w 1993 roku przez Mariusza Strzelichowskiego – doświadczonego off-roadowca, uczestnika i organizatora rajdów terenowych.
               </p>
               
-              <p>
+              <p className="text-sm sm:text-base">
                 Przez lata zbudowaliśmy zespół profesjonalnych instruktorów, którzy uczą, jak pewnie i bezpiecznie poruszać się w trudnym terenie. Nasza pasja do motoryzacji i przyrody zaowocowała stworzeniem unikalnych programów szkoleniowych, które łączą naukę z niezapomnianą przygodą.
               </p>
               
-              <p>
+              <p className="text-sm sm:text-base">
                 Specjalizujemy się w szkoleniach indywidualnych oraz eventach firmowych, oferując kompleksową obsługę od podstaw jazdy terenowej po zaawansowane techniki pokonywania najtrudniejszych przeszkód. Działamy na terenie całej Polski i zrealizowaliśmy już ponad XXX imprez integracyjnych.
               </p>
             </div>
 
-            <div className="mt-12 p-6 bg-accent/10 rounded-lg border border-accent/20">
-              <h3 className="font-staatliches text-xl text-accent mb-3">Nasze Motto</h3>
-              <p className="text-muted-foreground font-roboto-slab italic">
+            <div className="mt-6 sm:mt-8 md:mt-12 p-4 sm:p-6 bg-accent/10 rounded-lg border border-accent/20">
+              <h3 className="font-staatliches text-lg sm:text-xl text-accent mb-2 sm:mb-3">Nasze Motto</h3>
+              <p className="text-muted-foreground font-roboto-slab italic text-sm sm:text-base">
                 "Bezpieczeństwo, profesjonalizm i niezapomniane doświadczenia - 
                 to podstawy naszej pracy z każdym klientem."
               </p>
@@ -109,7 +108,7 @@ const About = () => {
           </div>
 
           {/* Right Content - Image */}
-          <div className="relative">
+          <div className="relative order-first lg:order-last">
             <div className="relative overflow-hidden rounded-lg shadow-2xl">
               <Image 
                 src="/olddays.Webp"
@@ -121,7 +120,7 @@ const About = () => {
               />
               
               {/* Author Overlay */}
-              <div className="absolute bottom-4 right-4 bg-black/70 text-muted-foreground px-3 py-2 rounded-lg text-sm font-roboto-slab">
+              <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/70 text-muted-foreground px-2 sm:px-3 py-1 sm:py-2 rounded-lg text-xs sm:text-sm font-roboto-slab">
                 Mariusz Strzelichowski lata 2000
               </div>
             </div>
@@ -129,38 +128,38 @@ const About = () => {
         </div>
 
         {/* Statistics */}
-        <div className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+        <div className="mt-16 sm:mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 text-center">
           <div>
-            <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">600+</div>
-            <div className="text-muted-foreground font-roboto-slab">Ukończonych kursów</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">600+</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Ukończonych kursów</div>
           </div>
           <div>
-            <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">100+</div>
-            <div className="text-muted-foreground font-roboto-slab">Eventów firmowych</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100+</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Eventów firmowych</div>
           </div>
           <div>
-            <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">30+</div>
-            <div className="text-muted-foreground font-roboto-slab">Lat doświadczenia</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">30+</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Lat doświadczenia</div>
           </div>
           <div>
-            <div className="text-4xl md:text-5xl font-staatliches text-accent mb-2">100%</div>
-            <div className="text-muted-foreground font-roboto-slab">Zadowolenia</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100%</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Zadowolenia</div>
           </div>
         </div>
 
         {/* Testimonials Carousel */}
-        <div className="mt-40">
-          <h2 className="font-staatliches text-3xl md:text-5xl text-center text-foreground mb-20">
+        <div className="mt-20 sm:mt-32 md:mt-40">
+          <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-center text-foreground mb-12 sm:mb-16 md:mb-20">
             CO <span className="text-accent">MÓWIĄ</span> NASI KLIENCI
           </h2>
           
-          <div className="relative h-[500px] flex items-center justify-center overflow-hidden">
+          <div className="relative h-[400px] flex items-center justify-center overflow-hidden">
             {/* Cards */}
-            <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
+            <div className="relative w-full max-w-3xl h-full flex items-center justify-center">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className="absolute w-full max-w-2xl transition-all duration-500 ease-out cursor-pointer"
+                  className="absolute w-full max-w-xl transition-all duration-500 ease-out cursor-pointer"
                   style={getCardStyle(index)}
                   onClick={() => {
                     if (index !== currentIndex) {
@@ -168,26 +167,26 @@ const About = () => {
                     }
                   }}
                 >
-                  <div className="bg-gradient-to-br from-neutral-800 via-neutral-900 to-stone-900 border border-accent rounded-lg shadow-2xl p-8 md:p-12">
+                  <div className="bg-gradient-to-br from-neutral-800 via-neutral-900 to-stone-900 border border-accent rounded-lg shadow-2xl p-6 md:p-8">
                     {/* Name */}
-                    <div className="text-center mb-4">
-                      <h3 className="font-staatliches text-2xl text-white">
+                    <div className="text-center mb-3">
+                      <h3 className="font-staatliches text-xl md:text-2xl text-white">
                         {testimonial.name}
                       </h3>
                     </div>
 
                     {/* Rating Stars */}
-                    <div className="flex justify-center gap-1 mb-6">
+                    <div className="flex justify-center gap-1 mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star
                           key={i}
-                          className="w-5 h-5 fill-accent text-accent"
+                          className="w-4 h-4 md:w-5 md:h-5 fill-accent text-accent"
                         />
                       ))}
                     </div>
 
                     {/* Quote */}
-                    <p className="text-center text-slate-200 font-roboto-slab italic leading-relaxed text-lg">
+                    <p className="text-center text-slate-200 font-roboto-slab italic leading-relaxed text-base md:text-lg">
                       "{testimonial.quote}"
                     </p>
                   </div>
@@ -198,7 +197,7 @@ const About = () => {
             {/* Navigation Arrows */}
             <button
               onClick={handlePrevious}
-              className="absolute left-4 md:left-8 z-40 bg-accent hover:bg-accent/80 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+              className="absolute left-1 md:left-8 z-40 text-accent hover:text-accent/80 p-3 transition-all duration-200 hover:scale-110"
               aria-label="Previous testimonial"
             >
               <ChevronLeft className="w-6 h-6" />
@@ -206,7 +205,7 @@ const About = () => {
             
             <button
               onClick={handleNext}
-              className="absolute right-4 md:right-8 z-40 bg-accent hover:bg-accent/80 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+              className="absolute right-1 md:right-8 z-40 text-accent hover:text-accent/80 p-3 transition-all duration-200 hover:scale-110"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-6 h-6" />

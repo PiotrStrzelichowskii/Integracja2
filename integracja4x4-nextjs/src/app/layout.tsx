@@ -27,6 +27,14 @@ export const metadata: Metadata = {
     shortcut: '/logo.webp',
     apple: '/logo.webp',
   },
+  manifest: '/manifest.json',
+  themeColor: '#252525', // Ciemny szary kolor odpowiadający bg-mud-dark
+  other: {
+    'msapplication-navbutton-color': '#252525',
+    'apple-mobile-web-app-status-bar-style': 'black-translucent',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-title': 'Integracja4x4',
+  },
 };
 
 export default function RootLayout({
@@ -35,8 +43,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pl">
-      <body className={`${staatliches.variable} ${robotoSlab.variable}`}>
+    <html lang="pl" className="overflow-x-hidden">
+      <body className={`${staatliches.variable} ${robotoSlab.variable} overflow-x-hidden`}>
         <Providers>
           <TooltipProvider>
             <Toaster />

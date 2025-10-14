@@ -78,13 +78,55 @@ const Gallery = () => {
           </p>
         </div>
 
-        {/* Full Gallery Grid - utilizing all available space */}
-        <div className="max-w-7xl mx-auto">
+        {/* Mobile Gallery - Simple Stack */}
+        <div className="md:hidden max-w-2xl mx-auto">
+          <div className="space-y-4">
+            {galleryImages.map((image, index) => (
+              <div 
+                key={index}
+                className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-soft hover:shadow-strong transition-all duration-300"
+                onClick={() => setSelectedImageIndex(index)}
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <Image 
+                    src={image.src}
+                    alt={image.alt}
+                    width={600}
+                    height={450}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                
+                {/* Overlay - always visible on mobile */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="font-staatliches text-lg text-white mb-1">
+                      {image.title}
+                    </h3>
+                    <p className="text-sm text-white/90 font-roboto-slab">
+                      {image.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Tap Icon */}
+                <div className="absolute top-4 right-4 bg-accent text-accent-foreground p-2 rounded-full">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop Gallery - Original Layout */}
+        <div className="hidden md:block max-w-7xl mx-auto">
           {/* Top Row - Main Asymmetric Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6" style={{ aspectRatio: '6/2' }}>
+          <div className="grid grid-cols-3 gap-6 mb-6" style={{ aspectRatio: '6/2' }}>
             {/* Large image - top left (spans 2 columns) */}
             <div 
-              className="md:col-span-2 relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300"
+              className="col-span-2 relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300"
               onClick={() => setSelectedImageIndex(0)}
             >
               <div className="aspect-[4/2] overflow-hidden">
@@ -154,11 +196,11 @@ const Gallery = () => {
           </div>
 
           {/* Bottom Row - Main Asymmetric Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6" style={{ aspectRatio: '6/2' }}>
-            {/* Small image - top right */}
+          <div className="grid grid-cols-3 gap-6 mb-6" style={{ aspectRatio: '6/2' }}>
+            {/* Small image - bottom left */}
             <div 
               className="relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300"
-              onClick={() => setSelectedImageIndex(3)}
+              onClick={() => setSelectedImageIndex(2)}
             >
               <div className="overflow-hidden">
                 <Image 
@@ -166,7 +208,7 @@ const Gallery = () => {
                   alt={galleryImages[2].alt}
                   width={400} 
                   height={400}
-                  className="w-full h-full object-fill group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
               
@@ -189,11 +231,10 @@ const Gallery = () => {
                 </svg>
               </div>
             </div>
-          
 
             {/* Large image - bottom right (spans 2 columns) */}
             <div 
-              className="md:col-span-2 relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300"
+              className="col-span-2 relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300"
               onClick={() => setSelectedImageIndex(3)}
             >
               <div className="overflow-hidden">
@@ -231,29 +272,29 @@ const Gallery = () => {
 
         {/* Call to Action */}
         <div className="text-center mt-24">
-          <div className="bg-muted/30 p-10 rounded-lg">
+          <div className="bg-muted/50 p-10 rounded-lg">
             <h3 className="font-staatliches text-2xl text-foreground mb-4">
               Chcesz zobaczyć więcej?
             </h3>
             <p className="text-muted-foreground font-roboto-slab mb-6">
               Odwiedź nasze media społecznościowe, aby zobaczyć najnowsze zdjęcia i filmy z naszych szkoleń
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-8">
               <a 
                 href="https://www.facebook.com/integracja4x4" 
-                className="btn-offroad-primary font-roboto-slab"
+                className="btn-offroad-primary font-roboto-slab px-2 sm:px-3 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-sm md:text-base align-middle items-center"
               >
                 Facebook
               </a>
               <a 
                 href="https://www.instagram.com/integracja4x4.pl/" 
-                className="btn-offroad-primary font-roboto-slab"
+                className="btn-offroad-primary font-roboto-slab px-2 sm:px-3 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-sm md:text-base align-middle items-center"
               >
                 Instagram
               </a>
               <a 
                 href="https://www.youtube.com/channel/UCJyTmHY9czMaXCd3HplVylQ" 
-                className="btn-offroad-primary font-roboto-slab"
+                className="btn-offroad-primary font-roboto-slab px-2 sm:px-3 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-sm md:text-base align-middle items-center"
               >
                 YouTube
               </a>

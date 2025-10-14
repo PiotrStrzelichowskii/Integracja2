@@ -102,7 +102,11 @@
   }
 
   body {
-    @apply bg-mud-dark text-foreground font-roboto-slab;
+    @apply bg-mud-dark text-foreground font-roboto-slab overflow-x-hidden;
+  }
+  
+  html {
+    @apply overflow-x-hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -301,9 +305,7 @@
     background: hsl(var(--accent));
     color: hsl(var(--primary-foreground));
     border: none;
-    padding: 16px 32px;
     font-weight: 700;
-    font-size: 1.125rem;
     transition: all 0.3s ease;
     clip-path: polygon(
       0 0,
@@ -314,22 +316,21 @@
       0 calc(100% - 12px)
     );
   }
-  
+
   .btn-offroad-primary:hover {
-    background: transparent;
+    background: hsl(var(--background));
     transform: scale(1.05);
     border: 2px solid hsl(var(--accent));
     box-shadow: 0 0 30px hsl(var(--primary) / 0.5);
   }
   
   .btn-offroad-outline {
-    background: transparent;
+    background: hsl(var(--background));
     color: hsl(var(--sand-light));
     border: 2px solid hsl(var(--accent));
-    padding: 16px 32px;
     font-weight: 700;
-    font-size: 1.125rem;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     clip-path: polygon(
       0 0,
       calc(100% - 12px) 0,
@@ -339,12 +340,12 @@
       0 calc(100% - 12px)
     );
   }
-  
+
   .btn-offroad-outline:hover {
     background: hsl(var(--accent));
     color: hsl(var(--accent-foreground));
     transform: scale(1.05);
-    box-shadow: 0 0 30px hsl(var(--accent) / 0.5);
+    box-shadow: 0 0 30px hsl(var(--accent) / 0.5), 0 6px 16px rgba(0, 0, 0, 0.4);
   }
 }
 

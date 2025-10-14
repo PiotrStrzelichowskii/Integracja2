@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
-function Model() {
+function Model({ screenSize = 'mobile' }: { screenSize?: string }) {
   const meshRef = useRef<THREE.Group>(null);
   
   // Ładujemy model GLB (zawiera geometrię, materiały i tekstury)
@@ -16,14 +16,15 @@ function Model() {
     if (gltf) {
       const model = gltf.scene;
       
-      // Wyśrodkuj model w przestrzeni 3D
+      // Wyśrodkuj model w przestrzeni 3D (tylko raz przy ładowaniu)
       const box = new THREE.Box3().setFromObject(model);
       const center = box.getCenter(new THREE.Vector3());
       const size = box.getSize(new THREE.Vector3());
       
-      // Przesuń model tak, żeby jego środek był w (0,0,0) i lekko w dół
-      model.position.sub(center);
-      model.position.y -= 0.5; // Przesuń model lekko w dół
+      // Przesuń model tak, żeby jego środek był w (0,0,0) - tylko X i Z
+      model.position.x -= center.x;
+      model.position.z -= center.z;
+      // Y zostanie ustawione w getPosition() - nie dotykamy tutaj
       
       console.log('Model center:', center);
       console.log('Model size:', size);
@@ -68,25 +69,74 @@ function Model() {
     }
   });
 
+  const getScale = () => {
+    switch (screenSize) {
+      case 'mobile': return [2, 2, 2];
+      case 'xs': return [2, 2, 2];
+      case 'sm': return [2.5, 2.5, 2.5];
+      case 'md': return [1.4, 1.4, 1.4];
+      case 'lg': return [2, 2, 2];
+      default: return [2.5, 2.5, 2.5];
+    }
+  };
+  
+  const scale = getScale();
+  
+  const getPosition = () => {
+    switch (screenSize) {
+      case 'mobile': return [0, 0.5, 0]; // Wyżej na telefonie
+      case 'xs': return [0, 0.3, 0];
+      case 'sm': return [0, 0.2, 0];
+      case 'md': return [0, 0, 0];
+      case 'lg': return [0, 0, 0];
+      default: return [0, 0, 0];
+    }
+  };
+  
+  const position = getPosition();
+  
   return (
     <group ref={meshRef}>
       <primitive 
         object={gltf.scene} 
-        scale={[2.5, 2.5, 2.5]} 
-        position={[0, 0, 0]}
+        scale={scale} 
+        position={position}
       />
     </group>
   );
 }
 
 export default function Model3D() {
+  // Sprawdź rozmiar ekranu
+  const [screenSize, setScreenSize] = React.useState('mobile');
+  
+  React.useEffect(() => {
+    const updateScreenSize = () => {
+      if (typeof window !== 'undefined') {
+        if (window.innerWidth < 640) setScreenSize('mobile');
+        else if (window.innerWidth < 700) setScreenSize('xs');
+        else if (window.innerWidth < 1024) setScreenSize('sm');
+        else if (window.innerWidth < 1400) setScreenSize('md');
+        else if (window.innerWidth < 1700) setScreenSize('lg');
+        else setScreenSize('xl');
+      }
+    };
+    
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, []);
+  
   return (
-    <div className="w-full h-[500px] lg:h-[500px] relative flex items-center justify-center">
+    <div className="w-full h-[300px] sm:h-[400px] lg:h-[500px] relative flex items-center justify-center">
       {/* Glow effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-orange-500/30 via-transparent to-yellow-200/30 rounded-lg blur-2xl scale-125"></div>
       <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-yellow-100/20 rounded-lg blur-xl scale-110"></div>
       <Canvas
-        camera={{ position: [0, 1, 7], fov: 45 }}
+        camera={{ 
+          position: screenSize === 'mobile' ? [0, 1.5, 5] : [0, 2, 7], 
+          fov: screenSize === 'mobile' ? 50 : 45 
+        }}
         style={{ background: 'transparent' }}
         className="relative z-10 w-full h-full"
       >
@@ -102,7 +152,7 @@ export default function Model3D() {
         <spotLight position={[0, 15, 0]} intensity={1.0} angle={0.5} penumbra={0.3} />
         
         {/* Model */}
-        <Model />
+        <Model screenSize={screenSize} />
         
         {/* Kontrola kamery */}
         <OrbitControls 
@@ -110,7 +160,7 @@ export default function Model3D() {
           enablePan={false}
           autoRotate={true}
           autoRotateSpeed={0.5}
-          target={[0, -0.5, 0]}
+          target={[0, 0, 0]}
           minPolarAngle={Math.PI / 3}
           maxPolarAngle={Math.PI / 2}
         />

@@ -5,20 +5,18 @@ import { ArrowRight, Play } from 'lucide-react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
-// Tymczasowo wyłącz Model3D na produkcji
-const Model3D = process.env.NODE_ENV === 'production' 
-  ? () => (
-      <div className="w-full h-full bg-mud-dark/50 rounded-lg flex items-center justify-center">
-        <div className="text-center text-muted-foreground">
-          <div className="text-4xl mb-2">🚗</div>
-          <p className="text-sm">Model 3D</p>
-        </div>
+// Przywróć Model3D z dynamicznym importem
+const Model3D = dynamic(() => import('./Model3D'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full bg-mud-dark/50 rounded-lg flex items-center justify-center">
+      <div className="text-center text-muted-foreground">
+        <div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+        <p className="text-sm">Ładowanie modelu 3D...</p>
       </div>
-    )
-  : dynamic(() => import('./Model3D'), {
-      ssr: false,
-      loading: () => <div className="w-full h-full bg-mud-dark/50 animate-pulse rounded-lg" />
-    });
+    </div>
+  )
+});
 
 const Hero = () => {
   const scrollToOffer = () => {

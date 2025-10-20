@@ -8,6 +8,7 @@ import * as THREE from 'three';
 
 function Model({ screenSize = 'mobile' }: { screenSize?: string }) {
   const meshRef = useRef<THREE.Group>(null);
+  const rotateIconRef = useRef<THREE.Group>(null);
   const [modelLoaded, setModelLoaded] = React.useState(false);
   
   // Ładujemy model GLB (zawiera geometrię, materiały i tekstury)
@@ -71,19 +72,24 @@ function Model({ screenSize = 'mobile' }: { screenSize?: string }) {
 
   useFrame((state) => {
     if (meshRef.current) {
-      // Wolna rotacja modelu
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.2;
+      // Model nie obraca się automatycznie - zatrzymany
+      // meshRef.current.rotation.y = state.clock.elapsedTime * 0.2;
+    }
+    
+    if (rotateIconRef.current) {
+      // Ikona obrotu obraca się szybko w drugą stronę
+      rotateIconRef.current.rotation.z = -state.clock.elapsedTime * 0.7;
     }
   });
 
   const getScale = () => {
     switch (screenSize) {
-      case 'mobile': return [2, 2, 2];
-      case 'xs': return [2, 2, 2];
-      case 'sm': return [2.5, 2.5, 2.5];
-      case 'md': return [1.4, 1.4, 1.4];
-      case 'lg': return [2, 2, 2];
-      default: return [2.5, 2.5, 2.5];
+      case 'mobile': return [2.5, 2.5, 2.5];
+      case 'xs': return [3, 3, 3];
+      case 'sm': return [3.5, 3.5, 3.5];
+      case 'md': return [3, 3, 3];
+      case 'lg': return [3, 3, 3];
+      default: return [3.5, 3.5, 3.5];
     }
   };
   
@@ -109,12 +115,43 @@ function Model({ screenSize = 'mobile' }: { screenSize?: string }) {
   }
 
   return (
-    <group ref={meshRef}>
+    <group ref={meshRef} rotation={[0, -Math.PI / 6, 0]}>
       <primitive 
         object={gltf.scene} 
         scale={scale} 
         position={position}
       />
+      
+      {/* Ikona obrotu – elegancka, animowana */}
+     <group ref={rotateIconRef} position={[0, position[1] - 3, 0]} rotation={[Math.PI / 2, 0, 0]}>
+      {/* Delikatnie obracający się torus */}
+      <mesh rotation={[0, 0, -Math.PI / 2]}>
+        <torusGeometry args={[1.4, 0.08, 16, 100, Math.PI * 1.75]} />
+        <meshStandardMaterial
+          color="#F4A460"
+          metalness={0.6}
+          roughness={0.2}
+          emissive="#FFD39B"
+          emissiveIntensity={0.5}
+          envMapIntensity={0.8}
+        />
+      </mesh>
+
+      {/* Czubek strzałki */}
+      <mesh position={[-0.1, -1.4, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <coneGeometry args={[0.15, 0.5, 16]} />
+        <meshStandardMaterial
+          color="#FFB347"
+          metalness={0.6}
+          roughness={0.3}
+          emissive="#FFD39B"
+          emissiveIntensity={0.7}
+        />
+      </mesh>
+
+      
+    </group>
+
     </group>
   );
 }
@@ -141,14 +178,15 @@ export default function Model3D() {
   }, []);
   
   return (
-    <div className="w-full h-[300px] sm:h-[400px] lg:h-[500px] relative flex items-center justify-center">
+    <div className="w-[700px] h-[300px] sm:h-[400px] lg:h-[600px] relative flex items-center justify-center lg:-ml-48">
       {/* Glow effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-orange-500/30 via-transparent to-yellow-200/30 rounded-lg blur-2xl scale-125"></div>
       <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-yellow-100/20 rounded-lg blur-xl scale-110"></div>
+      
       <Canvas
         camera={{ 
-          position: screenSize === 'mobile' ? [0, 1.5, 5] : [0, 2, 7], 
-          fov: screenSize === 'mobile' ? 50 : 45 
+          position: screenSize === 'mobile' ? [0, 0.8, 5] : [0, 1.2, 7], 
+          fov: screenSize === 'mobile' ? 60 : 60 
         }}
         style={{ background: 'transparent' }}
         className="relative z-10 w-full h-full"
@@ -173,7 +211,7 @@ export default function Model3D() {
         <OrbitControls 
           enableZoom={false}
           enablePan={false}
-          autoRotate={true}
+          autoRotate={false}
           autoRotateSpeed={0.5}
           target={[0, 0, 0]}
           minPolarAngle={Math.PI / 3}

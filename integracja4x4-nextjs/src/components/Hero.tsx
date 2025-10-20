@@ -34,23 +34,22 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full aspect-[16/9] flex items-center justify-center z-20 mt-0">
+    <section className="relative w-full aspect-[16/9] flex items-center justify-center z-20 mt-[0rem] sm:mt-[4rem] md:mt-[4rem] lg:mt-[3rem] xl:mt-[2rem]">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image 
-          src="/Heropicture.webp"
+          src="/heroimg.png"
           alt="Toyota Land Cruiser 70 offroad training"
           fill
           className="object-cover"
-          style={{ objectPosition: '40% center' }}
+          
           priority
         />
-        
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 w-full px-4 mt-[10rem] sm:mt-[10rem] md:mt-80 lg:mt-12 xl:-mt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 items-start lg:items-center px-4 sm:px-8 lg:px-16 xl:px-24 h-full">
+      <div className="relative z-10 w-full px-4 mt-[10rem] sm:mt-[10rem] md:mt-[12rem] lg:mt-12 xl:-mt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 items-start lg:items-center px-8 sm:px-12 md:px-16 lg:px-20 xl:px-28 h-full">
           {/* Left Column - Text Content */}
           <div className="text-left lg:text-left animate-fade-in-up lg:col-span-2 flex flex-col justify-center">
               <h1 className="font-staatliches text-4xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl text-sand-light mb-3 sm:mb-4 leading-tight" style={{textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)'}}>
@@ -81,7 +80,7 @@ const Hero = () => {
           </div>
 
           {/* Right Column - 3D Model */}
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center h-full lg:justify-start lg:items-center">
             <Model3D />
           </div>
         </div>

@@ -123,7 +123,7 @@ function Model({ screenSize = 'mobile' }: { screenSize?: string }) {
       />
       
       {/* Ikona obrotu – elegancka, animowana */}
-     <group ref={rotateIconRef} position={[0, position[1] - 3, 0]} rotation={[Math.PI / 2, 0, 0]}>
+     <group ref={rotateIconRef} position={[0, position[1] - (screenSize === 'mobile' ? 2 : 3), 0]} rotation={[Math.PI / 2, 0, 0]}>
       {/* Delikatnie obracający się torus */}
       <mesh rotation={[0, 0, -Math.PI / 2]}>
         <torusGeometry args={[1.4, 0.08, 16, 100, Math.PI * 1.75]} />

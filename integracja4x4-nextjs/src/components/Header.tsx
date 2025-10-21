@@ -31,9 +31,9 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-mud-dark/95 backdrop-blur-sm' : 'bg-transparent'
-    }`}>
+    <header className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
+      isScrolled ? 'bg-mud-dark/95' : 'bg-transparent'
+    }`} style={{ zIndex: 9999 }}>
       <div className="w-full px-8 pt-8 pb-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-4">
@@ -103,21 +103,20 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation - Slide from Right */}
-      <div className={`md:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-mud-dark transform transition-transform duration-300 ease-in-out z-50 ${
-        isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}>
-        {/* Overlay */}
-        <div 
-          className={`fixed inset-0 bg-black/50 transition-opacity duration-300 z-40 ${
-            isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
-          onClick={() => setIsMenuOpen(false)}
-        />
-        
+      <div 
+        className={`md:hidden fixed top-0 right-0 h-full w-full transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        style={{ zIndex: 99999 }}
+        onClick={() => setIsMenuOpen(false)}
+      >
         {/* Navbar Content */}
-        <div className="relative h-full flex flex-col rounded-l-2xl overflow-hidden">
-          {/* Header with close button */}
-          <div className="flex items-center justify-between p-6">
+        <div 
+          className="absolute top-[6rem] bottom-[4rem] right-0 w-80 max-w-[85vw] flex flex-col rounded-l-2xl overflow-hidden bg-mud-dark"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Header with logo */}
+          <div className="flex items-center justify-center p-6">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 relative rounded-full overflow-hidden">
                 <Image
@@ -131,12 +130,6 @@ const Header = () => {
                 Integracja4X4
               </div>
             </div>
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="w-10 h-10 flex items-center justify-center text-foreground hover:text-accent hover:bg-accent/10 rounded-full transition-colors"
-            >
-              <X size={24} />
-            </button>
           </div>
 
           {/* Navigation Links */}

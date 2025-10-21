@@ -63,7 +63,6 @@ jspm_packages/
 # Large assets that should not be in git
 *.glb
 *.gltf
-integracja4x4-nextjs/public/assets/indiv.png
 integracja4x4-nextjs/public/herotorn.png
 integracja4x4-nextjs/public/4049458.png
 

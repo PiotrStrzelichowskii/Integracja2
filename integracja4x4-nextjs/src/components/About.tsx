@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 const testimonials = [
@@ -34,14 +34,50 @@ const testimonials = [
 
 const About = () => {
   const [currentIndex, setCurrentIndex] = useState(2);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handlePrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    // Zatrzymaj auto-play gdy użytkownik interweniuje
+    setIsAutoPlaying(false);
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    // Zatrzymaj auto-play gdy użytkownik interweniuje
+    setIsAutoPlaying(false);
   };
+
+  // Automatyczne przewijanie co 3 sekundy
+  useEffect(() => {
+    if (isAutoPlaying) {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+      }, 3000);
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isAutoPlaying]);
+
+  // Wznów auto-play po 10 sekundach nieaktywności użytkownika
+  useEffect(() => {
+    if (!isAutoPlaying) {
+      const timeout = setTimeout(() => {
+        setIsAutoPlaying(true);
+      }, 10000);
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isAutoPlaying]);
 
   const getCardStyle = (index: number) => {
     const diff = index - currentIndex;
@@ -145,6 +181,8 @@ const About = () => {
                   onClick={() => {
                     if (index !== currentIndex) {
                       setCurrentIndex(index);
+                      // Zatrzymaj auto-play gdy użytkownik kliknie na kartę
+                      setIsAutoPlaying(false);
                     }
                   }}
                 >
@@ -198,7 +236,11 @@ const About = () => {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => {
+                  setCurrentIndex(index);
+                  // Zatrzymaj auto-play gdy użytkownik kliknie na kropkę
+                  setIsAutoPlaying(false);
+                }}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? 'bg-accent w-8'

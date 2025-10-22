@@ -1,24 +1,82 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { Phone, Mail, MapPin, Clock, CreditCard } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, CreditCard, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+
+// Typy dla walidacji
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
+interface FormState {
+  isSubmitting: boolean;
+  isSuccess: boolean;
+  isError: boolean;
+  errors: FormErrors;
+}
 
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     subject: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const [formState, setFormState] = useState<FormState>({
+    isSubmitting: false,
+    isSuccess: false,
+    isError: false,
+    errors: {}
+  });
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Animacja fade-in przy załadowaniu
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  // Funkcja walidacji
+  const validateForm = (): boolean => {
+    const errors: FormErrors = {};
+
+    // Walidacja imienia
+    if (!formData.name.trim()) {
+      errors.name = 'Imię jest wymagane';
+    } else if (formData.name.trim().length < 2) {
+      errors.name = 'Imię musi mieć co najmniej 2 znaki';
+    }
+
+    // Walidacja email
+    if (!formData.email.trim()) {
+      errors.email = 'Email jest wymagany';
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        errors.email = 'Nieprawidłowy format adresu email';
+      }
+    }
+
+    // Walidacja wiadomości
+    if (!formData.message.trim()) {
+      errors.message = 'Wiadomość jest wymagana';
+    } else if (formData.message.trim().length < 10) {
+      errors.message = 'Wiadomość musi mieć co najmniej 10 znaków';
+    }
+
+    setFormState(prev => ({ ...prev, errors }));
+    return Object.keys(errors).length === 0;
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -26,67 +84,103 @@ const Contact = () => {
       ...prev,
       [name]: value
     }));
+
+    // Czyszczenie błędów przy wpisywaniu
+    if (formState.errors[name as keyof FormErrors]) {
+      setFormState(prev => ({
+        ...prev,
+        errors: {
+          ...prev.errors,
+          [name]: undefined
+        }
+      }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Validate form
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    
+    // Walidacja formularza
+    if (!validateForm()) {
       toast({
-        title: "Błąd",
-        description: "Proszę wypełnić wszystkie wymagane pola.",
+        title: "Błąd walidacji",
+        description: "Proszę poprawić błędy w formularzu.",
         variant: "destructive"
       });
-      setIsSubmitting(false);
       return;
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      toast({
-        title: "Błąd",
-        description: "Proszę podać prawidłowy adres email.",
-        variant: "destructive"
-      });
-      setIsSubmitting(false);
-      return;
-    }
+    setFormState(prev => ({ 
+      ...prev, 
+      isSubmitting: true, 
+      isError: false, 
+      isSuccess: false 
+    }));
 
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Wystąpił błąd podczas wysyłania');
+      }
+
+      // Sukces
+      setFormState(prev => ({ 
+        ...prev, 
+        isSubmitting: false, 
+        isSuccess: true 
+      }));
+
       toast({
         title: "Wiadomość wysłana!",
         description: "Dziękujemy za kontakt. Odpowiemy w ciągu 24 godzin.",
       });
 
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
-      });
+      // Reset formularza po 3 sekundach
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        setFormState({
+          isSubmitting: false,
+          isSuccess: false,
+          isError: false,
+          errors: {}
+        });
+      }, 3000);
+
     } catch (error) {
+      setFormState(prev => ({ 
+        ...prev, 
+        isSubmitting: false, 
+        isError: true 
+      }));
+
       toast({
         title: "Błąd wysyłania",
-        description: "Wystąpił problem podczas wysyłania wiadomości. Spróbuj ponownie.",
+        description: error instanceof Error ? error.message : "Wystąpił problem podczas wysyłania wiadomości. Spróbuj ponownie.",
         variant: "destructive"
       });
     }
-
-    setIsSubmitting(false);
   };
 
   return (
     <section className="py-20 sm:py-32 md:py-40 bg-muted/30">
       <div id="contact" className="container mx-auto px-4 scroll-mt-[100px]">
-        <div className="text-center mb-12 sm:mb-16 md:mb-20">
+        <div className={`text-center mb-12 sm:mb-16 md:mb-20 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-4 sm:mb-6 md:mb-8">
             <span className="text-accent">KONTAKT</span>
           </h2>
@@ -98,8 +192,10 @@ const Contact = () => {
         {/* Mobile Layout */}
         <div className="lg:hidden">
           {/* Contact Form - First on Mobile */}
-          <div className="mb-8">
-            <Card className="bg-card border-border shadow-soft">
+          <div className={`mb-8 transition-all duration-1000 delay-200 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <Card className="bg-card border-border shadow-soft hover:shadow-lg transition-shadow duration-300">
               <CardHeader className="pb-4">
                 <CardTitle className="font-staatliches text-lg sm:text-xl text-card-foreground tracking-[0.02em]">
                   Wyślij wiadomość
@@ -109,17 +205,25 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="font-roboto-slab font-medium text-sm">
-                      Imię i nazwisko *
+                      Imię *
                     </Label>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Twoje imię i nazwisko"
+                      placeholder="Twoje imię"
                       required
-                      className="bg-input border-border font-roboto-slab text-sm"
+                      className={`bg-input border-border font-roboto-slab text-sm transition-colors duration-200 ${
+                        formState.errors.name ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
+                      }`}
                     />
+                    {formState.errors.name && (
+                      <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                        <AlertCircle className="h-3 w-3" />
+                        {formState.errors.name}
+                      </p>
+                    )}
                   </div>
                   
                   <div className="space-y-2">
@@ -134,23 +238,16 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder="twoj@email.com"
                       required
-                      className="bg-input border-border font-roboto-slab text-sm"
+                      className={`bg-input border-border font-roboto-slab text-sm transition-colors duration-200 ${
+                        formState.errors.email ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
+                      }`}
                     />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="phone" className="font-roboto-slab font-medium text-sm">
-                      Telefon
-                    </Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="+48 123 456 789"
-                      className="bg-input border-border font-roboto-slab text-sm"
-                    />
+                    {formState.errors.email && (
+                      <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                        <AlertCircle className="h-3 w-3" />
+                        {formState.errors.email}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -163,7 +260,7 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       placeholder="Temat wiadomości"
-                      className="bg-input border-border font-roboto-slab text-sm"
+                      className="bg-input border-border font-roboto-slab text-sm focus:border-accent transition-colors duration-200"
                     />
                   </div>
 
@@ -179,16 +276,39 @@ const Contact = () => {
                       placeholder="Opisz czego potrzebujesz..."
                       rows={4}
                       required
-                      className="bg-input border-border font-roboto-slab resize-none text-sm"
+                      className={`bg-input border-border font-roboto-slab resize-none text-sm transition-colors duration-200 ${
+                        formState.errors.message ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
+                      }`}
                     />
+                    {formState.errors.message && (
+                      <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                        <AlertCircle className="h-3 w-3" />
+                        {formState.errors.message}
+                      </p>
+                    )}
+                    <p className="text-xs text-muted-foreground font-roboto-slab">
+                      {formData.message.length}/10 znaków minimum
+                    </p>
                   </div>
 
                   <Button 
                     type="submit" 
-                    disabled={isSubmitting}
-                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-roboto-slab font-semibold text-sm py-2"
+                    disabled={formState.isSubmitting}
+                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-roboto-slab font-semibold text-sm py-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? "Wysyłanie..." : "Wyślij wiadomość"}
+                    {formState.isSubmitting ? (
+                      <div className="flex items-center gap-2">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Wysyłanie...
+                      </div>
+                    ) : formState.isSuccess ? (
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4" />
+                        Wysłano!
+                      </div>
+                    ) : (
+                      "Wyślij wiadomość"
+                    )}
                   </Button>
 
                   <p className="text-xs text-muted-foreground font-roboto-slab text-center">
@@ -200,8 +320,10 @@ const Contact = () => {
           </div>
 
           {/* Contact Information - Compact Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="bg-card border-border shadow-soft">
+          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 transition-all duration-1000 delay-400 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <Card className="bg-card border-border shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105">
               <CardHeader className="pb-2">
                 <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
                   <Phone className="mr-2 h-4 w-4 text-accent" />
@@ -218,7 +340,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-border shadow-soft">
+            <Card className="bg-card border-border shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105">
               <CardHeader className="pb-2">
                 <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
                   <Mail className="mr-2 h-4 w-4 text-accent" />
@@ -235,7 +357,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-border shadow-soft sm:col-span-2">
+            <Card className="bg-card border-border shadow-soft sm:col-span-2 hover:shadow-lg transition-all duration-300 hover:scale-105">
               <CardHeader className="pb-2">
                 <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
                   <MapPin className="mr-2 h-4 w-4 text-accent" />
@@ -255,7 +377,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-border shadow-soft sm:col-span-2">
+            <Card className="bg-card border-border shadow-soft sm:col-span-2 hover:shadow-lg transition-all duration-300 hover:scale-105">
               <CardHeader className="pb-2">
                 <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
                   <CreditCard className="mr-2 h-4 w-4 text-accent" />
@@ -277,8 +399,10 @@ const Contact = () => {
         {/* Desktop Layout */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-16">
           {/* Contact Information */}
-          <div className="space-y-8">
-            <Card className="bg-card border-border shadow-soft">
+          <div className={`space-y-8 transition-all duration-1000 delay-200 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+          }`}>
+            <Card className="bg-card border-border shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105">
               <CardHeader>
                 <CardTitle className="font-staatliches text-xl text-card-foreground flex items-center tracking-[0.02em]">
                   <Phone className="mr-3 h-6 w-6 text-accent" />
@@ -295,7 +419,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-border shadow-soft">
+            <Card className="bg-card border-border shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105">
               <CardHeader>
                 <CardTitle className="font-staatliches text-xl text-card-foreground flex items-center tracking-[0.02em]">
                   <Mail className="mr-3 h-6 w-6 text-accent" />
@@ -312,7 +436,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-border shadow-soft">
+            <Card className="bg-card border-border shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105">
               <CardHeader>
                 <CardTitle className="font-staatliches text-xl text-card-foreground flex items-center tracking-[0.02em]">
                   <MapPin className="mr-3 h-6 w-6 text-accent" />
@@ -332,7 +456,7 @@ const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border-border shadow-soft">
+            <Card className="bg-card border-border shadow-soft hover:shadow-lg transition-all duration-300 hover:scale-105">
               <CardHeader>
                 <CardTitle className="font-staatliches text-xl text-card-foreground flex items-center tracking-[0.02em]">
                   <CreditCard className="mr-3 h-6 w-6 text-accent" />
@@ -351,8 +475,10 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2 flex">
-            <Card className="bg-card border-border shadow-soft w-full flex flex-col">
+          <div className={`lg:col-span-2 flex transition-all duration-1000 delay-400 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          }`}>
+            <Card className="bg-card border-border shadow-soft w-full flex flex-col hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <CardTitle className="font-staatliches text-2xl text-card-foreground tracking-[0.02em]">
                   Wyślij wiadomość
@@ -364,17 +490,25 @@ const Contact = () => {
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name" className="font-roboto-slab font-medium">
-                          Imię i nazwisko *
+                          Imię *
                         </Label>
                         <Input
                           id="name"
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          placeholder="Twoje imię i nazwisko"
+                          placeholder="Twoje imię"
                           required
-                          className="bg-input border-border font-roboto-slab"
+                          className={`bg-input border-border font-roboto-slab transition-colors duration-200 ${
+                            formState.errors.name ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
+                          }`}
                         />
+                        {formState.errors.name && (
+                          <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                            <AlertCircle className="h-3 w-3" />
+                            {formState.errors.name}
+                          </p>
+                        )}
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className="font-roboto-slab font-medium">
@@ -388,39 +522,31 @@ const Contact = () => {
                           onChange={handleInputChange}
                           placeholder="twoj@email.com"
                           required
-                          className="bg-input border-border font-roboto-slab"
+                          className={`bg-input border-border font-roboto-slab transition-colors duration-200 ${
+                            formState.errors.email ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
+                          }`}
                         />
+                        {formState.errors.email && (
+                          <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                            <AlertCircle className="h-3 w-3" />
+                            {formState.errors.email}
+                          </p>
+                        )}
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="phone" className="font-roboto-slab font-medium">
-                          Telefon
-                        </Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          placeholder="+48 123 456 789"
-                          className="bg-input border-border font-roboto-slab"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="subject" className="font-roboto-slab font-medium">
-                          Temat
-                        </Label>
-                        <Input
-                          id="subject"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                          placeholder="Temat wiadomości"
-                          className="bg-input border-border font-roboto-slab"
-                        />
-                      </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="subject" className="font-roboto-slab font-medium">
+                        Temat
+                      </Label>
+                      <Input
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        placeholder="Temat wiadomości"
+                        className="bg-input border-border font-roboto-slab focus:border-accent transition-colors duration-200"
+                      />
                     </div>
 
                     <div className="space-y-2 flex-1">
@@ -435,19 +561,42 @@ const Contact = () => {
                         placeholder="Opisz czego potrzebujesz..."
                         rows={6}
                         required
-                        className="bg-input border-border font-roboto-slab resize-none h-full min-h-[250px]"
+                        className={`bg-input border-border font-roboto-slab resize-none h-full min-h-[250px] transition-colors duration-200 ${
+                          formState.errors.message ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
+                        }`}
                       />
+                      {formState.errors.message && (
+                        <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                          <AlertCircle className="h-3 w-3" />
+                          {formState.errors.message}
+                        </p>
+                      )}
+                      <p className="text-xs text-muted-foreground font-roboto-slab">
+                        {formData.message.length}/10 znaków minimum
+                      </p>
                     </div>
                   </div>
 
                   <div className="space-y-4 mt-6">
                     <Button 
                       type="submit" 
-                      disabled={isSubmitting}
+                      disabled={formState.isSubmitting}
                       size="lg"
-                      className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-roboto-slab font-semibold"
+                      className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-roboto-slab font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isSubmitting ? "Wysyłanie..." : "Wyślij wiadomość"}
+                      {formState.isSubmitting ? (
+                        <div className="flex items-center gap-2">
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          Wysyłanie...
+                        </div>
+                      ) : formState.isSuccess ? (
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="h-4 w-4" />
+                          Wysłano!
+                        </div>
+                      ) : (
+                        "Wyślij wiadomość"
+                      )}
                     </Button>
 
                     <p className="text-xs text-muted-foreground font-roboto-slab text-center">

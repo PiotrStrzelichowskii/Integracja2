@@ -52,7 +52,7 @@ const Offer = () => {
   };
 
   return (
-    <section id="offer" className="py-20 sm:py-32 md:py-40 bg-background bg-offroad z-10 -mt-32 sm:-mt-36 md:-mt-40 lg:-mt-44 xl:-mt-48 scroll-mt-[-200px]">
+    <section id="offer" className="py-20 sm:py-32 md:py-40 bg-background bg-offroad z-10 -mt-32 sm:-mt-36 md:-mt-40 lg:-mt-44 xl:-mt-48 scroll-mt-[-400px]">
       {/* SVG Filter for Liquid Glass Effect */}
       <svg style={{ display: 'none' }}>
         <filter
@@ -105,6 +105,25 @@ const Offer = () => {
         </filter>
       </svg>
       <div className="container mx-auto px-4 mt-10 sm:mt-16 md:mt-20">
+        {/* Statistics */}
+        <div className="mt-16 sm:mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 text-center">
+          <div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">600+</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Ukończonych kursów</div>
+          </div>
+          <div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100+</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Eventów firmowych</div>
+          </div>
+          <div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">30+</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Lat doświadczenia</div>
+          </div>
+          <div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100%</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Zadowolenia</div>
+          </div>
+        </div>
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-4 sm:mb-6 mt-20 sm:mt-32 md:mt-40">
             NASZA <span className="text-accent">OFERTA</span>

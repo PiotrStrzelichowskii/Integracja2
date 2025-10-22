@@ -127,25 +127,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* Statistics */}
-        <div className="mt-16 sm:mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 text-center">
-          <div>
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">600+</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Ukończonych kursów</div>
-          </div>
-          <div>
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100+</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Eventów firmowych</div>
-          </div>
-          <div>
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">30+</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Lat doświadczenia</div>
-          </div>
-          <div>
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100%</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Zadowolenia</div>
-          </div>
-        </div>
 
         {/* Testimonials Carousel */}
         <div className="mt-20 sm:mt-32 md:mt-40">

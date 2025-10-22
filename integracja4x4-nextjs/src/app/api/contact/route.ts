@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Inicjalizacja Resend tylko jeśli klucz API jest dostępny
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(request: NextRequest) {
   try {
@@ -35,6 +36,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Wiadomość musi mieć co najmniej 10 znaków' },
         { status: 400 }
+      );
+    }
+
+    // Sprawdzenie czy Resend jest dostępny
+    if (!resend) {
+      console.error('Resend API key not configured');
+      return NextResponse.json(
+        { error: 'Usługa email nie jest skonfigurowana' },
+        { status: 503 }
       );
     }
 

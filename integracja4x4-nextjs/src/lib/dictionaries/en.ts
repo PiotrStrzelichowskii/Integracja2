@@ -93,7 +93,6 @@ export const en = {
   rejectAll: 'Reject All',
   
   // Footer
-  contact: 'Contact',
   allRightsReserved: 'All rights reserved.',
   privacyPolicy: 'Privacy Policy',
   cookieSettings: 'Cookie Settings',
@@ -121,7 +120,6 @@ export const en = {
   partnershipFeature4: 'Off-road expeditions in Poland and Europe',
   
   askForPrice: 'Ask for price',
-  contactUs: 'Contact us',
   askForSpecialOffer: 'Ask for special offer',
   
   // Statistics

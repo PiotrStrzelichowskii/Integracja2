@@ -96,7 +96,6 @@ export const pl = {
   rejectAll: 'Odrzuć wszystkie',
   
   // Footer
-  contact: 'Kontakt',
   allRightsReserved: 'Wszelkie prawa zastrzeżone.',
   privacyPolicy: 'Polityka prywatności',
   cookieSettings: 'Ustawienia cookies',
@@ -124,7 +123,6 @@ export const pl = {
   partnershipFeature4: 'Wyprawy terenowe w Polsce i Europie',
   
   askForPrice: 'Zapytaj o cenę',
-  contactUs: 'Skontaktuj się',
   askForSpecialOffer: 'Zapytaj o ofertę specjalną',
   
   // Statistics

@@ -9,6 +9,9 @@ export const pl = {
   heroTitle: 'TAM, GDZIE KOŃCZY SIĘ ASFALT',
   heroSubtitle: 'ZACZYNA SIĘ PRZYGODA',
   heroDescription: 'Profesjonalne szkolenia jazdy terenowej i eventy firmowe. Samochody 4x4, quady ATV i niezapomniane przygody w trudnym terenie.',
+  
+  // SEO Keywords (ukryte)
+  seoKeywords: 'szkoła jazdy terenowej 4x4 w Krakowie, najlepsza jazda off-road w Polsce, jazda terenowa 4x4 Kraków, voucher off-road, szkolenie offroad dla firm, kurs jazdy w terenie, szkolenia 4x4, jazda w terenie, off-road Małopolska, jazda terenowa w okolicach Krakowa, terenówki Kraków, jazda po bezdrożach Kraków, szkoła off-road Małopolska, prezent off-road Kraków, voucher jazda terenowa Kraków, jazda terenowa Kryspinów, offroad Liszki, przygoda 4x4 Kraków, szkoła jazdy off-road Polska, najlepsza szkoła offroad w Polsce, kurs offroad 4x4, jazda terenowa z instruktorem, nauka jazdy terenowej 4x4, offroad ekstremalny, szkolenie techniki jazdy 4x4, off-road prezent dla faceta, kurs jazdy SUV w terenie, jazda off-road dla początkujących, prezent dla fana motoryzacji Kraków, ekstremalny prezent dla niego, voucher offroad dla pary, event firmowy off-road, integracja firmowa w terenie, team building 4x4, off-road dla firm Kraków, atrakcje motoryzacyjne Kraków, impreza integracyjna 4x4, godzinna jazda off-road 4x4, jazda off-road Toyota Land Cruiser, jazda 4x4 z instruktorem, kurs bezpiecznej jazdy w terenie, off-road weekend Kraków, wyprawa 4x4 Polska, szkolenie SUV off-road, jazda terenowa na prezent, voucher jazda terenowa 4x4',
   seeOffer: 'ZOBACZ OFERTĘ',
   contactUs: 'SKONTAKTUJ SIĘ',
   

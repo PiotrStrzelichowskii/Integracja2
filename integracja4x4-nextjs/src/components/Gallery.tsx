@@ -72,9 +72,14 @@ const Gallery = () => {
     <section className="py-40 bg-background bg-offroad">
       <div id="gallery" className="container mx-auto px-4 scroll-mt-[100px]">
         <div className="text-center mb-20">
-          <h2 className="font-staatliches text-3xl md:text-5xl text-foreground mb-8">
-            {t('galleryTitle')} <span className="text-accent">{t('galleryTitleAccent')}</span>
-          </h2>
+                  <h2 className="font-staatliches text-3xl md:text-5xl text-foreground mb-8">
+                    {t('galleryTitle')} <span className="text-accent">{t('galleryTitleAccent')}</span>
+                  </h2>
+                  
+                  {/* SEO H2 - ukryty wizualnie ale widoczny dla robotów */}
+                  <h2 className="sr-only">
+                    Jazda off-road Toyota Land Cruiser | Szkolenia 4x4 | Jazda w terenie | Off-road Małopolska
+                  </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
             {t('galleryDescription')}
           </p>

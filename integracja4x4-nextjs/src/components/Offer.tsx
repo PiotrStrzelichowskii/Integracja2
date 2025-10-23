@@ -131,6 +131,11 @@ const Offer = () => {
           <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-4 sm:mb-6 mt-20 sm:mt-32 md:mt-40">
             {t('ourOffer')} <span className="text-accent">{t('ourOfferAccent')}</span>
           </h2>
+          
+          {/* SEO H2 - ukryty wizualnie ale widoczny dla robotów */}
+          <h2 className="sr-only">
+            Voucher off-road | Szkolenie offroad dla firm | Kurs jazdy w terenie | Jazda terenowa 4x4 Kraków
+          </h2>
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
             {t('offerDescription')}
           </p>

@@ -208,9 +208,14 @@ const Contact = () => {
         <div className={`text-center mb-12 sm:mb-16 md:mb-20 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-4 sm:mb-6 md:mb-8">
-            <span className="text-accent">{t('contactTitle')}</span>
-          </h2>
+                  <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-4 sm:mb-6 md:mb-8">
+                    <span className="text-accent">{t('contactTitle')}</span>
+                  </h2>
+                  
+                  {/* SEO H2 - ukryty wizualnie ale widoczny dla robotów */}
+                  <h2 className="sr-only">
+                    Kontakt - Szkoła jazdy terenowej 4x4 w Krakowie | Event firmowy off-road | Team building 4x4
+                  </h2>
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
             {t('contactDescription')}
           </p>

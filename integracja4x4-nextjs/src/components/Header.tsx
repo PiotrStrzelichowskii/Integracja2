@@ -52,7 +52,7 @@ const Header = () => {
     <header className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
       isScrolled ? 'bg-mudDark/95 backdrop-blur-md' : 'bg-transparent'
     }`} style={{ zIndex: 9999 }}>
-      <div className="w-full px-8 pt-8 pb-4 flex items-center justify-between">
+      <div className="w-full px-8 py-6 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-4">
           {/* Mobile logo - tylko zdjęcie, mniejsze */}

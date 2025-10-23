@@ -42,7 +42,7 @@ const Hero = () => {
       <div className="absolute inset-0">
         <Image 
           src="/heroimg.png"
-          alt="Toyota Land Cruiser 70 offroad training"
+          alt="Szkoła jazdy terenowej 4x4 w Krakowie - Toyota Land Cruiser 70 offroad training - Najlepsza jazda off-road w Polsce"
           fill
           className="object-cover"
           
@@ -59,6 +59,11 @@ const Hero = () => {
               {t('heroTitle')}
                 <br />
                 <span className="text-rust-orange" style={{textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)'}}>{t('heroSubtitle')}</span>
+              </h1>
+              
+              {/* SEO H1 - ukryty wizualnie ale widoczny dla robotów */}
+              <h1 className="sr-only">
+                Szkoła jazdy terenowej 4x4 w Krakowie - Integracja4x4 | Najlepsza jazda off-road w Polsce
               </h1>
               
               <p className="text-sm sm:text-md md:text-base text-gray-100 mb-4 sm:mb-6 max-w-lg font-roboto-slab leading-relaxed" style={{textShadow: '0 4px 8px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.7)'}}>

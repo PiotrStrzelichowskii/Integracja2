@@ -119,9 +119,14 @@ const About = () => {
   return (
     <section className="py-20 sm:py-32 md:py-40 bg-muted/30">
       <div className="container mx-auto px-4">
-        <h2 id="about" className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-8 sm:mb-12 md:mb-16 text-center scroll-mt-[100px]">
-          {t('aboutTitle')} <span className="text-accent">{t('aboutTitleAccent')}</span>
-        </h2>
+                <h2 id="about" className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-8 sm:mb-12 md:mb-16 text-center scroll-mt-[100px]">
+                  {t('aboutTitle')} <span className="text-accent">{t('aboutTitleAccent')}</span>
+                </h2>
+                
+                {/* SEO H2 - ukryty wizualnie ale widoczny dla robotów */}
+                <h2 className="sr-only">
+                  Najlepsza szkoła jazdy off-road w Polsce | Profesjonalne szkolenia 4x4 w Krakowie i Małopolsce
+                </h2>
         
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
           {/* Left Content */}

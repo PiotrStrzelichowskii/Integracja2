@@ -5,20 +5,35 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { trackEvent } from '@/lib/analytics';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useTranslations } from '@/hooks/use-translations';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const { t } = useTranslations();
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 30);
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 1024); // lg breakpoint
     };
 
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      // Efekt scrollowania tylko na desktop
+      setIsScrolled(isDesktop && scrollTop > 30);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isDesktop]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -35,13 +50,13 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
-      isScrolled ? 'bg-mud-dark/95' : 'bg-transparent'
+      isScrolled ? 'bg-mudDark/95 backdrop-blur-md' : 'bg-transparent'
     }`} style={{ zIndex: 9999 }}>
       <div className="w-full px-8 pt-8 pb-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-4">
           {/* Mobile logo - tylko zdjęcie, mniejsze */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div className="w-10 h-10 relative rounded-full overflow-hidden">
               <Image
                 src="/logo.webp"
@@ -53,7 +68,7 @@ const Header = () => {
           </div>
           
           {/* Desktop logo - zdjęcie + tekst */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             <div className="w-12 h-12 relative rounded-full overflow-hidden">
               <Image
                 src="/logo.webp"
@@ -69,36 +84,43 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          <button 
-            onClick={() => scrollToSection('offer')}
-            className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
-          >
-            Oferta
-          </button>
-          <button 
-            onClick={() => scrollToSection('about')}
-            className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
-          >
-            O nas
-          </button>
-          <button 
-            onClick={() => scrollToSection('gallery')}
-            className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
-          >
-            Galeria
-          </button>
-          <button 
-            onClick={() => scrollToSection('contact')}
-            className="btn-notched font-roboto-slab"
-          >
-            Kontakt
-          </button>
-        </nav>
+        <div className="hidden lg:flex items-center space-x-6">
+          <nav className="flex items-center space-x-6">
+            <button 
+              onClick={() => scrollToSection('offer')}
+              className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
+            >
+              {t('offer')}
+            </button>
+            <button 
+              onClick={() => scrollToSection('about')}
+              className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
+            >
+              {t('about')}
+            </button>
+            <button 
+              onClick={() => scrollToSection('gallery')}
+              className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
+            >
+              {t('gallery')}
+            </button>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="btn-notched font-roboto-slab"
+            >
+              {t('contact')}
+            </button>
+          </nav>
+          
+          {/* Language Switcher */}
+          <div className="ml-4 pl-4 border-l border-accent/20">
+            <LanguageSwitcher />
+          </div>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden w-14 h-14 flex items-center justify-center text-accent hover:text-accent/80 hover:bg-accent/10 rounded-lg transition-colors"
+          className="lg:hidden w-14 h-14 flex items-center justify-center text-accent hover:text-accent/80 hover:bg-accent/10 rounded-lg transition-colors"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
@@ -107,7 +129,7 @@ const Header = () => {
 
       {/* Mobile Navigation - Slide from Right */}
       <div 
-        className={`md:hidden fixed top-0 right-0 h-full w-full transform transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden fixed top-0 right-0 h-full w-full transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ zIndex: 99999 }}
@@ -141,27 +163,34 @@ const Header = () => {
               onClick={() => scrollToSection('offer')}
               className="w-full text-left text-foreground hover:text-accent transition-colors font-roboto-slab font-medium py-4 text-lg"
             >
-              Oferta
+              {t('offer')}
             </button>
             <button 
               onClick={() => scrollToSection('about')}
               className="w-full text-left text-foreground hover:text-accent transition-colors font-roboto-slab font-medium py-4 text-lg"
             >
-              O nas
+              {t('about')}
             </button>
             <button 
               onClick={() => scrollToSection('gallery')}
               className="w-full text-left text-foreground hover:text-accent transition-colors font-roboto-slab font-medium py-4 text-lg"
             >
-              Galeria
+              {t('gallery')}
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
               className="w-full text-left text-accent hover:text-accent/80 transition-colors font-roboto-slab font-medium py-4 text-lg"
             >
-              Kontakt
+              {t('contact')}
             </button>
           </nav>
+
+          {/* Language Switcher Mobile */}
+          <div className="px-6 py-4 border-t border-accent/20">
+            <div className="flex items-center justify-center">
+              <LanguageSwitcher />
+            </div>
+          </div>
 
           {/* Social Media and Additional Elements */}
           <div className="p-6 border-t border-accent/20">

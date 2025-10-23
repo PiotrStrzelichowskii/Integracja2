@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Phone, Mail, MapPin, Clock, CreditCard, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { useTranslations } from '@/hooks/use-translations';
 import { trackEvent } from '@/lib/analytics';
 
 // Typy dla walidacji
@@ -26,6 +27,7 @@ interface FormState {
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t } = useTranslations();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -53,26 +55,26 @@ const Contact = () => {
 
     // Walidacja imienia
     if (!formData.name.trim()) {
-      errors.name = 'Imię jest wymagane';
+      errors.name = t('nameRequired');
     } else if (formData.name.trim().length < 2) {
-      errors.name = 'Imię musi mieć co najmniej 2 znaki';
+      errors.name = t('nameMinLength');
     }
 
     // Walidacja email
     if (!formData.email.trim()) {
-      errors.email = 'Email jest wymagany';
+      errors.email = t('emailRequired');
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email)) {
-        errors.email = 'Nieprawidłowy format adresu email';
+        errors.email = t('emailInvalid');
       }
     }
 
     // Walidacja wiadomości
     if (!formData.message.trim()) {
-      errors.message = 'Wiadomość jest wymagana';
+      errors.message = t('messageRequired');
     } else if (formData.message.trim().length < 10) {
-      errors.message = 'Wiadomość musi mieć co najmniej 10 znaków';
+      errors.message = t('messageMinLength');
     }
 
     setFormState(prev => ({ ...prev, errors }));
@@ -104,8 +106,8 @@ const Contact = () => {
     // Walidacja formularza
     if (!validateForm()) {
       toast({
-        title: "Błąd walidacji",
-        description: "Proszę poprawić błędy w formularzu.",
+        title: t('error'),
+        description: t('validationError'),
         variant: "destructive"
       });
       return;
@@ -161,8 +163,8 @@ const Contact = () => {
       trackEvent.contactFormSubmit();
 
       toast({
-        title: "Wiadomość wysłana!",
-        description: "Dziękujemy za kontakt. Odpowiemy w ciągu 24 godzin.",
+        title: t('messageSent'),
+        description: t('messageSentDescription'),
       });
 
       // Reset formularza po 3 sekundach
@@ -193,8 +195,8 @@ const Contact = () => {
       trackEvent.contactFormError(errorMessage);
 
       toast({
-        title: "Błąd wysyłania",
-        description: error instanceof Error ? error.message : "Wystąpił problem podczas wysyłania wiadomości. Spróbuj ponownie.",
+        title: t('sendError'),
+        description: error instanceof Error ? error.message : t('sendErrorDescription'),
         variant: "destructive"
       });
     }
@@ -207,10 +209,10 @@ const Contact = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-4 sm:mb-6 md:mb-8">
-            <span className="text-accent">KONTAKT</span>
+            <span className="text-accent">{t('contactTitle')}</span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
-            Skontaktuj się z nami, aby umówić szkolenie lub dowiedzieć się więcej o naszej ofercie
+            {t('contactDescription')}
           </p>
         </div>
 
@@ -223,21 +225,21 @@ const Contact = () => {
             <Card className="bg-card border-border shadow-soft hover:shadow-lg transition-shadow duration-300">
               <CardHeader className="pb-4">
                 <CardTitle className="font-staatliches text-lg sm:text-xl text-card-foreground tracking-[0.02em]">
-                  Wyślij wiadomość
+                  {t('sendMessage')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="font-roboto-slab font-medium text-sm">
-                      Imię *
+                      {t('name')} *
                     </Label>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Twoje imię"
+                      placeholder={t('name')}
                       required
                       className={`bg-input border-border font-roboto-slab text-sm transition-colors duration-200 ${
                         formState.errors.name ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
@@ -253,7 +255,7 @@ const Contact = () => {
                   
                   <div className="space-y-2">
                     <Label htmlFor="email" className="font-roboto-slab font-medium text-sm">
-                      Email *
+                      {t('email')} *
                     </Label>
                     <Input
                       id="email"
@@ -277,21 +279,21 @@ const Contact = () => {
 
                   <div className="space-y-2">
                     <Label htmlFor="subject" className="font-roboto-slab font-medium text-sm">
-                      Temat
+                      {t('subject')}
                     </Label>
                     <Input
                       id="subject"
                       name="subject"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      placeholder="Temat wiadomości"
+                      placeholder={t('subject')}
                       className="bg-input border-border font-roboto-slab text-sm focus:border-accent transition-colors duration-200"
                     />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="message" className="font-roboto-slab font-medium text-sm">
-                      Wiadomość *
+                      {t('message')} *
                     </Label>
                     <Textarea
                       id="message"
@@ -312,7 +314,7 @@ const Contact = () => {
                       </p>
                     )}
                     <p className="text-xs text-muted-foreground font-roboto-slab">
-                      {formData.message.length}/10 znaków minimum
+                      {formData.message.length}/10 {t('characterCount')}
                     </p>
                   </div>
 
@@ -324,20 +326,20 @@ const Contact = () => {
                     {formState.isSubmitting ? (
                       <div className="flex items-center gap-2">
                         <Loader2 className="h-4 w-4 animate-spin" />
-                        Wysyłanie...
+                        {t('sending')}
                       </div>
                     ) : formState.isSuccess ? (
                       <div className="flex items-center gap-2">
                         <CheckCircle className="h-4 w-4" />
-                        Wysłano!
+                        {t('sent')}
                       </div>
                     ) : (
-                      "Wyślij wiadomość"
+                      t('sendButton')
                     )}
                   </Button>
 
                   <p className="text-xs text-muted-foreground font-roboto-slab text-center">
-                    * - pola wymagane. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim.
+                    {t('requiredFields')}
                   </p>
                 </form>
               </CardContent>
@@ -352,7 +354,7 @@ const Contact = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
                   <Phone className="mr-2 h-4 w-4 text-accent" />
-                  Telefon
+                  {t('phone')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
@@ -369,7 +371,7 @@ const Contact = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
                   <Mail className="mr-2 h-4 w-4 text-accent" />
-                  Email
+                  {t('email')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
@@ -377,7 +379,7 @@ const Contact = () => {
                   info@integracja4x4.pl
                 </p>
                 <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
-                  Odpowiadamy w ciągu 24h
+                  {t('responseTime')}
                 </p>
               </CardContent>
             </Card>
@@ -386,7 +388,7 @@ const Contact = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
                   <MapPin className="mr-2 h-4 w-4 text-accent" />
-                  Główna siedziba firmy
+                  {t('address')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
@@ -397,7 +399,7 @@ const Contact = () => {
                   30-298 Kraków
                 </p>
                 <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
-                  Miejsce eventu dopasowujemy do potrzeb klienta
+                  {t('eventLocation')}
                 </p>
               </CardContent>
             </Card>
@@ -406,7 +408,7 @@ const Contact = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="font-staatliches text-sm text-card-foreground flex items-center tracking-[0.02em]">
                   <CreditCard className="mr-2 h-4 w-4 text-accent" />
-                  Płatności
+                  {t('payments')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
@@ -414,7 +416,7 @@ const Contact = () => {
                   76 2490 0005 0000 4000 1600 9299
                 </p>
                 <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
-                  Nr konta bankowego
+                  {t('bankAccount')}
                 </p>
               </CardContent>
             </Card>
@@ -431,7 +433,7 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="font-staatliches text-xl text-card-foreground flex items-center tracking-[0.02em]">
                   <Phone className="mr-3 h-6 w-6 text-accent" />
-                  Telefon
+                  {t('phone')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -448,7 +450,7 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="font-staatliches text-xl text-card-foreground flex items-center tracking-[0.02em]">
                   <Mail className="mr-3 h-6 w-6 text-accent" />
-                  Email
+                  {t('emailLabel')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -456,7 +458,7 @@ const Contact = () => {
                   info@integracja4x4.pl
                 </p>
                 <p className="text-sm text-muted-foreground font-roboto-slab mt-1">
-                  Odpowiadamy w ciągu 24h
+                  {t('responseTimeDescription')}
                 </p>
               </CardContent>
             </Card>
@@ -465,7 +467,7 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="font-staatliches text-xl text-card-foreground flex items-center tracking-[0.02em]">
                   <MapPin className="mr-3 h-6 w-6 text-accent" />
-                  Główna siedziba firmy
+                  {t('mainOffice')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -476,7 +478,7 @@ const Contact = () => {
                   30-298 Kraków
                 </p>
                 <p className="text-sm text-muted-foreground font-roboto-slab mt-2">
-                  Miejsce eventu dopasowujemy do potrzeb klienta
+                  {t('eventLocationDescription')}
                 </p>
               </CardContent>
             </Card>
@@ -485,7 +487,7 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="font-staatliches text-xl text-card-foreground flex items-center tracking-[0.02em]">
                   <CreditCard className="mr-3 h-6 w-6 text-accent" />
-                  Płatności
+                  {t('paymentsLabel')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -493,7 +495,7 @@ const Contact = () => {
                   76 2490 0005 0000 4000 1600 9299
                 </p>
                 <p className="text-sm text-muted-foreground font-roboto-slab mt-1">
-                  Nr konta bankowego
+                  {t('bankAccountLabel')}
                 </p>
               </CardContent>
             </Card>
@@ -506,7 +508,7 @@ const Contact = () => {
             <Card className="bg-card border-border shadow-soft w-full flex flex-col hover:shadow-lg transition-shadow duration-300">
               <CardHeader>
                 <CardTitle className="font-staatliches text-2xl text-card-foreground tracking-[0.02em]">
-                  Wyślij wiadomość
+                  {t('sendMessageTitle')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col">
@@ -515,14 +517,14 @@ const Contact = () => {
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name" className="font-roboto-slab font-medium">
-                          Imię *
+                          {t('nameLabel')} *
                         </Label>
                         <Input
                           id="name"
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          placeholder="Twoje imię"
+                          placeholder={t('name')}
                           required
                           className={`bg-input border-border font-roboto-slab transition-colors duration-200 ${
                             formState.errors.name ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
@@ -537,7 +539,7 @@ const Contact = () => {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className="font-roboto-slab font-medium">
-                          Email *
+                          {t('emailLabel')} *
                         </Label>
                         <Input
                           id="email"
@@ -562,28 +564,28 @@ const Contact = () => {
 
                     <div className="space-y-2">
                       <Label htmlFor="subject" className="font-roboto-slab font-medium">
-                        Temat
+                        {t('subjectLabel')}
                       </Label>
                       <Input
                         id="subject"
                         name="subject"
                         value={formData.subject}
                         onChange={handleInputChange}
-                        placeholder="Temat wiadomości"
+                        placeholder={t('subject')}
                         className="bg-input border-border font-roboto-slab focus:border-accent transition-colors duration-200"
                       />
                     </div>
 
                     <div className="space-y-2 flex-1">
                       <Label htmlFor="message" className="font-roboto-slab font-medium">
-                        Wiadomość *
+                        {t('messageLabel')} *
                       </Label>
                       <Textarea
                         id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleInputChange}
-                        placeholder="Opisz czego potrzebujesz..."
+                        placeholder={t('describeNeeds')}
                         rows={6}
                         required
                         className={`bg-input border-border font-roboto-slab resize-none h-full min-h-[250px] transition-colors duration-200 ${
@@ -597,7 +599,7 @@ const Contact = () => {
                         </p>
                       )}
                       <p className="text-xs text-muted-foreground font-roboto-slab">
-                        {formData.message.length}/10 znaków minimum
+                        {formData.message.length}/10 {t('characterCountDescription')}
                       </p>
                     </div>
                   </div>
@@ -612,20 +614,20 @@ const Contact = () => {
                       {formState.isSubmitting ? (
                         <div className="flex items-center gap-2">
                           <Loader2 className="h-4 w-4 animate-spin" />
-                          Wysyłanie...
+                          {t('sending')}
                         </div>
                       ) : formState.isSuccess ? (
                         <div className="flex items-center gap-2">
                           <CheckCircle className="h-4 w-4" />
-                          Wysłano!
+                          {t('sent')}
                         </div>
                       ) : (
-                        "Wyślij wiadomość"
+                        t('sendMessage')
                       )}
                     </Button>
 
                     <p className="text-xs text-muted-foreground font-roboto-slab text-center">
-                      * - pola wymagane. Twoje dane są bezpieczne i nie będą udostępniane osobom trzecim.
+                      {t('requiredFields')}
                     </p>
                   </div>
                 </form>

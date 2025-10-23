@@ -48,16 +48,16 @@ function Model({ screenSize = 'mobile' }: { screenSize?: string }) {
               
               // Zmniejsz intensywność kolorów - stonowane kolory
               if (child.material.color) {
-                // Przyciemnij kolor o 30%
-                child.material.color.multiplyScalar(0.7);
+                // Przyciemnij kolor o 15% (mniej niż wcześniej)
+                child.material.color.multiplyScalar(0.85);
               }
               
               // Ustaw jako matowy z większą szorstkością
               child.material.metalness = 0.1;
-              child.material.roughness = 0.8;
+              child.material.roughness = 0.6;
               
-              // Zmniejsz intensywność światła odbijanego
-              child.material.envMapIntensity = 0.3;
+              // Zwiększ intensywność światła odbijanego
+              child.material.envMapIntensity = 0.5;
             }
             
             child.material.needsUpdate = true;

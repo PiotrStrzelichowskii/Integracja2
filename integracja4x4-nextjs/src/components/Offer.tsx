@@ -3,42 +3,45 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Car, Bike, Users, Target } from 'lucide-react';
 import Image from 'next/image';
+import { useTranslations } from '@/hooks/use-translations';
 
 const Offer = () => {
+  const { t } = useTranslations();
+  
   const offers = [
     {
       icon: Car,
-      title: "Zajęcia Indywidualne",
-      description: "Profesjonalne szkolenia z jazdy samochodami i quadami w terenie dla klientów indywidualnych oraz grup zorganizowanych.",
+      title: t('individualTraining'),
+      description: t('individualDescription'),
       features: [
-        "Krótkie przejażdżki i dłuższe wycieczki",
-        "Organizacja wieczorów panieńskich i kawalerskich", 
-        "Profesjonalni instruktorzy i sprawdzony sprzęt",
-        "Bezpieczne i niezapomniane przygody"
+        t('individualFeature1'),
+        t('individualFeature2'), 
+        t('individualFeature3'),
+        t('individualFeature4')
       ],
       image: "/assets/indiv.png"
     },
     {
       icon: Users,
-      title: "Oferta dla Firm", 
-      description: "Profesjonalna organizacja eventów firmowych na terenie całej Polski. Imprezy integracyjne, zloty i szkolenia na najwyższym poziomie.",
+      title: t('corporateOffer'), 
+      description: t('corporateDescription'),
       features: [
-        "Imprezy integracyjne i zloty",
-        "Szkolenia i sympozja", 
-        "Eventy okolicznościowe",
-        "Współpraca z hotelami i ośrodkami"
+        t('corporateFeature1'),
+        t('corporateFeature2'), 
+        t('corporateFeature3'),
+        t('corporateFeature4')
       ],
       image: "/assets/team-training.webp"
     },
     {
       icon: Target,
-      title: "Współpraca Partnerska",
-      description: "Rozszerz ofertę swojego hotelu, pensjonatu lub ośrodka o nasze atrakcje. Obsługujemy grupy obcojęzyczne i tworzymy wyjątkowe programy.",
+      title: t('partnership'),
+      description: t('partnershipDescription'),
       features: [
-        "Obsługa grup obcojęzycznych",
-        "Rozszerzenie oferty hoteli i ośrodków", 
-        "Ponad 700 zrealizowanych projektów",
-        "Wyprawy terenowe w Polsce i Europie"
+        t('partnershipFeature1'),
+        t('partnershipFeature2'), 
+        t('partnershipFeature3'),
+        t('partnershipFeature4')
       ],
       image: "/assets/coop.webp"
     }
@@ -109,27 +112,27 @@ const Offer = () => {
         <div className="mt-16 sm:mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 text-center">
           <div>
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">600+</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Ukończonych kursów</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">{t('completedCourses')}</div>
           </div>
           <div>
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100+</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Eventów firmowych</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">{t('corporateEvents')}</div>
           </div>
           <div>
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">30+</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Lat doświadczenia</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">{t('yearsExperience')}</div>
           </div>
           <div>
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100%</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">Zadowolenia</div>
+            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">{t('satisfaction')}</div>
           </div>
         </div>
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-4 sm:mb-6 mt-20 sm:mt-32 md:mt-40">
-            NASZA <span className="text-accent">OFERTA</span>
+            {t('ourOffer')} <span className="text-accent">{t('ourOfferAccent')}</span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
-            Ponad 700 zrealizowanych eventów w Polsce i Europie. Profesjonalny sprzęt, doświadczeni instruktorzy i niezapomniane przygody w terenie.
+            {t('offerDescription')}
           </p>
         </div>
 
@@ -185,7 +188,7 @@ const Offer = () => {
                         onClick={scrollToContact}
                         className="btn-offroad-primary font-roboto-slab px-3 py-2 text-sm" 
                       >
-                        {offer.title === "Współpraca Partnerska" ? "Skontaktuj się" : "Zapytaj o cenę"}
+                        {offer.title === t('partnership') ? t('contactUs') : t('askForPrice')}
                       </button>
                     </div>
                   </CardContent>
@@ -247,7 +250,7 @@ const Offer = () => {
                         onClick={scrollToContact}
                         className="btn-offroad-primary font-roboto-slab px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5" 
                       >
-                        {offer.title === "Współpraca Partnerska" ? "Skontaktuj się" : "Zapytaj o cenę"}
+                        {offer.title === t('partnership') ? t('contactUs') : t('askForPrice')}
                       </button>
                     </div>
                   </CardContent>
@@ -262,7 +265,7 @@ const Offer = () => {
             onClick={scrollToContact}
             className="btn-offroad-outline font-roboto-slab px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-base" 
           >
-            Zapytaj o ofertę specjalną
+            {t('askForSpecialOffer')}
           </button>
         </div>
       </div>

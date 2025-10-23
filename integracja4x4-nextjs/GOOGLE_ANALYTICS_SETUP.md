@@ -113,3 +113,4 @@ Pamiętaj o:
 - [Next.js Analytics Guide](https://nextjs.org/docs/advanced-features/measuring-performance)
 - [Vercel Analytics](https://vercel.com/analytics)
 
+

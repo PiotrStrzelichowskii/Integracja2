@@ -4,36 +4,38 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
-
-const testimonials = [
-  {
-    name: "Katarzyna W.",
-    rating: 5,
-    quote: "Niezapomniane przeżycia, Mąż zadowolony z jazdy w terenie! W przyszłym roku wracamy nie na godzinkę, ale na dwie 😁 Super instruktor i luźna atmosfera ❤️ Polecamy z całego off road'owego serduszka! 🔥"
-  },
-  {
-    name: "Anna N.",
-    rating: 5,
-    quote: "Mega wrażenia! ❤️ Super instruktor, Mąż zadowolony z prezentu! Na pewno wrócimy jeszcze nie jeden raz 😁"
-  },
-  {
-    name: "Paulina B.",
-    rating: 5,
-    quote: "Genialna zabawa! Jazda 4x4 zakupiona dla męża na urodziny. Absolutnie polecam wszystkim kobietom - jeśli chcecie zrobić super prezent swojemu mężowi, narzeczonemu, chłopakowi, to jest to strzał w dziesiątkę! Dziękuję bardzo Mariuszowi za realizację niespodzianki 🙂 Było mega!"
-  },
-  {
-    name: "Angela Z.",
-    rating: 5,
-    quote: "Bardzo polecamy! Mega profesjonalnie. Jednym słowem było czadowo. 💪🥰"
-  },
-  {
-    name: "Robert Ś",
-    rating: 5,
-    quote: "Jazda samochodem terenowym super, duża wyrozumiałość. Trasy Bomba, dużo zjazdów jak i wjazdów czasem trzeba się nieźle nakombinować żeby wyjechać. Polecam każdemu kto nie był i tym co byli ;D warto wrócić i trochę poupalać terenówkę. Następnym razem biorę Quady 😉"
-  }
-];
+import { useTranslations } from '@/hooks/use-translations';
 
 const About = () => {
+  const { t } = useTranslations();
+  
+  const testimonials = [
+    {
+      name: t('testimonial1Name'),
+      rating: 5,
+      quote: t('testimonial1Quote')
+    },
+    {
+      name: t('testimonial2Name'),
+      rating: 5,
+      quote: t('testimonial2Quote')
+    },
+    {
+      name: t('testimonial3Name'),
+      rating: 5,
+      quote: t('testimonial3Quote')
+    },
+    {
+      name: t('testimonial4Name'),
+      rating: 5,
+      quote: t('testimonial4Quote')
+    },
+    {
+      name: t('testimonial5Name'),
+      rating: 5,
+      quote: t('testimonial5Quote')
+    }
+  ];
   const [currentIndex, setCurrentIndex] = useState(2);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -118,7 +120,7 @@ const About = () => {
     <section className="py-20 sm:py-32 md:py-40 bg-muted/30">
       <div className="container mx-auto px-4">
         <h2 id="about" className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-8 sm:mb-12 md:mb-16 text-center scroll-mt-[100px]">
-          O <span className="text-accent">INTEGRACJA4X4</span>
+          {t('aboutTitle')} <span className="text-accent">{t('aboutTitleAccent')}</span>
         </h2>
         
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
@@ -126,24 +128,22 @@ const About = () => {
           <div>
             <div className="space-y-4 sm:space-y-6 md:space-y-8 text-muted-foreground font-roboto-slab leading-relaxed">
               <p className="text-sm sm:text-base md:text-lg">
-                Jesteśmy pionierami w organizacji profesjonalnych szkoleń offroad w Polsce. 
-                Nasza firma została założona w 1993 roku przez Mariusza Strzelichowskiego – doświadczonego off-roadowca, uczestnika i organizatora rajdów terenowych.
+                {t('aboutDescription1')}
               </p>
               
               <p className="text-sm sm:text-base">
-                Przez lata zbudowaliśmy zespół profesjonalnych instruktorów, którzy uczą, jak pewnie i bezpiecznie poruszać się w trudnym terenie. Nasza pasja do motoryzacji i przyrody zaowocowała stworzeniem unikalnych programów szkoleniowych, które łączą naukę z niezapomnianą przygodą.
+                {t('aboutDescription2')}
               </p>
               
               <p className="text-sm sm:text-base">
-                Specjalizujemy się w szkoleniach indywidualnych oraz eventach firmowych, oferując kompleksową obsługę od podstaw jazdy terenowej po zaawansowane techniki pokonywania najtrudniejszych przeszkód. Działamy na terenie całej Polski i zrealizowaliśmy już ponad XXX imprez integracyjnych.
+                {t('aboutDescription3')}
               </p>
             </div>
 
             <div className="mt-6 sm:mt-8 md:mt-12 p-4 sm:p-6 bg-accent/10 rounded-lg border border-accent/20">
-              <h3 className="font-staatliches text-lg sm:text-xl text-accent mb-2 sm:mb-3">Nasze Motto</h3>
+              <h3 className="font-staatliches text-lg sm:text-xl text-accent mb-2 sm:mb-3">{t('ourMotto')}</h3>
               <p className="text-muted-foreground font-roboto-slab italic text-sm sm:text-base">
-                "Bezpieczeństwo, profesjonalizm i niezapomniane doświadczenia - 
-                to podstawy naszej pracy z każdym klientem."
+                {t('mottoText')}
               </p>
             </div>
           </div>
@@ -162,7 +162,7 @@ const About = () => {
               
               {/* Author Overlay */}
               <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/70 text-muted-foreground px-2 sm:px-3 py-1 sm:py-2 rounded-lg text-xs sm:text-sm font-roboto-slab">
-                Mariusz Strzelichowski lata 2000
+                {t('oldDaysCaption')}
               </div>
             </div>
           </div>
@@ -172,7 +172,7 @@ const About = () => {
         {/* Testimonials Carousel */}
         <div className="mt-20 sm:mt-32 md:mt-40">
           <h2 className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-center text-foreground mb-12 sm:mb-16 md:mb-20">
-            CO <span className="text-accent">MÓWIĄ</span> NASI KLIENCI
+            {t('testimonialsTitle')} <span className="text-accent">{t('testimonialsTitleAccent')}</span> {t('testimonialsTitleEnd')}
           </h2>
           
           <div className="relative h-[400px] flex items-center justify-center overflow-hidden">

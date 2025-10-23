@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import { useTranslations } from '@/hooks/use-translations';
 
 // Przywróć Model3D z dynamicznym importem
 const Model3D = dynamic(() => import('./Model3D'), {
@@ -19,6 +20,8 @@ const Model3D = dynamic(() => import('./Model3D'), {
 });
 
 const Hero = () => {
+  const { t } = useTranslations();
+  
   const scrollToOffer = () => {
     const element = document.getElementById('offer');
     if (element) {
@@ -53,13 +56,13 @@ const Hero = () => {
           {/* Left Column - Text Content */}
           <div className="text-left lg:text-left animate-fade-in-up lg:col-span-2 flex flex-col justify-center">
               <h1 className="font-staatliches text-4xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl text-sand-light mb-3 sm:mb-4 leading-tight" style={{textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)'}}>
-              TAM, GDZIE KOŃCZY SIĘ ASFALT
+              {t('heroTitle')}
                 <br />
-                <span className="text-rust-orange" style={{textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)'}}>ZACZYNA SIĘ PRZYGODA</span>
+                <span className="text-rust-orange" style={{textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)'}}>{t('heroSubtitle')}</span>
               </h1>
               
               <p className="text-sm sm:text-md md:text-base text-gray-100 mb-4 sm:mb-6 max-w-lg font-roboto-slab leading-relaxed" style={{textShadow: '0 4px 8px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.7)'}}>
-                Profesjonalne szkolenia jazdy terenowej i eventy firmowe. Samochody 4x4, quady ATV i niezapomniane przygody w trudnym terenie.
+                {t('heroDescription')}
               </p>
               
               <div className="flex flex-row gap-2 sm:gap-3 md:gap-4 items-start">
@@ -67,14 +70,14 @@ const Hero = () => {
                   onClick={scrollToOffer}
                   className="btn-offroad-primary font-roboto-slab flex items-center gap-2 text-xs sm:text-sm md:text-base px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
                 >
-                  ZOBACZ OFERTĘ
+                  {t('seeOffer')}
                 </button>
                 
                 <button 
                   onClick={scrollToContact}
                   className="btn-offroad-outline font-roboto-slab flex items-center gap-2 text-xs sm:text-sm md:text-base px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
                 >
-                  SKONTAKTUJ SIĘ
+                  {t('contactUs')}
                 </button>
               </div>
           </div>

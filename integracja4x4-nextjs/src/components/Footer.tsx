@@ -4,8 +4,10 @@ import { Phone, Mail, MapPin, Facebook, Instagram, MessageCircle, Settings } fro
 import Image from 'next/image';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from '@/hooks/use-translations';
 
 const Footer = () => {
+  const { t } = useTranslations();
   const [showCookieSettings, setShowCookieSettings] = useState(false);
 
   const handleCookieSettings = () => {
@@ -36,7 +38,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-sand-light/80 font-roboto-slab text-sm leading-relaxed mb-4">
-              Profesjonalne szkolenia offroad, eventy firmowe i niezapomniane przygody w trudnym terenie.
+              {t('footerDescription')}
             </p>
             <div className="flex justify-center space-x-4">
               <a 
@@ -79,16 +81,16 @@ const Footer = () => {
           {/* Links and Contact - Horizontal Layout */}
           <div className="grid grid-cols-2 gap-6 mb-6">
             <div>
-              <h3 className="font-staatliches text-sm text-accent mb-2">Szybkie linki</h3>
+              <h3 className="font-staatliches text-sm text-accent mb-2">{t('quickLinks')}</h3>
               <ul className="space-y-1 font-roboto-slab text-sm">
-                <li><a href="#offer" className="text-sand-light/80 hover:text-accent transition-colors">Oferta</a></li>
-                <li><a href="#about" className="text-sand-light/80 hover:text-accent transition-colors">O nas</a></li>
-                <li><a href="#gallery" className="text-sand-light/80 hover:text-accent transition-colors">Galeria</a></li>
-                <li><a href="#contact" className="text-sand-light/80 hover:text-accent transition-colors">Kontakt</a></li>
+                <li><a href="#offer" className="text-sand-light/80 hover:text-accent transition-colors">{t('offerLink')}</a></li>
+                <li><a href="#about" className="text-sand-light/80 hover:text-accent transition-colors">{t('aboutLink')}</a></li>
+                <li><a href="#gallery" className="text-sand-light/80 hover:text-accent transition-colors">{t('galleryLink')}</a></li>
+                <li><a href="#contact" className="text-sand-light/80 hover:text-accent transition-colors">{t('contactLink')}</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-staatliches text-sm text-accent mb-2">Kontakt</h3>
+              <h3 className="font-staatliches text-sm text-accent mb-2">{t('contact')}</h3>
               <div className="space-y-1 font-roboto-slab text-sm">
                 <div className="flex items-center text-sand-light/80">
                   <Phone size={12} className="mr-2 text-accent flex-shrink-0" />
@@ -114,15 +116,15 @@ const Footer = () => {
           {/* Copyright - Compact */}
           <hr className="border-sand-light/20 my-4" />
           <div className="text-center text-sand-light/60 font-roboto-slab text-xs">
-            <p className="mb-2">© 2025 Integracja4x4. Wszelkie prawa zastrzeżone.</p>
+            <p className="mb-2">© 2025 Integracja4x4. {t('allRightsReserved')}</p>
             <div className="flex justify-center gap-4">
-              <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">Polityka prywatności</a>
+              <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">{t('privacyPolicy')}</a>
               <button 
                 onClick={handleCookieSettings}
                 className="hover:text-accent transition-colors flex items-center gap-1"
               >
                 <Settings className="w-3 h-3" />
-                Cookies
+                {t('cookieSettings')}
               </button>
             </div>
           </div>
@@ -146,8 +148,7 @@ const Footer = () => {
                 </div>
               </div>
               <p className="text-sand-light/80 font-roboto-slab leading-relaxed mb-6">
-                Profesjonalne szkolenia offroad, eventy firmowe i niezapomniane przygody w trudnym terenie. 
-                Ponad 30 lat doświadczenia w organizacji wypraw terenowych.
+                {t('footerDescriptionDesktop')}
               </p>
               <div className="flex space-x-4">
                 <a 
@@ -189,26 +190,26 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div>
-              <h3 className="font-staatliches text-lg text-accent mb-4">Szybkie linki</h3>
+              <h3 className="font-staatliches text-lg text-accent mb-4">{t('quickLinks')}</h3>
               <ul className="space-y-3 font-roboto-slab">
                 <li>
-                  <a href="#offer" className="text-sand-light/80 hover:text-accent transition-colors">Oferta</a>
+                  <a href="#offer" className="text-sand-light/80 hover:text-accent transition-colors">{t('offerLink')}</a>
                 </li>
                 <li>
-                  <a href="#about" className="text-sand-light/80 hover:text-accent transition-colors">O nas</a>
+                  <a href="#about" className="text-sand-light/80 hover:text-accent transition-colors">{t('aboutLink')}</a>
                 </li>
                 <li>
-                  <a href="#gallery" className="text-sand-light/80 hover:text-accent transition-colors">Galeria</a>
+                  <a href="#gallery" className="text-sand-light/80 hover:text-accent transition-colors">{t('galleryLink')}</a>
                 </li>
                 <li>
-                  <a href="#contact" className="text-sand-light/80 hover:text-accent transition-colors">Kontakt</a>
+                  <a href="#contact" className="text-sand-light/80 hover:text-accent transition-colors">{t('contactLink')}</a>
                 </li>
               </ul>
             </div>
 
             {/* Contact Info */}
             <div>
-              <h3 className="font-staatliches text-lg text-accent mb-4">Kontakt</h3>
+              <h3 className="font-staatliches text-lg text-accent mb-4">{t('contact')}</h3>
               <div className="space-y-3 font-roboto-slab">
                 <div className="flex items-center text-sand-light/80">
                   <Phone size={16} className="mr-3 text-accent flex-shrink-0" />
@@ -234,15 +235,15 @@ const Footer = () => {
           <hr className="border-sand-light/20 my-8" />
 
           <div className="flex flex-col md:flex-row justify-between items-center text-sand-light/60 font-roboto-slab text-sm">
-            <p>© 2025 Integracja4x4. Wszelkie prawa zastrzeżone.</p>
+            <p>© 2025 Integracja4x4. {t('allRightsReserved')}</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">Polityka prywatności</a>
+              <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">{t('privacyPolicy')}</a>
               <button 
                 onClick={handleCookieSettings}
                 className="hover:text-accent transition-colors flex items-center gap-1"
               >
                 <Settings className="w-3 h-3" />
-                Ustawienia cookies
+                {t('cookieSettings')}
               </button>
             </div>
           </div>

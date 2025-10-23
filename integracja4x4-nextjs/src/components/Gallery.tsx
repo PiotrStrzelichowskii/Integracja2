@@ -4,8 +4,10 @@ import { useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import { useTranslations } from '@/hooks/use-translations';
 
 const Gallery = () => {
+  const { t } = useTranslations();
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -42,27 +44,27 @@ const Gallery = () => {
   const galleryImages = [
     {
       src: "/assets/img5.webp",
-      alt: "Krótkie szkolenie teoretyczne",
-      title: "Obowiązkowe szkolenie teoretyczne",
-      description: "Krótkie szkolenie teoretyczne dla zrozumienia podstaw jazdy terenowej"
+      alt: t('galleryImage1Alt'),
+      title: t('galleryImage1Title'),
+      description: t('galleryImage1Description')
     },
     {
       src: "/assets/img8.webp",
-      alt: "3 Toyoty Land Cruiser na pustyni",
-      title: "Toyoty Land Cruiser w akcji", 
-      description: "Tereny na których szkolimy są bardzo zróżnicowane - od pustyni po góry"
+      alt: t('galleryImage2Alt'),
+      title: t('galleryImage2Title'), 
+      description: t('galleryImage2Description')
     },
     {
       src: "/assets/toyota7.jpg",
-      alt: "Toyota Land Cruiser w wodzie",
-      title: "Przeprawa przez wodę",
-      description: "Nasze szkolenia zawsze obejmują przeprawę przez wodę - dużą ilość wody :)"
+      alt: t('galleryImage3Alt'),
+      title: t('galleryImage3Title'),
+      description: t('galleryImage3Description')
     },
     {
       src: "/assets/toyota6.webp",
-      alt: "Toyota Land Cruiser w górach",
-      title: "Toyota Land Cruiser w górach",
-      description: "Tereny górskie są jednymi z najbardziej spektakularnych terenów na których szkolimy"
+      alt: t('galleryImage4Alt'),
+      title: t('galleryImage4Title'),
+      description: t('galleryImage4Description')
     }
   ];
 
@@ -71,10 +73,10 @@ const Gallery = () => {
       <div id="gallery" className="container mx-auto px-4 scroll-mt-[100px]">
         <div className="text-center mb-20">
           <h2 className="font-staatliches text-3xl md:text-5xl text-foreground mb-8">
-            NASZA <span className="text-accent">GALERIA</span>
+            {t('galleryTitle')} <span className="text-accent">{t('galleryTitleAccent')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
-            Zobacz jak wyglądają nasze szkolenia i przekonaj się o profesjonalnym poziomie naszych kursów
+            {t('galleryDescription')}
           </p>
         </div>
 
@@ -274,10 +276,10 @@ const Gallery = () => {
         <div className="text-center mt-24">
           <div className="bg-muted/50 p-10 rounded-lg">
             <h3 className="font-staatliches text-2xl text-foreground mb-4">
-              Chcesz zobaczyć więcej?
+              {t('wantToSeeMore')}
             </h3>
             <p className="text-muted-foreground font-roboto-slab mb-6">
-              Odwiedź nasze media społecznościowe, aby zobaczyć najnowsze zdjęcia i filmy z naszych szkoleń
+              {t('visitSocialMedia')}
             </p>
             <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-8">
               <a 
@@ -308,7 +310,7 @@ const Gallery = () => {
         <DialogContent className="max-w-[95vw] w-full max-h-[95vh] h-[95vh] p-0 bg-black/95 border-none">
           {/* Hidden title for accessibility */}
           <DialogTitle className="sr-only">
-            {selectedImageIndex !== null ? galleryImages[selectedImageIndex].title : "Podgląd zdjęcia"}
+            {selectedImageIndex !== null ? galleryImages[selectedImageIndex].title : t('imagePreview')}
           </DialogTitle>
           
           <div className="relative h-full flex flex-col">
@@ -366,10 +368,10 @@ const Gallery = () => {
                 </p>
                 <div className="flex justify-between items-center mt-2">
                   <span className="text-xs text-white/70">
-                    {selectedImageIndex + 1} z {galleryImages.length}
+                    {selectedImageIndex + 1} {t('of')} {galleryImages.length}
                   </span>
                   <span className="text-xs text-white/50">
-                    ← → nawigacja | ESC zamknij
+                    {t('navigationHint')}
                   </span>
                 </div>
               </div>

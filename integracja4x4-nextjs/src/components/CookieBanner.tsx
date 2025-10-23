@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { X, Cookie, Shield, Settings } from 'lucide-react';
+import { useTranslations } from '@/hooks/use-translations';
 import { event } from '@/lib/analytics';
 
 const CookieBanner = () => {
+  const { t } = useTranslations();
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [analyticsConsent, setAnalyticsConsent] = useState(false);
@@ -78,13 +80,10 @@ const CookieBanner = () => {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h3 className="font-staatliches text-lg text-foreground mb-2">
-                        Informacja o cookies
+                        {t('cookieTitle')}
                       </h3>
                       <p className="text-muted-foreground font-roboto-slab text-sm leading-relaxed">
-                        Używamy plików cookies i podobnych technologii do analizy ruchu na stronie, 
-                        personalizacji treści i reklam oraz zapewnienia najlepszych doświadczeń. 
-                        Klikając "Akceptuję wszystkie", wyrażasz zgodę na używanie wszystkich cookies. 
-                        Możesz zarządzać preferencjami w ustawieniach.
+                        {t('cookieDescription')}
                       </p>
                     </div>
                     <Button
@@ -105,7 +104,7 @@ const CookieBanner = () => {
                   className="bg-accent hover:bg-accent/90 text-white font-roboto-slab w-full"
                   size="sm"
                 >
-                  Akceptuję wszystkie
+                  {t('acceptAll')}
                 </Button>
                 <div className="flex gap-2">
                   <Button
@@ -115,7 +114,7 @@ const CookieBanner = () => {
                     size="sm"
                   >
                     <Settings className="w-4 h-4 mr-2" />
-                    Ustawienia
+                    {t('settings')}
                   </Button>
                   <Button
                     onClick={handleRejectAll}
@@ -123,7 +122,7 @@ const CookieBanner = () => {
                     className="text-muted-foreground hover:text-foreground font-roboto-slab flex-1"
                     size="sm"
                   >
-                    Odrzuć wszystkie
+                    {t('rejectAll')}
                   </Button>
                 </div>
               </div>
@@ -186,7 +185,7 @@ const CookieBanner = () => {
                     className="border-accent/30 text-foreground hover:bg-accent/10 font-roboto-slab flex-1"
                     size="sm"
                   >
-                    Akceptuję wszystkie
+                    {t('acceptAll')}
                   </Button>
                   <Button
                     onClick={handleRejectAll}
@@ -194,7 +193,7 @@ const CookieBanner = () => {
                     className="text-muted-foreground hover:text-foreground font-roboto-slab flex-1"
                     size="sm"
                   >
-                    Odrzuć wszystkie
+                    {t('rejectAll')}
                   </Button>
                 </div>
               </div>

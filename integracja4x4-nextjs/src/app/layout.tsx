@@ -6,6 +6,9 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Providers from "./providers";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CookieBanner from "@/components/CookieBanner";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const staatliches = localFont({
   src: "../../public/fonts/Staatliches/Staatliches-Regular.ttf",
@@ -48,13 +51,16 @@ export default function RootLayout({
   return (
     <html lang="pl" className="overflow-x-hidden">
       <body className={`${staatliches.variable} ${robotoSlab.variable} overflow-x-hidden`}>
+        <GoogleAnalytics />
         <Providers>
           <TooltipProvider>
             <Toaster />
             <Sonner />
             {children}
+            <CookieBanner />
           </TooltipProvider>
         </Providers>
+        <SpeedInsights />
       </body>
     </html>
   );

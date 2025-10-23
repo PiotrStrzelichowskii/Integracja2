@@ -43,7 +43,11 @@ export async function POST(request: NextRequest) {
     if (!resend) {
       console.error('Resend API key not configured');
       return NextResponse.json(
-        { error: 'Usługa email nie jest skonfigurowana' },
+        { 
+          error: 'Usługa email nie jest skonfigurowana',
+          details: 'Brak klucza API Resend. Sprawdź plik .env.local i dodaj RESEND_API_KEY.',
+          code: 'MISSING_API_KEY'
+        },
         { status: 503 }
       );
     }

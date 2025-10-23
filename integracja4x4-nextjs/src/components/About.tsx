@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 const testimonials = [
   {
@@ -41,12 +42,16 @@ const About = () => {
     setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
     // Zatrzymaj auto-play gdy użytkownik interweniuje
     setIsAutoPlaying(false);
+    // Track navigation
+    trackEvent.navigationClick('Previous Testimonial');
   };
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
     // Zatrzymaj auto-play gdy użytkownik interweniuje
     setIsAutoPlaying(false);
+    // Track navigation
+    trackEvent.navigationClick('Next Testimonial');
   };
 
   // Automatyczne przewijanie co 3 sekundy
@@ -183,6 +188,8 @@ const About = () => {
                       setCurrentIndex(index);
                       // Zatrzymaj auto-play gdy użytkownik kliknie na kartę
                       setIsAutoPlaying(false);
+                      // Track testimonial click
+                      trackEvent.testimonialClick(index);
                     }
                   }}
                 >
@@ -240,6 +247,8 @@ const About = () => {
                   setCurrentIndex(index);
                   // Zatrzymaj auto-play gdy użytkownik kliknie na kropkę
                   setIsAutoPlaying(false);
+                  // Track dot navigation
+                  trackEvent.navigationClick(`Testimonial Dot ${index + 1}`);
                 }}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex

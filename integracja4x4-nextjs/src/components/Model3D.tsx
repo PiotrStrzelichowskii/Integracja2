@@ -180,8 +180,8 @@ export default function Model3D() {
   return (
     <div className="w-[700px] h-[300px] sm:h-[400px] lg:h-[600px] relative flex items-center justify-center lg:-ml-48">
       {/* Glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-500/30 via-transparent to-yellow-200/30 rounded-lg blur-2xl scale-125"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-yellow-100/20 rounded-lg blur-xl scale-110"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-500/30 via-transparent to-yellow-200/30 rounded-lg blur-2xl scale-x-125 scale-y-100"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-yellow-100/20 rounded-lg blur-xl scale-x-110 scale-y-95"></div>
       
       <Canvas
         camera={{ 

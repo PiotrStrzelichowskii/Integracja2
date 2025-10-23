@@ -1,7 +1,21 @@
-import { Phone, Mail, MapPin, Facebook, Instagram, MessageCircle } from 'lucide-react';
+"use client";
+
+import { Phone, Mail, MapPin, Facebook, Instagram, MessageCircle, Settings } from 'lucide-react';
 import Image from 'next/image';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 const Footer = () => {
+  const [showCookieSettings, setShowCookieSettings] = useState(false);
+
+  const handleCookieSettings = () => {
+    // Usuń zapisane preferencje i pokaż banner ponownie
+    localStorage.removeItem('cookie-consent');
+    localStorage.removeItem('analytics-consent');
+    // Odśwież stronę aby pokazać banner
+    window.location.reload();
+  };
+
   return (
     <footer className="bg-mud-dark text-sand-light">
       <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12">
@@ -100,8 +114,17 @@ const Footer = () => {
           {/* Copyright - Compact */}
           <hr className="border-sand-light/20 my-4" />
           <div className="text-center text-sand-light/60 font-roboto-slab text-xs">
-            <p className="mb-1">© 2025 Integracja4x4. Wszelkie prawa zastrzeżone.</p>
-            <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">Polityka prywatności</a>
+            <p className="mb-2">© 2025 Integracja4x4. Wszelkie prawa zastrzeżone.</p>
+            <div className="flex justify-center gap-4">
+              <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">Polityka prywatności</a>
+              <button 
+                onClick={handleCookieSettings}
+                className="hover:text-accent transition-colors flex items-center gap-1"
+              >
+                <Settings className="w-3 h-3" />
+                Cookies
+              </button>
+            </div>
           </div>
         </div>
 
@@ -214,6 +237,13 @@ const Footer = () => {
             <p>© 2025 Integracja4x4. Wszelkie prawa zastrzeżone.</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">Polityka prywatności</a>
+              <button 
+                onClick={handleCookieSettings}
+                className="hover:text-accent transition-colors flex items-center gap-1"
+              >
+                <Settings className="w-3 h-3" />
+                Ustawienia cookies
+              </button>
             </div>
           </div>
         </div>

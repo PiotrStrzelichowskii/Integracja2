@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Phone, Mail, MapPin, Clock, CreditCard, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { trackEvent } from '@/lib/analytics';
 
 // Typy dla walidacji
 interface FormErrors {
@@ -126,9 +127,26 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
+      // Sprawdź czy odpowiedź ma zawartość przed parsowaniem JSON
+      const responseText = await response.text();
+      let result;
+      
+      if (responseText) {
+        try {
+          result = JSON.parse(responseText);
+        } catch (parseError) {
+          console.error('JSON parse error:', parseError);
+          throw new Error('Nieprawidłowa odpowiedź serwera');
+        }
+      } else {
+        throw new Error('Pusta odpowiedź serwera');
+      }
 
       if (!response.ok) {
+        // Sprawdź czy to błąd konfiguracji API
+        if (result.code === 'MISSING_API_KEY') {
+          throw new Error('Formularz kontaktowy nie jest jeszcze skonfigurowany. Skontaktuj się z administratorem.');
+        }
         throw new Error(result.error || 'Wystąpił błąd podczas wysyłania');
       }
 
@@ -138,6 +156,9 @@ const Contact = () => {
         isSubmitting: false, 
         isSuccess: true 
       }));
+
+      // Track successful form submission
+      trackEvent.contactFormSubmit();
 
       toast({
         title: "Wiadomość wysłana!",
@@ -166,6 +187,10 @@ const Contact = () => {
         isSubmitting: false, 
         isError: true 
       }));
+
+      // Track form error
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      trackEvent.contactFormError(errorMessage);
 
       toast({
         title: "Błąd wysyłania",

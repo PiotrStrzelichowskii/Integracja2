@@ -6,8 +6,8 @@ export const en = {
   contact: 'Contact',
   
   // Hero Section
-  heroTitle: 'WHERE THE ASPHALT ENDS',
-  heroSubtitle: 'ADVENTURE BEGINS',
+  heroTitle: 'WHERE THE ASPHALT',
+  heroSubtitle: 'ENDS ADVENTURE BEGINS',
   heroDescription: 'Professional off-road driving training and corporate events. 4x4 vehicles, ATV quads and unforgettable adventures in challenging terrain.',
   seeOffer: 'SEE OFFER',
   contactUs: 'CONTACT US',

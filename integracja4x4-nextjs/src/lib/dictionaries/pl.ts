@@ -6,8 +6,8 @@ export const pl = {
   contact: 'Kontakt',
   
   // Hero Section
-  heroTitle: 'TAM, GDZIE KOŃCZY SIĘ ASFALT',
-  heroSubtitle: 'ZACZYNA SIĘ PRZYGODA',
+  heroTitle: 'TAM, GDZIE KOŃCZY SIĘ',
+  heroSubtitle: 'ASFALT ZACZYNA SIĘ PRZYGODA',
   heroDescription: 'Profesjonalne szkolenia jazdy terenowej i eventy firmowe. Samochody 4x4, quady ATV i niezapomniane przygody w trudnym terenie.',
   
   // SEO Keywords (ukryte)

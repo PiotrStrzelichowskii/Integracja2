@@ -16,49 +16,12 @@ const nextConfig = {
   poweredByHeader: false,
   // Napraw problemy z dostępnością
   reactStrictMode: true,
-  swcMinify: true,
   experimental: {
     optimizePackageImports: ['@react-three/fiber', '@react-three/drei'],
-    optimizeCss: true,
   },
   compiler: {
     // Usuń console.log w produkcji
     removeConsole: process.env.NODE_ENV === 'production',
-  },
-  // Optymalizacja dla nowoczesnych przeglądarek
-  transpilePackages: [],
-  // Zmniejsz rozmiar bundle'a
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      // Optymalizacja dla produkcji
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        minSize: 20000,
-        maxSize: 244000,
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-            priority: 10,
-          },
-          common: {
-            name: 'common',
-            minChunks: 2,
-            chunks: 'all',
-            priority: 5,
-            reuseExistingChunk: true,
-          },
-          ui: {
-            test: /[\\/]src[\\/]components[\\/]ui[\\/]/,
-            name: 'ui',
-            chunks: 'all',
-            priority: 8,
-          },
-        },
-      };
-    }
-    return config;
   },
 }
 

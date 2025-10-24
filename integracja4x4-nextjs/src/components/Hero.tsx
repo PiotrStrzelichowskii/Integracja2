@@ -37,7 +37,10 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full aspect-[16/9] flex items-center justify-center z-20 mt-[0rem] sm:mt-[4rem] md:mt-[4rem] lg:mt-[3rem] xl:mt-[2rem]">
+    <section 
+      className="relative w-full aspect-[16/9] flex items-center justify-center z-20 mt-[0rem] sm:mt-[4rem] md:mt-[4rem] lg:mt-[3rem] xl:mt-[2rem]"
+      aria-label="Sekcja główna - Szkoła jazdy terenowej 4x4"
+    >
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image 
@@ -45,8 +48,9 @@ const Hero = () => {
           alt="Szkoła jazdy terenowej 4x4 w Krakowie - Toyota Land Cruiser 70 offroad training - Najlepsza jazda off-road w Polsce"
           fill
           className="object-cover"
-          
           priority
+          fetchPriority="high"
+          sizes="100vw"
         />
       </div>
 
@@ -74,6 +78,7 @@ const Hero = () => {
                 <button 
                   onClick={scrollToOffer}
                   className="btn-offroad-primary font-roboto-slab flex items-center gap-2 text-xs sm:text-sm md:text-base px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
+                  aria-label="Przejdź do sekcji oferty"
                 >
                   {t('seeOffer')}
                 </button>
@@ -81,6 +86,7 @@ const Hero = () => {
                 <button 
                   onClick={scrollToContact}
                   className="btn-offroad-outline font-roboto-slab flex items-center gap-2 text-xs sm:text-sm md:text-base px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
+                  aria-label="Przejdź do sekcji kontakt"
                 >
                   {t('contactUs')}
                 </button>

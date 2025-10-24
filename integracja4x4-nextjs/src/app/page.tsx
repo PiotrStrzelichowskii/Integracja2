@@ -1,16 +1,38 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Offer from '@/components/Offer';
-import About from '@/components/About';
-import Gallery from '@/components/Gallery';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import dynamic from 'next/dynamic';
+
+// Lazy load komponenty, które nie są krytyczne dla pierwszego renderowania
+const Offer = dynamic(() => import('@/components/Offer'), {
+  loading: () => <div className="h-96 bg-mud-dark animate-pulse" />
+});
+
+const About = dynamic(() => import('@/components/About'), {
+  loading: () => <div className="h-96 bg-mud-dark animate-pulse" />
+});
+
+const Gallery = dynamic(() => import('@/components/Gallery'), {
+  loading: () => <div className="h-96 bg-mud-dark animate-pulse" />
+});
+
+const Contact = dynamic(() => import('@/components/Contact'), {
+  loading: () => <div className="h-96 bg-mud-dark animate-pulse" />
+});
+
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: () => <div className="h-32 bg-mud-dark animate-pulse" />
+});
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-mud-dark overflow-x-hidden">
       <Header />
-      <main className="bg-mud-dark overflow-x-hidden">
+      <main 
+        id="main-content" 
+        className="bg-mud-dark overflow-x-hidden"
+        role="main"
+        aria-label="Główna zawartość strony"
+      >
         <Hero />
         <Offer />
         <About />
@@ -18,7 +40,7 @@ export default function HomePage() {
         <Contact />
         
         {/* SEO Keywords - ukryte dla robotów */}
-        <div className="sr-only">
+        <div className="sr-only" aria-hidden="true">
           <h1>Szkoła jazdy terenowej 4x4 w Krakowie - Integracja4x4 | Najlepsza jazda off-road w Polsce</h1>
           <h2>Voucher off-road | Szkolenie offroad dla firm | Kurs jazdy w terenie | Jazda terenowa 4x4 Kraków</h2>
           <h3>Off-road Małopolska | Jazda terenowa w okolicach Krakowa | Terenówki Kraków | Jazda po bezdrożach Kraków</h3>

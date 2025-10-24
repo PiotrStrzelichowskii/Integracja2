@@ -25,6 +25,15 @@ const robotoSlab = localFont({
 export const metadata: Metadata = {
   title: "Integracja4x4 - Profesjonalne szkolenia offroad",
   description: "Profesjonalne szkolenia jazdy terenowej. Samochody 4x4, quady ATV i niezapomniane przygody w trudnym terenie.",
+  keywords: "szkoła jazdy terenowej, offroad, 4x4, Toyota Land Cruiser, szkolenia, Kraków, Małopolska",
+  authors: [{ name: "Integracja4x4" }],
+  creator: "Integracja4x4",
+  publisher: "Integracja4x4",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: '/logo.webp',
     shortcut: '/logo.webp',
@@ -50,6 +59,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl" className="overflow-x-hidden">
+      <head>
+        <title>Integracja4x4 - Profesjonalne szkolenia offroad</title>
+        <meta name="language" content="pl" />
+        <meta name="geo.region" content="PL-MA" />
+        <meta name="geo.placename" content="Kraków" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+      </head>
       <body className={`${staatliches.variable} ${robotoSlab.variable} overflow-x-hidden`}>
         <GoogleAnalytics />
         <Providers>

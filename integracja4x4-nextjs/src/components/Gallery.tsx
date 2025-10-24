@@ -101,6 +101,8 @@ const Gallery = () => {
                     width={600}
                     height={450}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 </div>
                 
@@ -143,6 +145,8 @@ const Gallery = () => {
                   width={800}
                   height={400}
                   className="w-full h-full object-cover object-[center_35%] group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 66vw"
                 />
               </div>
               
@@ -178,6 +182,8 @@ const Gallery = () => {
                   width={400}
                   height={400}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               
@@ -216,6 +222,8 @@ const Gallery = () => {
                   width={400} 
                   height={400}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
               
@@ -251,6 +259,8 @@ const Gallery = () => {
                   width={800}
                   height={400}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 66vw"
                 />
               </div>
               

@@ -19,15 +19,22 @@ const Header = () => {
       setIsDesktop(window.innerWidth >= 1024); // lg breakpoint
     };
 
+    let ticking = false;
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      // Efekt scrollowania tylko na desktop
-      setIsScrolled(isDesktop && scrollTop > 30);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          // Efekt scrollowania tylko na desktop
+          setIsScrolled(isDesktop && scrollTop > 30);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('resize', checkScreenSize);
@@ -49,9 +56,14 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
-      isScrolled ? 'bg-mudDark/95 backdrop-blur-md' : 'bg-transparent'
-    }`} style={{ zIndex: 9999 }}>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
+        isScrolled ? 'bg-mudDark/95 backdrop-blur-md' : 'bg-transparent'
+      }`} 
+      style={{ zIndex: 9999 }}
+      role="banner"
+      aria-label="Główna nawigacja"
+    >
       <div className="w-full px-8 py-6 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-4">
@@ -85,7 +97,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-6">
-          <nav className="flex items-center space-x-6">
+          <nav className="flex items-center space-x-6" role="navigation" aria-label="Główna nawigacja">
             <button 
               onClick={() => scrollToSection('offer')}
               className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
@@ -122,6 +134,9 @@ const Header = () => {
         <button
           className="lg:hidden w-14 h-14 flex items-center justify-center text-accent hover:text-accent/80 hover:bg-accent/10 rounded-lg transition-colors"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? "Zamknij menu" : "Otwórz menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
         >
           {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
@@ -129,11 +144,16 @@ const Header = () => {
 
       {/* Mobile Navigation - Slide from Right */}
       <div 
+        id="mobile-menu"
         className={`lg:hidden fixed top-0 right-0 h-full w-full transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{ zIndex: 99999 }}
         onClick={() => setIsMenuOpen(false)}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu mobilne"
+        aria-hidden={!isMenuOpen}
       >
         {/* Navbar Content */}
         <div 
@@ -158,7 +178,7 @@ const Header = () => {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 p-6 space-y-4">
+          <nav className="flex-1 p-6 space-y-4" role="navigation" aria-label="Menu mobilne">
             <button 
               onClick={() => scrollToSection('offer')}
               className="w-full text-left text-foreground hover:text-accent transition-colors font-roboto-slab font-medium py-4 text-lg"

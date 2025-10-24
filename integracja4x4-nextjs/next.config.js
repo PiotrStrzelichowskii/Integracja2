@@ -11,17 +11,20 @@ const nextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
-  experimental: {
-    optimizePackageImports: ['@react-three/fiber', '@react-three/drei'],
-  },
   // Napraw problem z __next_error__
   generateEtags: false,
   poweredByHeader: false,
+  // Napraw problemy z dostępnością
+  reactStrictMode: true,
+  swcMinify: true,
+  experimental: {
+    optimizePackageImports: ['@react-three/fiber', '@react-three/drei'],
+    optimizeCss: true,
+  },
   compiler: {
     // Usuń console.log w produkcji
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  swcMinify: true,
   // Optymalizacja dla nowoczesnych przeglądarek
   transpilePackages: [],
   // Zmniejsz rozmiar bundle'a

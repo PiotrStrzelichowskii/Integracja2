@@ -25,13 +25,15 @@ const Footer = dynamic(() => import('@/components/Footer'), {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-mud-dark overflow-x-hidden">
+    <div className="min-h-screen bg-mud-dark overflow-x-hidden" id="app-root">
       <Header />
       <main 
         id="main-content" 
         className="bg-mud-dark overflow-x-hidden"
         role="main"
         aria-label="Główna zawartość strony"
+        tabIndex={-1}
+        aria-labelledby="main-content"
       >
         <Hero />
         <Offer />

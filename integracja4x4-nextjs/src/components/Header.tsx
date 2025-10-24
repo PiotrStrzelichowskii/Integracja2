@@ -63,6 +63,7 @@ const Header = () => {
       style={{ zIndex: 9999 }}
       role="banner"
       aria-label="Główna nawigacja"
+      id="main-header"
     >
       <div className="w-full px-8 py-6 flex items-center justify-between">
         {/* Logo */}
@@ -97,7 +98,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-6">
-          <nav className="flex items-center space-x-6" role="navigation" aria-label="Główna nawigacja">
+          <nav className="flex items-center space-x-6" role="navigation" aria-label="Główna nawigacja" id="desktop-nav">
             <button 
               onClick={() => scrollToSection('offer')}
               className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
@@ -178,7 +179,7 @@ const Header = () => {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 p-6 space-y-4" role="navigation" aria-label="Menu mobilne">
+          <nav className="flex-1 p-6 space-y-4" role="navigation" aria-label="Menu mobilne" id="mobile-nav">
             <button 
               onClick={() => scrollToSection('offer')}
               className="w-full text-left text-foreground hover:text-accent transition-colors font-roboto-slab font-medium py-4 text-lg"

@@ -23,12 +23,13 @@ const Footer = () => {
               className="bg-mud-dark text-sand-light"
               role="contentinfo"
               aria-label="Stopka strony"
+              id="main-footer"
             >
               {/* SEO H2 - ukryty wizualnie ale widoczny dla robotów */}
               <h2 className="sr-only" aria-hidden="true">
                 Integracja firmowa w terenie | Prezent dla fana motoryzacji Kraków | Atrakcje motoryzacyjne Kraków
               </h2>
-      <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12">
+      <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12" id="footer-content">
         {/* Mobile Layout */}
         <div className="md:hidden">
           {/* Company Info - Compact */}

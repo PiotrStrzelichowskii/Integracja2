@@ -40,6 +40,8 @@ const Hero = () => {
     <section 
       className="relative w-full aspect-[16/9] flex items-center justify-center z-20 mt-[0rem] sm:mt-[4rem] md:mt-[4rem] lg:mt-[3rem] xl:mt-[2rem]"
       aria-label="Sekcja główna - Szkoła jazdy terenowej 4x4"
+      role="banner"
+      id="hero-section"
     >
       {/* Background Image */}
       <div className="absolute inset-0">

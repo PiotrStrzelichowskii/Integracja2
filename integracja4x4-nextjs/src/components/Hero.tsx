@@ -72,14 +72,14 @@ const Hero = () => {
                 Szkoła jazdy terenowej 4x4 w Krakowie - Integracja4x4 | Najlepsza jazda off-road w Polsce
               </h1>
               
-              <p className="text-sm sm:text-md md:text-base text-gray-100 mb-3 sm:mb-6 max-w-lg mx-auto lg:mx-0 font-roboto-slab leading-relaxed" style={{textShadow: '0 4px 8px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.7)'}}>
+              <p className="text-sm sm:text-md md:text-base text-gray-100 mb-3 sm:mb-6 max-w-lg mx-auto lg:mx-0 font-montserrat leading-relaxed" style={{textShadow: '0 4px 8px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.7)'}}>
                 {t('heroDescription')}
               </p>
               
               <div className="flex flex-row gap-2 sm:gap-3 md:gap-4 items-center justify-center lg:justify-start">
                 <button 
                   onClick={scrollToOffer}
-                  className="btn-offroad-primary font-roboto-slab flex items-center gap-2 text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
+                  className="btn-offroad-primary font-montserrat flex items-center gap-2 text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
                   aria-label="Przejdź do sekcji oferty"
                 >
                   {t('seeOffer')}
@@ -87,7 +87,7 @@ const Hero = () => {
                 
                 <button 
                   onClick={scrollToContact}
-                  className="btn-offroad-outline font-roboto-slab flex items-center gap-2 text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
+                  className="btn-offroad-outline font-montserrat flex items-center gap-2 text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
                   aria-label="Przejdź do sekcji kontakt"
                 >
                   {t('contactUs')}

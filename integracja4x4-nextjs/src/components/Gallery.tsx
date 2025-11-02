@@ -80,7 +80,7 @@ const Gallery = () => {
                   <h2 className="sr-only">
                     Jazda off-road Toyota Land Cruiser | Szkolenia 4x4 | Jazda w terenie | Off-road Małopolska
                   </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-montserrat leading-relaxed">
             {t('galleryDescription')}
           </p>
         </div>
@@ -112,7 +112,7 @@ const Gallery = () => {
                     <h3 className="font-staatliches text-lg text-white mb-1">
                       {image.title}
                     </h3>
-                    <p className="text-sm text-white/90 font-roboto-slab">
+                    <p className="text-sm text-white/90 font-montserrat">
                       {image.description}
                     </p>
                   </div>
@@ -156,7 +156,7 @@ const Gallery = () => {
                   <h3 className="font-staatliches text-xl text-white mb-1">
                     {galleryImages[0].title}
                   </h3>
-                  <p className="text-sm text-white/90 font-roboto-slab">
+                  <p className="text-sm text-white/90 font-montserrat">
                     {galleryImages[0].description}
                   </p>
                 </div>
@@ -193,7 +193,7 @@ const Gallery = () => {
                   <h3 className="font-staatliches text-lg text-white mb-1">
                     {galleryImages[1].title}
                   </h3>
-                  <p className="text-sm text-white/90 font-roboto-slab">
+                  <p className="text-sm text-white/90 font-montserrat">
                     {galleryImages[1].description}
                   </p>
                 </div>
@@ -233,7 +233,7 @@ const Gallery = () => {
                   <h3 className="font-staatliches text-lg text-white mb-1">
                     {galleryImages[2].title}
                   </h3>
-                  <p className="text-sm text-white/90 font-roboto-slab">
+                  <p className="text-sm text-white/90 font-montserrat">
                     {galleryImages[2].description}
                   </p>
                 </div>
@@ -270,7 +270,7 @@ const Gallery = () => {
                   <h3 className="font-staatliches text-xl text-white mb-1">
                     {galleryImages[3].title}
                   </h3>
-                  <p className="text-sm text-white/90 font-roboto-slab">
+                  <p className="text-sm text-white/90 font-montserrat">
                     {galleryImages[3].description}
                   </p>
                 </div>
@@ -293,25 +293,25 @@ const Gallery = () => {
             <h3 className="font-staatliches text-2xl text-foreground mb-4">
               {t('wantToSeeMore')}
             </h3>
-            <p className="text-muted-foreground font-roboto-slab mb-6">
+            <p className="text-muted-foreground font-montserrat mb-6">
               {t('visitSocialMedia')}
             </p>
             <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-8">
               <a 
                 href="https://www.facebook.com/integracja4x4" 
-                className="btn-offroad-primary font-roboto-slab px-2 sm:px-3 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-sm md:text-base align-middle items-center"
+                className="btn-offroad-primary font-montserrat px-2 sm:px-3 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-sm md:text-base align-middle items-center"
               >
                 Facebook
               </a>
               <a 
                 href="https://www.instagram.com/integracja4x4.pl/" 
-                className="btn-offroad-primary font-roboto-slab px-2 sm:px-3 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-sm md:text-base align-middle items-center"
+                className="btn-offroad-primary font-montserrat px-2 sm:px-3 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-sm md:text-base align-middle items-center"
               >
                 Instagram
               </a>
               <a 
                 href="https://www.youtube.com/channel/UCJyTmHY9czMaXCd3HplVylQ" 
-                className="btn-offroad-primary font-roboto-slab px-2 sm:px-3 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-sm md:text-base align-middle items-center"
+                className="btn-offroad-primary font-montserrat px-2 sm:px-3 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-sm md:text-base align-middle items-center"
               >
                 YouTube
               </a>
@@ -378,7 +378,7 @@ const Gallery = () => {
                 <h3 className="font-staatliches text-lg mb-1">
                   {galleryImages[selectedImageIndex].title}
                 </h3>
-                <p className="text-xs font-roboto-slab text-white/90">
+                <p className="text-xs font-montserrat text-white/90">
                   {galleryImages[selectedImageIndex].description}
                 </p>
                 <div className="flex justify-between items-center mt-2">

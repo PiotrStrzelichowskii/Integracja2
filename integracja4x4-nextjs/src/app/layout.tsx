@@ -18,9 +18,9 @@ const staatliches = localFont({
   display: "swap",
 });
 
-const robotoSlab = localFont({
-  src: "../../public/fonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf",
-  variable: "--font-roboto-slab",
+const montserrat = localFont({
+  src: "../../public/fonts/Montserrat/Montserrat/Montserrat-VariableFont_wght.ttf",
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -112,7 +112,7 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="en" href="/?lang=en" />
         <link rel="alternate" hrefLang="x-default" href="/" />
       </head>
-      <body className={`${staatliches.variable} ${robotoSlab.variable} overflow-x-hidden`} lang="pl" dir="ltr">
+      <body className={`${staatliches.variable} ${montserrat.variable} overflow-x-hidden`} lang="pl" dir="ltr">
         <GoogleAnalytics />
         <Providers>
           <LanguageSetter />

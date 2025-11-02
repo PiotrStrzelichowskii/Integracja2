@@ -82,7 +82,7 @@ const CookieBanner = () => {
                       <h3 className="font-staatliches text-lg text-foreground mb-2">
                         {t('cookieTitle')}
                       </h3>
-                      <p className="text-muted-foreground font-roboto-slab text-sm leading-relaxed">
+                      <p className="text-muted-foreground font-montserrat text-sm leading-relaxed">
                         {t('cookieDescription')}
                       </p>
                     </div>
@@ -101,7 +101,7 @@ const CookieBanner = () => {
               <div className="flex flex-col gap-2">
                 <Button
                   onClick={handleAcceptAll}
-                  className="bg-accent hover:bg-accent/90 text-white font-roboto-slab w-full"
+                  className="bg-accent hover:bg-accent/90 text-white font-montserrat w-full"
                   size="sm"
                 >
                   {t('acceptAll')}
@@ -110,7 +110,7 @@ const CookieBanner = () => {
                   <Button
                     onClick={() => setShowSettings(true)}
                     variant="outline"
-                    className="border-accent/30 text-foreground hover:bg-accent/10 font-roboto-slab flex-1"
+                    className="border-accent/30 text-foreground hover:bg-accent/10 font-montserrat flex-1"
                     size="sm"
                   >
                     <Settings className="w-4 h-4 mr-2" />
@@ -119,7 +119,7 @@ const CookieBanner = () => {
                   <Button
                     onClick={handleRejectAll}
                     variant="ghost"
-                    className="text-muted-foreground hover:text-foreground font-roboto-slab flex-1"
+                    className="text-muted-foreground hover:text-foreground font-montserrat flex-1"
                     size="sm"
                   >
                     {t('rejectAll')}
@@ -150,10 +150,10 @@ const CookieBanner = () => {
                   <div className="flex items-center gap-3">
                     <Shield className="w-5 h-5 text-accent" />
                     <div>
-                      <h4 className="font-roboto-slab font-medium text-foreground">
+                      <h4 className="font-montserrat font-medium text-foreground">
                         Cookies analityczne
                       </h4>
-                      <p className="text-sm text-muted-foreground font-roboto-slab">
+                      <p className="text-sm text-muted-foreground font-montserrat">
                         Google Analytics - pomagają nam zrozumieć, jak użytkownicy korzystają ze strony
                       </p>
                     </div>
@@ -173,7 +173,7 @@ const CookieBanner = () => {
               <div className="flex flex-col gap-2 pt-4">
                 <Button
                   onClick={handleSavePreferences}
-                  className="bg-accent hover:bg-accent/90 text-white font-roboto-slab w-full"
+                  className="bg-accent hover:bg-accent/90 text-white font-montserrat w-full"
                   size="sm"
                 >
                   Zapisz preferencje
@@ -182,7 +182,7 @@ const CookieBanner = () => {
                   <Button
                     onClick={handleAcceptAll}
                     variant="outline"
-                    className="border-accent/30 text-foreground hover:bg-accent/10 font-roboto-slab flex-1"
+                    className="border-accent/30 text-foreground hover:bg-accent/10 font-montserrat flex-1"
                     size="sm"
                   >
                     {t('acceptAll')}
@@ -190,7 +190,7 @@ const CookieBanner = () => {
                   <Button
                     onClick={handleRejectAll}
                     variant="ghost"
-                    className="text-muted-foreground hover:text-foreground font-roboto-slab flex-1"
+                    className="text-muted-foreground hover:text-foreground font-montserrat flex-1"
                     size="sm"
                   >
                     {t('rejectAll')}

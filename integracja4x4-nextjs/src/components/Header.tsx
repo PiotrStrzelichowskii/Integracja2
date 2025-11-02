@@ -101,25 +101,25 @@ const Header = () => {
           <nav className="flex items-center space-x-6" role="navigation" aria-label="Główna nawigacja" id="desktop-nav">
             <button 
               onClick={() => scrollToSection('offer')}
-              className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
+              className="text-foreground hover:text-accent transition-colors font-montserrat font-medium"
             >
               {t('offer')}
             </button>
             <button 
               onClick={() => scrollToSection('about')}
-              className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
+              className="text-foreground hover:text-accent transition-colors font-montserrat font-medium"
             >
               {t('about')}
             </button>
             <button 
               onClick={() => scrollToSection('gallery')}
-              className="text-foreground hover:text-accent transition-colors font-roboto-slab font-medium"
+              className="text-foreground hover:text-accent transition-colors font-montserrat font-medium"
             >
               {t('gallery')}
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="btn-notched font-roboto-slab"
+              className="btn-notched font-montserrat"
             >
               {t('contact')}
             </button>
@@ -162,7 +162,7 @@ const Header = () => {
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header with logo */}
-          <div className="flex items-center justify-center p-6">
+          <div className="flex items-center justify-center p-6 border-b border-accent/20">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 relative rounded-full overflow-hidden">
                 <Image
@@ -179,47 +179,40 @@ const Header = () => {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 p-6 space-y-4" role="navigation" aria-label="Menu mobilne" id="mobile-nav">
+          <nav className="flex-1 flex flex-col justify-evenly p-6" role="navigation" aria-label="Menu mobilne" id="mobile-nav">
             <button 
               onClick={() => scrollToSection('offer')}
-              className="w-full text-left text-foreground hover:text-accent transition-colors font-roboto-slab font-medium py-4 text-lg"
+              className="w-full text-left text-foreground hover:text-accent transition-colors font-montserrat font-bold py-4 px-6 text-xl"
             >
               {t('offer')}
             </button>
             <button 
               onClick={() => scrollToSection('about')}
-              className="w-full text-left text-foreground hover:text-accent transition-colors font-roboto-slab font-medium py-4 text-lg"
+              className="w-full text-left text-foreground hover:text-accent transition-colors font-montserrat font-bold py-4 px-6 text-xl"
             >
               {t('about')}
             </button>
             <button 
               onClick={() => scrollToSection('gallery')}
-              className="w-full text-left text-foreground hover:text-accent transition-colors font-roboto-slab font-medium py-4 text-lg"
+              className="w-full text-left text-foreground hover:text-accent transition-colors font-montserrat font-bold py-4 px-6 text-xl"
             >
               {t('gallery')}
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="w-full text-left text-accent hover:text-accent/80 transition-colors font-roboto-slab font-medium py-4 text-lg"
+              className="w-full text-left text-accent hover:text-accent/80 transition-colors font-montserrat font-bold py-4 px-6 text-xl"
             >
               {t('contact')}
             </button>
           </nav>
 
-          {/* Language Switcher Mobile */}
-          <div className="px-6 py-4 border-t border-accent/20">
-            <div className="flex items-center justify-center">
-              <LanguageSwitcher />
-            </div>
-          </div>
-
           {/* Social Media and Additional Elements */}
           <div className="p-6 border-t border-accent/20">
             <div className="flex items-center justify-between">
-              {/* Toggle Switch */}
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-6 bg-accent/20 rounded-full relative cursor-pointer">
-                  <div className="w-5 h-5 bg-accent rounded-full absolute top-0.5 right-0.5 transition-transform"></div>
+              {/* Language Switcher Mobile */}
+              <div className="px-6 py-4">
+                <div className="flex items-center justify-center">
+                  <LanguageSwitcher />
                 </div>
               </div>
               

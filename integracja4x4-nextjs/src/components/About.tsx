@@ -131,7 +131,7 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-20 items-center">
           {/* Left Content */}
           <div>
-            <div className="space-y-4 sm:space-y-6 md:space-y-8 text-muted-foreground font-roboto-slab leading-relaxed">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 text-muted-foreground font-montserrat leading-relaxed">
               <p className="text-sm sm:text-base md:text-lg">
                 {t('aboutDescription1')}
               </p>
@@ -147,7 +147,7 @@ const About = () => {
 
             <div className="mt-6 sm:mt-8 md:mt-12 p-4 sm:p-6 bg-accent/10 rounded-lg border border-accent/20">
               <h3 className="font-staatliches text-lg sm:text-xl text-accent mb-2 sm:mb-3">{t('ourMotto')}</h3>
-              <p className="text-muted-foreground font-roboto-slab italic text-sm sm:text-base">
+              <p className="text-muted-foreground font-montserrat italic text-sm sm:text-base">
                 {t('mottoText')}
               </p>
             </div>
@@ -166,7 +166,7 @@ const About = () => {
               />
               
               {/* Author Overlay */}
-              <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/70 text-muted-foreground px-2 sm:px-3 py-1 sm:py-2 rounded-lg text-xs sm:text-sm font-roboto-slab">
+              <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 bg-black/70 text-muted-foreground px-2 sm:px-3 py-1 sm:py-2 rounded-lg text-xs sm:text-sm font-montserrat">
                 {t('oldDaysCaption')}
               </div>
             </div>
@@ -217,7 +217,7 @@ const About = () => {
                     </div>
 
                     {/* Quote */}
-                    <p className="text-center text-slate-200 font-roboto-slab italic leading-relaxed text-base md:text-lg">
+                    <p className="text-center text-slate-200 font-montserrat italic leading-relaxed text-base md:text-lg">
                       "{testimonial.quote}"
                     </p>
                   </div>

@@ -102,7 +102,7 @@
   }
 
   body {
-    @apply bg-mud-dark text-foreground font-roboto-slab overflow-x-hidden;
+    @apply bg-mud-dark text-foreground font-montserrat overflow-x-hidden;
   }
   
   html {

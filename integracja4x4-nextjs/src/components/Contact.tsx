@@ -216,7 +216,7 @@ const Contact = () => {
                   <h2 className="sr-only">
                     Kontakt - Szkoła jazdy terenowej 4x4 w Krakowie | Event firmowy off-road | Team building 4x4
                   </h2>
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-montserrat leading-relaxed">
             {t('contactDescription')}
           </p>
         </div>
@@ -236,7 +236,7 @@ const Contact = () => {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="font-roboto-slab font-medium text-sm">
+                    <Label htmlFor="name" className="font-montserrat font-medium text-sm">
                       {t('name')} *
                     </Label>
                     <Input
@@ -246,12 +246,12 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder={t('name')}
                       required
-                      className={`bg-input border-border font-roboto-slab text-sm transition-colors duration-200 ${
+                      className={`bg-input border-border font-montserrat text-sm transition-colors duration-200 ${
                         formState.errors.name ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
                       }`}
                     />
                     {formState.errors.name && (
-                      <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                      <p className="text-red-500 text-xs font-montserrat flex items-center gap-1">
                         <AlertCircle className="h-3 w-3" />
                         {formState.errors.name}
                       </p>
@@ -259,7 +259,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="font-roboto-slab font-medium text-sm">
+                    <Label htmlFor="email" className="font-montserrat font-medium text-sm">
                       {t('email')} *
                     </Label>
                     <Input
@@ -270,12 +270,12 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder="twoj@email.com"
                       required
-                      className={`bg-input border-border font-roboto-slab text-sm transition-colors duration-200 ${
+                      className={`bg-input border-border font-montserrat text-sm transition-colors duration-200 ${
                         formState.errors.email ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
                       }`}
                     />
                     {formState.errors.email && (
-                      <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                      <p className="text-red-500 text-xs font-montserrat flex items-center gap-1">
                         <AlertCircle className="h-3 w-3" />
                         {formState.errors.email}
                       </p>
@@ -283,7 +283,7 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject" className="font-roboto-slab font-medium text-sm">
+                    <Label htmlFor="subject" className="font-montserrat font-medium text-sm">
                       {t('subject')}
                     </Label>
                     <Input
@@ -292,12 +292,12 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       placeholder={t('subject')}
-                      className="bg-input border-border font-roboto-slab text-sm focus:border-accent transition-colors duration-200"
+                      className="bg-input border-border font-montserrat text-sm focus:border-accent transition-colors duration-200"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="font-roboto-slab font-medium text-sm">
+                    <Label htmlFor="message" className="font-montserrat font-medium text-sm">
                       {t('message')} *
                     </Label>
                     <Textarea
@@ -308,17 +308,17 @@ const Contact = () => {
                       placeholder="Opisz czego potrzebujesz..."
                       rows={4}
                       required
-                      className={`bg-input border-border font-roboto-slab resize-none text-sm transition-colors duration-200 ${
+                      className={`bg-input border-border font-montserrat resize-none text-sm transition-colors duration-200 ${
                         formState.errors.message ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
                       }`}
                     />
                     {formState.errors.message && (
-                      <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                      <p className="text-red-500 text-xs font-montserrat flex items-center gap-1">
                         <AlertCircle className="h-3 w-3" />
                         {formState.errors.message}
                       </p>
                     )}
-                    <p className="text-xs text-muted-foreground font-roboto-slab">
+                    <p className="text-xs text-muted-foreground font-montserrat">
                       {formData.message.length}/10 {t('characterCount')}
                     </p>
                   </div>
@@ -326,7 +326,7 @@ const Contact = () => {
                   <Button 
                     type="submit" 
                     disabled={formState.isSubmitting}
-                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-roboto-slab font-semibold text-sm py-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-montserrat font-semibold text-sm py-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {formState.isSubmitting ? (
                       <div className="flex items-center gap-2">
@@ -343,7 +343,7 @@ const Contact = () => {
                     )}
                   </Button>
 
-                  <p className="text-xs text-muted-foreground font-roboto-slab text-center">
+                  <p className="text-xs text-muted-foreground font-montserrat text-center">
                     {t('requiredFields')}
                   </p>
                 </form>
@@ -363,10 +363,10 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <p className="text-muted-foreground font-roboto-slab text-sm">
+                <p className="text-muted-foreground font-montserrat text-sm">
                   +48 501 318 521
                 </p>
-                <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
+                <p className="text-xs text-muted-foreground font-montserrat mt-1">
                   PS Bikes Mariusz Strzelichowski
                 </p>
               </CardContent>
@@ -380,10 +380,10 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <p className="text-muted-foreground font-roboto-slab text-sm">
+                <p className="text-muted-foreground font-montserrat text-sm">
                   info@integracja4x4.pl
                 </p>
-                <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
+                <p className="text-xs text-muted-foreground font-montserrat mt-1">
                   {t('responseTime')}
                 </p>
               </CardContent>
@@ -397,13 +397,13 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <p className="text-muted-foreground font-roboto-slab text-sm">
-                  ul. Powstania Styczniowego 12a
+                <p className="text-muted-foreground font-montserrat text-sm">
+                  ul. Powstania Styczniowego
                 </p>
-                <p className="text-muted-foreground font-roboto-slab text-sm">
+                <p className="text-muted-foreground font-montserrat text-sm">
                   30-298 Kraków
                 </p>
-                <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
+                <p className="text-xs text-muted-foreground font-montserrat mt-1">
                   {t('eventLocation')}
                 </p>
               </CardContent>
@@ -417,10 +417,10 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0">
-                <p className="text-muted-foreground font-roboto-slab font-mono text-xs break-all">
+                <p className="text-muted-foreground font-montserrat font-mono text-xs break-all">
                   76 2490 0005 0000 4000 1600 9299
                 </p>
-                <p className="text-xs text-muted-foreground font-roboto-slab mt-1">
+                <p className="text-xs text-muted-foreground font-montserrat mt-1">
                   {t('bankAccount')}
                 </p>
               </CardContent>
@@ -442,10 +442,10 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground font-roboto-slab">
+                <p className="text-muted-foreground font-montserrat">
                   +48 501 318 521
                 </p>
-                <p className="text-sm text-muted-foreground font-roboto-slab mt-1">
+                <p className="text-sm text-muted-foreground font-montserrat mt-1">
                   PS Bikes Mariusz Strzelichowski
                 </p>
               </CardContent>
@@ -459,10 +459,10 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground font-roboto-slab text-md">
+                <p className="text-muted-foreground font-montserrat text-md">
                   info@integracja4x4.pl
                 </p>
-                <p className="text-sm text-muted-foreground font-roboto-slab mt-1">
+                <p className="text-sm text-muted-foreground font-montserrat mt-1">
                   {t('responseTimeDescription')}
                 </p>
               </CardContent>
@@ -476,13 +476,13 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground font-roboto-slab">
+                <p className="text-muted-foreground font-montserrat">
                   ul. Powstania Styczniowego 12a
                 </p>
-                <p className="text-muted-foreground font-roboto-slab">
+                <p className="text-muted-foreground font-montserrat">
                   30-298 Kraków
                 </p>
-                <p className="text-sm text-muted-foreground font-roboto-slab mt-2">
+                <p className="text-sm text-muted-foreground font-montserrat mt-2">
                   {t('eventLocationDescription')}
                 </p>
               </CardContent>
@@ -496,10 +496,10 @@ const Contact = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground font-roboto-slab font-mono text-md">
+                <p className="text-muted-foreground font-montserrat font-mono text-md">
                   76 2490 0005 0000 4000 1600 9299
                 </p>
-                <p className="text-sm text-muted-foreground font-roboto-slab mt-1">
+                <p className="text-sm text-muted-foreground font-montserrat mt-1">
                   {t('bankAccountLabel')}
                 </p>
               </CardContent>
@@ -521,7 +521,7 @@ const Contact = () => {
                   <div className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="name" className="font-roboto-slab font-medium">
+                        <Label htmlFor="name" className="font-montserrat font-medium">
                           {t('nameLabel')} *
                         </Label>
                         <Input
@@ -531,19 +531,19 @@ const Contact = () => {
                           onChange={handleInputChange}
                           placeholder={t('name')}
                           required
-                          className={`bg-input border-border font-roboto-slab transition-colors duration-200 ${
+                          className={`bg-input border-border font-montserrat transition-colors duration-200 ${
                             formState.errors.name ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
                           }`}
                         />
                         {formState.errors.name && (
-                          <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                          <p className="text-red-500 text-xs font-montserrat flex items-center gap-1">
                             <AlertCircle className="h-3 w-3" />
                             {formState.errors.name}
                           </p>
                         )}
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email" className="font-roboto-slab font-medium">
+                        <Label htmlFor="email" className="font-montserrat font-medium">
                           {t('emailLabel')} *
                         </Label>
                         <Input
@@ -554,12 +554,12 @@ const Contact = () => {
                           onChange={handleInputChange}
                           placeholder="twoj@email.com"
                           required
-                          className={`bg-input border-border font-roboto-slab transition-colors duration-200 ${
+                          className={`bg-input border-border font-montserrat transition-colors duration-200 ${
                             formState.errors.email ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
                           }`}
                         />
                         {formState.errors.email && (
-                          <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                          <p className="text-red-500 text-xs font-montserrat flex items-center gap-1">
                             <AlertCircle className="h-3 w-3" />
                             {formState.errors.email}
                           </p>
@@ -568,7 +568,7 @@ const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="subject" className="font-roboto-slab font-medium">
+                      <Label htmlFor="subject" className="font-montserrat font-medium">
                         {t('subjectLabel')}
                       </Label>
                       <Input
@@ -577,12 +577,12 @@ const Contact = () => {
                         value={formData.subject}
                         onChange={handleInputChange}
                         placeholder={t('subject')}
-                        className="bg-input border-border font-roboto-slab focus:border-accent transition-colors duration-200"
+                        className="bg-input border-border font-montserrat focus:border-accent transition-colors duration-200"
                       />
                     </div>
 
                     <div className="space-y-2 flex-1">
-                      <Label htmlFor="message" className="font-roboto-slab font-medium">
+                      <Label htmlFor="message" className="font-montserrat font-medium">
                         {t('messageLabel')} *
                       </Label>
                       <Textarea
@@ -593,17 +593,17 @@ const Contact = () => {
                         placeholder={t('describeNeeds')}
                         rows={6}
                         required
-                        className={`bg-input border-border font-roboto-slab resize-none h-full min-h-[250px] transition-colors duration-200 ${
+                        className={`bg-input border-border font-montserrat resize-none h-full min-h-[250px] transition-colors duration-200 ${
                           formState.errors.message ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
                         }`}
                       />
                       {formState.errors.message && (
-                        <p className="text-red-500 text-xs font-roboto-slab flex items-center gap-1">
+                        <p className="text-red-500 text-xs font-montserrat flex items-center gap-1">
                           <AlertCircle className="h-3 w-3" />
                           {formState.errors.message}
                         </p>
                       )}
-                      <p className="text-xs text-muted-foreground font-roboto-slab">
+                      <p className="text-xs text-muted-foreground font-montserrat">
                         {formData.message.length}/10 {t('characterCountDescription')}
                       </p>
                     </div>
@@ -614,7 +614,7 @@ const Contact = () => {
                       type="submit" 
                       disabled={formState.isSubmitting}
                       size="lg"
-                      className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-roboto-slab font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-montserrat font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {formState.isSubmitting ? (
                         <div className="flex items-center gap-2">
@@ -631,7 +631,7 @@ const Contact = () => {
                       )}
                     </Button>
 
-                    <p className="text-xs text-muted-foreground font-roboto-slab text-center">
+                    <p className="text-xs text-muted-foreground font-montserrat text-center">
                       {t('requiredFields')}
                     </p>
                   </div>

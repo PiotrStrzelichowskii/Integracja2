@@ -63,8 +63,8 @@ export const pl = {
   aboutTitle: 'O',
   aboutTitleAccent: 'INTEGRACJA4X4',
   aboutDescription1: 'Jesteśmy pionierami w organizacji profesjonalnych szkoleń offroad w Polsce. Nasza firma została założona w 1993 roku przez Mariusza Strzelichowskiego – doświadczonego off-roadowca, uczestnika i organizatora rajdów terenowych.',
-  aboutDescription2: 'Przez lata zbudowaliśmy zespół profesjonalnych instruktorów, którzy uczą, jak pewnie i bezpiecznie poruszać się w trudnym terenie. Nasza pasja do motoryzacji i przyrody zaowocowała stworzeniem unikalnych programów szkoleniowych, które łączą naukę z niezapomnianą przygodą.',
-  aboutDescription3: 'Specjalizujemy się w szkoleniach indywidualnych oraz eventach firmowych, oferując kompleksową obsługę od podstaw jazdy terenowej po zaawansowane techniki pokonywania najtrudniejszych przeszkód. Działamy na terenie całej Polski i zrealizowaliśmy już ponad XXX imprez integracyjnych.',
+  aboutDescription2: 'Przez lata zbudowaliśmy zespół profesjonalnych instruktorów, którzy uczą, jak pewnie i bezpiecznie poruszać się w trudnym terenie. Nasza pasja do motoryzacji i radzenia sobie w trudnym terenie zaowocowała stworzeniem unikalnych programów szkoleniowych, które łączą naukę z niezapomnianą przygodą.',
+  aboutDescription3: 'Specjalizujemy się w szkoleniach indywidualnych oraz eventach firmowych, oferując kompleksową obsługę od podstaw jazdy terenowej po zaawansowane techniki pokonywania najtrudniejszych przeszkód. Działamy na terenie całej Polski i zrealizowaliśmy już kilkaset imprez integracyjnych.',
   ourMotto: 'Nasze Motto',
   mottoText: '"Bezpieczeństwo, profesjonalizm i niezapomniane doświadczenia - to podstawy naszej pracy z każdym klientem."',
   oldDaysCaption: 'Mariusz Strzelichowski lata 2000',
@@ -103,30 +103,30 @@ export const pl = {
   // Offer Section
   individualTraining: 'Zajęcia Indywidualne',
   individualDescription: 'Profesjonalne szkolenia z jazdy samochodami i quadami w terenie dla klientów indywidualnych oraz grup zorganizowanych.',
-  individualFeature1: 'Krótkie przejażdżki i dłuższe wycieczki',
+  individualFeature1: 'Krótkie szkolenia i dłuższe wyprawy',
   individualFeature2: 'Organizacja wieczorów panieńskich i kawalerskich',
-  individualFeature3: 'Profesjonalni instruktorzy i sprawdzony sprzęt',
-  individualFeature4: 'Bezpieczne i niezapomniane przygody',
+  individualFeature3: 'Szkolenia dla początkujących i zaawansowanych',
+  individualFeature4: 'Szkolenia na własnym pojeździe',
   
   corporateOffer: 'Oferta dla Firm',
   corporateDescription: 'Profesjonalna organizacja eventów firmowych na terenie całej Polski. Imprezy integracyjne, zloty i szkolenia na najwyższym poziomie.',
-  corporateFeature1: 'Imprezy integracyjne i zloty',
-  corporateFeature2: 'Szkolenia i sympozja',
-  corporateFeature3: 'Eventy okolicznościowe',
+  corporateFeature1: 'Imprezy integracyjne i eventy firmowe',
+  corporateFeature2: 'Szkolenia dla profesjonalistów i służb',
+  corporateFeature3: 'Udostępnienie sprzętu na wystawach i eventach',
   corporateFeature4: 'Współpraca z hotelami i ośrodkami',
   
   partnership: 'Współpraca Partnerska',
   partnershipDescription: 'Rozszerz ofertę swojego hotelu, pensjonatu lub ośrodka o nasze atrakcje. Obsługujemy grupy obcojęzyczne i tworzymy wyjątkowe programy.',
   partnershipFeature1: 'Obsługa grup obcojęzycznych',
-  partnershipFeature2: 'Rozszerzenie oferty hoteli i ośrodków',
-  partnershipFeature3: 'Ponad 700 zrealizowanych projektów',
-  partnershipFeature4: 'Wyprawy terenowe w Polsce i Europie',
+  partnershipFeature2: 'Program partnerski dla hoteli i ośrodków',
+  partnershipFeature3: 'Współpraca barterowa',
+  partnershipFeature4: 'Tworzenie dedykowanych scenariuszy integracyjnych',
   
   askForPrice: 'Zapytaj o cenę',
   askForSpecialOffer: 'Zapytaj o ofertę specjalną',
   
   // Statistics
-  completedCourses: 'Ukończonych kursów',
+  completedCourses: 'Ukończonych szkoleń',
   corporateEvents: 'Eventów firmowych',
   yearsExperience: 'Lat doświadczenia',
   satisfaction: 'Zadowolenia',
@@ -134,7 +134,7 @@ export const pl = {
   // Offer Section
   ourOffer: 'NASZA',
   ourOfferAccent: 'OFERTA',
-  offerDescription: 'Ponad 700 zrealizowanych eventów w Polsce i Europie. Profesjonalny sprzęt, doświadczeni instruktorzy i niezapomniane przygody w terenie.',
+  offerDescription: 'Ponad 1000 realizacji szkoleń w Polsce i Europie. Profesjonalny sprzęt, doświadczeni instruktorzy i niezapomniane przygody w terenie.',
   
   // Gallery Section
   galleryTitle: 'NASZA',

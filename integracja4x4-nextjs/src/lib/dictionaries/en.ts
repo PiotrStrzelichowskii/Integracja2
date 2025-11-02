@@ -60,8 +60,8 @@ export const en = {
   aboutTitle: 'ABOUT',
   aboutTitleAccent: 'INTEGRACJA4X4',
   aboutDescription1: 'We are pioneers in organizing professional off-road training in Poland. Our company was founded in 1993 by Mariusz Strzelichowski – an experienced off-roader, participant and organizer of off-road rallies.',
-  aboutDescription2: 'Over the years, we have built a team of professional instructors who teach how to move confidently and safely in difficult terrain. Our passion for motoring and nature has resulted in the creation of unique training programs that combine learning with unforgettable adventure.',
-  aboutDescription3: 'We specialize in individual training and corporate events, offering comprehensive service from basic off-road driving to advanced techniques for overcoming the most difficult obstacles. We operate throughout Poland and have already organized over XXX integration events.',
+  aboutDescription2: 'Over the years, we have built a team of professional instructors who teach how to move confidently and safely in difficult terrain. Our passion for motoring and dealing with difficult terrain has resulted in the creation of unique training programs that combine learning with unforgettable adventure.',
+  aboutDescription3: 'We specialize in individual training and corporate events, offering comprehensive service from basic off-road driving to advanced techniques for overcoming the most difficult obstacles. We operate throughout Poland and have already organized hundreds of training completions.',
   ourMotto: 'Our Motto',
   mottoText: '"Safety, professionalism and unforgettable experiences - these are the foundations of our work with every client."',
   oldDaysCaption: 'Mariusz Strzelichowski 2000s',
@@ -100,30 +100,30 @@ export const en = {
   // Offer Section
   individualTraining: 'Individual Training',
   individualDescription: 'Professional training in driving cars and quads in the field for individual clients and organized groups.',
-  individualFeature1: 'Short rides and longer trips',
+  individualFeature1: 'Short trainings and longer trips',
   individualFeature2: 'Organization of bachelorette and bachelor parties',
-  individualFeature3: 'Professional instructors and proven equipment',
-  individualFeature4: 'Safe and unforgettable adventures',
+  individualFeature3: 'Training for beginners and advanced',
+  individualFeature4: 'Training on your own vehicle',
   
   corporateOffer: 'Corporate Offer',
-  corporateDescription: 'Professional organization of corporate events throughout Poland. Integration events, rallies and training at the highest level.',
-  corporateFeature1: 'Integration events and rallies',
-  corporateFeature2: 'Training and symposia',
-  corporateFeature3: 'Occasional events',
+  corporateDescription: 'Professional organization of corporate events throughout Poland. Integration events, corporate events and training at the highest level.',
+  corporateFeature1: 'Integration events and corporate events',
+  corporateFeature2: 'Training for professionals and services',
+  corporateFeature3: 'Sharing equipment at exhibitions and events',
   corporateFeature4: 'Cooperation with hotels and centers',
   
   partnership: 'Partnership Cooperation',
   partnershipDescription: 'Expand your hotel, guesthouse or center offer with our attractions. We serve foreign language groups and create unique programs.',
   partnershipFeature1: 'Foreign language group service',
-  partnershipFeature2: 'Expansion of hotel and center offers',
-  partnershipFeature3: 'Over 700 completed projects',
-  partnershipFeature4: 'Off-road expeditions in Poland and Europe',
+  partnershipFeature2: 'Partnership program for hotels and centers',
+  partnershipFeature3: 'Barter cooperation',
+  partnershipFeature4: 'Creating dedicated integration programs',
   
   askForPrice: 'Ask for price',
   askForSpecialOffer: 'Ask for special offer',
   
   // Statistics
-  completedCourses: 'Completed courses',
+  completedCourses: 'Completed trainings',
   corporateEvents: 'Corporate events',
   yearsExperience: 'Years of experience',
   satisfaction: 'Satisfaction',
@@ -131,7 +131,7 @@ export const en = {
   // Offer Section
   ourOffer: 'OUR',
   ourOfferAccent: 'OFFER',
-  offerDescription: 'Over 700 completed events in Poland and Europe. Professional equipment, experienced instructors and unforgettable adventures in the field.',
+  offerDescription: 'Over 1000 training completions in Poland and Europe. Professional equipment, experienced instructors and unforgettable adventures in the field.',
   
   // Gallery Section
   galleryTitle: 'OUR',

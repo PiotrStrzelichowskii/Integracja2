@@ -46,7 +46,7 @@ const Footer = () => {
                 INTEGRACJA4X4
               </div>
             </div>
-            <p className="text-sand-light/80 font-roboto-slab text-sm leading-relaxed mb-4">
+            <p className="text-sand-light/80 font-montserrat text-sm leading-relaxed mb-4">
               {t('footerDescription')}
             </p>
             <div className="flex justify-center space-x-4">
@@ -91,7 +91,7 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-6 mb-6">
             <div>
               <h3 className="font-staatliches text-sm text-accent mb-2">{t('quickLinks')}</h3>
-              <ul className="space-y-1 font-roboto-slab text-sm">
+              <ul className="space-y-1 font-montserrat text-sm">
                 <li><a href="#offer" className="text-sand-light/80 hover:text-accent transition-colors">{t('offerLink')}</a></li>
                 <li><a href="#about" className="text-sand-light/80 hover:text-accent transition-colors">{t('aboutLink')}</a></li>
                 <li><a href="#gallery" className="text-sand-light/80 hover:text-accent transition-colors">{t('galleryLink')}</a></li>
@@ -100,7 +100,7 @@ const Footer = () => {
             </div>
             <div>
               <h3 className="font-staatliches text-sm text-accent mb-2">{t('contact')}</h3>
-              <div className="space-y-1 font-roboto-slab text-sm">
+              <div className="space-y-1 font-montserrat text-sm">
                 <div className="flex items-center text-sand-light/80">
                   <Phone size={12} className="mr-2 text-accent flex-shrink-0" />
                   <span>+48 501 318 521</span>
@@ -124,7 +124,7 @@ const Footer = () => {
 
           {/* Copyright - Compact */}
           <hr className="border-sand-light/20 my-4" />
-          <div className="text-center text-sand-light/60 font-roboto-slab text-xs">
+          <div className="text-center text-sand-light/60 font-montserrat text-xs">
             <p className="mb-2">© 2025 Integracja4x4. {t('allRightsReserved')}</p>
             <div className="flex justify-center gap-4">
               <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">{t('privacyPolicy')}</a>
@@ -156,7 +156,7 @@ const Footer = () => {
                   INTEGRACJA4X4
                 </div>
               </div>
-              <p className="text-sand-light/80 font-roboto-slab leading-relaxed mb-6">
+              <p className="text-sand-light/80 font-montserrat leading-relaxed mb-6">
                 {t('footerDescriptionDesktop')}
               </p>
               <div className="flex space-x-4">
@@ -200,7 +200,7 @@ const Footer = () => {
             {/* Quick Links */}
             <div>
               <h3 className="font-staatliches text-lg text-accent mb-4">{t('quickLinks')}</h3>
-              <ul className="space-y-3 font-roboto-slab">
+              <ul className="space-y-3 font-montserrat">
                 <li>
                   <a href="#offer" className="text-sand-light/80 hover:text-accent transition-colors">{t('offerLink')}</a>
                 </li>
@@ -219,7 +219,7 @@ const Footer = () => {
             {/* Contact Info */}
             <div>
               <h3 className="font-staatliches text-lg text-accent mb-4">{t('contact')}</h3>
-              <div className="space-y-3 font-roboto-slab">
+              <div className="space-y-3 font-montserrat">
                 <div className="flex items-center text-sand-light/80">
                   <Phone size={16} className="mr-3 text-accent flex-shrink-0" />
                   <span>+48 501 318 521</span>
@@ -243,7 +243,7 @@ const Footer = () => {
 
           <hr className="border-sand-light/20 my-8" />
 
-          <div className="flex flex-col md:flex-row justify-between items-center text-sand-light/60 font-roboto-slab text-sm">
+          <div className="flex flex-col md:flex-row justify-between items-center text-sand-light/60 font-montserrat text-sm">
             <p>© 2025 Integracja4x4. {t('allRightsReserved')}</p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="/polityka-prywatnosci" className="hover:text-accent transition-colors">{t('privacyPolicy')}</a>

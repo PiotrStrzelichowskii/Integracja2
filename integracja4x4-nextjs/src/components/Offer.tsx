@@ -107,24 +107,24 @@ const Offer = () => {
           />
         </filter>
       </svg>
-      <div className="container mx-auto px-4 mt-10 sm:mt-16 md:mt-20">
+      <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-16 mt-10 sm:mt-16 md:mt-20 max-w-[1600px]">
         {/* Statistics */}
         <div className="mt-16 sm:mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 text-center">
           <div>
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">600+</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">{t('completedCourses')}</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">1000+</div>
+            <div className="text-muted-foreground font-montserrat text-xs sm:text-sm md:text-base">{t('completedCourses')}</div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100+</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">{t('corporateEvents')}</div>
+            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">300+</div>
+            <div className="text-muted-foreground font-montserrat text-xs sm:text-sm md:text-base">{t('corporateEvents')}</div>
           </div>
           <div>
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">30+</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">{t('yearsExperience')}</div>
+            <div className="text-muted-foreground font-montserrat text-xs sm:text-sm md:text-base">{t('yearsExperience')}</div>
           </div>
           <div>
             <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-staatliches text-accent mb-1 sm:mb-2">100%</div>
-            <div className="text-muted-foreground font-roboto-slab text-xs sm:text-sm md:text-base">{t('satisfaction')}</div>
+            <div className="text-muted-foreground font-montserrat text-xs sm:text-sm md:text-base">{t('satisfaction')}</div>
           </div>
         </div>
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
@@ -136,7 +136,7 @@ const Offer = () => {
           <h2 className="sr-only">
             Voucher off-road | Szkolenie offroad dla firm | Kurs jazdy w terenie | Jazda terenowa 4x4 Kraków
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-roboto-slab leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto font-montserrat leading-relaxed">
             {t('offerDescription')}
           </p>
         </div>
@@ -147,12 +147,13 @@ const Offer = () => {
             const IconComponent = offer.icon;
             return (
               <div key={index} className="liquidGlass-wrapper relative overflow-hidden rounded-lg shadow-lg transition-all duration-400 group">
-                <div className="liquidGlass-effect absolute inset-0 z-0 backdrop-blur-[3px]" style={{filter: 'url(#glass-distortion)'}}></div>
-                <div className="liquidGlass-tint absolute inset-0 z-[1] bg-gradient-to-br from-neutral-800/85 via-stone-900/90 to-neutral-900/85"></div>
-                <div className="liquidGlass-shine absolute inset-0 z-[2]" style={{
+                <div className="liquidGlass-effect absolute inset-0 z-0 backdrop-blur-[10px]" style={{filter: 'url(#glass-distortion)'}}></div>
+                <div className="absolute inset-0 z-[1] bg-black/85"></div>
+                <div className="liquidGlass-tint absolute inset-0 z-[2] bg-gradient-to-br from-black/95 via-black/98 to-black/95"></div>
+                <div className="liquidGlass-shine absolute inset-0 z-[3]" style={{
                   boxShadow: 'inset 2px 2px 1px 0 rgba(245, 158, 11, 0.4), inset -1px -1px 1px 1px rgba(245, 158, 11, 0.3)'
                 }}></div>
-                <div className="liquidGlass-content relative z-[3]">
+                <div className="liquidGlass-content relative z-[4]">
                   <div className="relative overflow-hidden rounded-t-lg">
                     <Image 
                       src={offer.image}
@@ -175,13 +176,13 @@ const Offer = () => {
                     <h3 className="font-staatliches text-lg text-card-foreground mb-2">
                       {offer.title}
                     </h3>
-                    <p className="text-muted-foreground mb-3 font-roboto-slab text-sm">
+                    <p className="text-muted-foreground mb-3 font-montserrat text-sm">
                       {offer.description}
                     </p>
                     
                     <ul className="space-y-1 mb-4">
                       {offer.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start text-xs text-muted-foreground font-roboto-slab">
+                        <li key={featureIndex} className="flex items-start text-xs text-muted-foreground font-montserrat">
                           <Target size={12} className="text-accent mr-2 flex-shrink-0 mt-0.5" />
                           {feature}
                         </li>
@@ -191,7 +192,7 @@ const Offer = () => {
                     <div className="flex items-center justify-center">
                       <button 
                         onClick={scrollToContact}
-                        className="btn-offroad-primary font-roboto-slab px-3 py-2 text-sm" 
+                        className="btn-offroad-primary font-montserrat px-3 py-2 text-sm" 
                       >
                         {offer.title === t('partnership') ? t('contactUs') : t('askForPrice')}
                       </button>
@@ -204,18 +205,19 @@ const Offer = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden md:grid md:grid-cols-3 gap-8">
+        <div className="hidden md:grid md:grid-cols-3 gap-6 items-stretch">
           {offers.map((offer, index) => {
             const IconComponent = offer.icon;
             return (
-              <div key={index} className="liquidGlass-wrapper relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-400 group">
-                <div className="liquidGlass-effect absolute inset-0 z-0 backdrop-blur-[3px]" style={{filter: 'url(#glass-distortion)'}}></div>
-                <div className="liquidGlass-tint absolute inset-0 z-[1] bg-gradient-to-br from-neutral-800/85 via-stone-900/90 to-neutral-900/85"></div>
-                <div className="liquidGlass-shine absolute inset-0 z-[2]" style={{
+              <div key={index} className="liquidGlass-wrapper relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-400 group flex flex-col h-full">
+                <div className="liquidGlass-effect absolute inset-0 z-0 backdrop-blur-[10px]" style={{filter: 'url(#glass-distortion)'}}></div>
+                <div className="absolute inset-0 z-[1] bg-black/85"></div>
+                <div className="liquidGlass-tint absolute inset-0 z-[2] bg-gradient-to-br from-black/95 via-black/98 to-black/95"></div>
+                <div className="liquidGlass-shine absolute inset-0 z-[3]" style={{
                   boxShadow: 'inset 2px 2px 1px 0 rgba(245, 158, 11, 0.4), inset -1px -1px 1px 1px rgba(245, 158, 11, 0.3)'
                 }}></div>
-                <div className="liquidGlass-content relative z-[3]">
-                  <div className="relative overflow-hidden rounded-t-lg">
+                <div className="liquidGlass-content relative z-[4] flex flex-col h-full">
+                  <div className="relative overflow-hidden rounded-t-lg flex-shrink-0">
                     <Image 
                       src={offer.image}
                       alt={offer.title}
@@ -233,27 +235,27 @@ const Offer = () => {
                     </div>
                   </div>
                   
-                  <CardContent className="p-6">
+                  <CardContent className="p-6 flex flex-col flex-1">
                     <h3 className="font-staatliches text-xl text-card-foreground mb-3">
                       {offer.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 font-roboto-slab">
+                    <p className="text-muted-foreground mb-4 font-montserrat">
                       {offer.description}
                     </p>
                     
-                    <ul className="space-y-2 mb-6">
+                    <ul className="space-y-2 mb-6 flex-1">
                       {offer.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center text-sm text-muted-foreground font-roboto-slab">
+                        <li key={featureIndex} className="flex items-center text-sm text-muted-foreground font-montserrat">
                           <Target size={16} className="text-accent mr-2 flex-shrink-0" />
                           {feature}
                         </li>
                       ))}
                     </ul>
                     
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-center mt-auto pt-4">
                       <button 
                         onClick={scrollToContact}
-                        className="btn-offroad-primary font-roboto-slab px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5" 
+                        className="btn-offroad-primary font-montserrat px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5" 
                       >
                         {offer.title === t('partnership') ? t('contactUs') : t('askForPrice')}
                       </button>
@@ -268,7 +270,7 @@ const Offer = () => {
         <div className="text-center mt-8 sm:mt-10 md:mt-12">
           <button 
             onClick={scrollToContact}
-            className="btn-offroad-outline font-roboto-slab px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-base" 
+            className="btn-offroad-outline font-montserrat px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-5 text-sm sm:text-base" 
           >
             {t('askForSpecialOffer')}
           </button>

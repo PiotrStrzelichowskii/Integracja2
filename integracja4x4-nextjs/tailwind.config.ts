@@ -20,7 +20,7 @@ export default {
     extend: {
       fontFamily: {
         'staatliches': ['var(--font-staatliches)', 'cursive'],
-        'roboto-slab': ['var(--font-roboto-slab)', 'serif'],
+        'montserrat': ['var(--font-montserrat)', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

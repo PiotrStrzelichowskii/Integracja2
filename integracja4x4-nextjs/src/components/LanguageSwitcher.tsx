@@ -14,7 +14,7 @@ const LanguageSwitcher = () => {
       {/* PL Button */}
                   <button
                     onClick={() => handleLanguageChange('pl')}
-                    className={`px-3 py-1.5 text-sm font-roboto-slab font-medium transition-colors ${
+                    className={`px-3 py-1.5 text-sm font-montserrat font-medium transition-colors ${
                       language === 'pl'
                         ? 'bg-gray-800 text-white border border-accent'
                         : 'text-foreground hover:text-foreground/80'
@@ -32,7 +32,7 @@ const LanguageSwitcher = () => {
       {/* EN Button */}
                   <button
                     onClick={() => handleLanguageChange('en')}
-                    className={`px-3 py-1.5 text-sm font-roboto-slab font-medium transition-colors ${
+                    className={`px-3 py-1.5 text-sm font-montserrat font-medium transition-colors ${
                       language === 'en'
                         ? 'bg-gray-800 text-white border border-accent'
                         : 'text-foreground hover:text-foreground/80'

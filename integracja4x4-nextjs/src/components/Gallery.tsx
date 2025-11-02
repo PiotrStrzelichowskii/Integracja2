@@ -57,7 +57,7 @@ const Gallery = () => {
       description: t('galleryImage2Description')
     },
     {
-      src: "/assets/toyota7.jpg",
+      src: "/assets/toyota7.webp",
       alt: t('galleryImage3Alt'),
       title: t('galleryImage3Title'),
       description: t('galleryImage3Description')
@@ -90,8 +90,8 @@ const Gallery = () => {
           </p>
         </div>
 
-        {/* Mobile Gallery - Simple Stack */}
-        <div className="md:hidden max-w-2xl mx-auto">
+        {/* Mobile/Tablet Gallery - Simple Stack */}
+        <div className="lg:hidden max-w-2xl mx-auto">
           <div className="space-y-4">
             {galleryImages.map((image, index) => (
               <div 
@@ -135,21 +135,20 @@ const Gallery = () => {
         </div>
 
         {/* Desktop Gallery - Original Layout */}
-        <div className="hidden md:block max-w-7xl mx-auto">
+        <div className="hidden lg:block max-w-7xl mx-auto">
           {/* Top Row - Main Asymmetric Layout */}
           <div className="grid grid-cols-3 gap-6 mb-6" style={{ aspectRatio: '6/2' }}>
             {/* Large image - top left (spans 2 columns) */}
             <div 
-              className="col-span-2 relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300"
+              className="col-span-2 relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300 h-full"
               onClick={() => setSelectedImageIndex(0)}
             >
-              <div className="aspect-[4/2] overflow-hidden">
+              <div className="absolute inset-0">
                 <Image 
                   src={galleryImages[0].src}
                   alt={galleryImages[0].alt}
-                  width={800}
-                  height={400}
-                  className="w-full h-full object-cover object-[center_35%] group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  className="object-cover object-[center_35%] group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 66vw"
                 />
@@ -177,16 +176,15 @@ const Gallery = () => {
 
             {/* Small image - top right */}
             <div 
-              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300"
+              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300 h-full"
               onClick={() => setSelectedImageIndex(1)}
             >
-              <div className="overflow-hidden">
+              <div className="absolute inset-0">
                 <Image 
                   src={galleryImages[1].src}
                   alt={galleryImages[1].alt}
-                  width={400}
-                  height={400}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
@@ -217,16 +215,15 @@ const Gallery = () => {
           <div className="grid grid-cols-3 gap-6 mb-6" style={{ aspectRatio: '6/2' }}>
             {/* Small image - bottom left */}
             <div 
-              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300"
+              className="relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300 h-full"
               onClick={() => setSelectedImageIndex(2)}
             >
-              <div className="overflow-hidden">
+              <div className="absolute inset-0">
                 <Image 
                   src={galleryImages[2].src}
                   alt={galleryImages[2].alt}
-                  width={400} 
-                  height={400}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
@@ -254,16 +251,15 @@ const Gallery = () => {
 
             {/* Large image - bottom right (spans 2 columns) */}
             <div 
-              className="col-span-2 relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300"
+              className="col-span-2 relative group cursor-pointer overflow-hidden rounded-lg shadow-soft hover:shadow-strong transition-all duration-300 h-full"
               onClick={() => setSelectedImageIndex(3)}
             >
-              <div className="overflow-hidden">
+              <div className="absolute inset-0">
                 <Image 
                   src={galleryImages[3].src}
                   alt={galleryImages[3].alt}
-                  width={800}
-                  height={400}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, 66vw"
                 />

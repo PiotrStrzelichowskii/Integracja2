@@ -147,8 +147,8 @@ const Offer = () => {
           </p>
         </div>
 
-        {/* Mobile Layout */}
-        <div className="md:hidden space-y-6">
+        {/* Mobile/Tablet Layout */}
+        <div className="xl2:hidden space-y-6">
           {offers.map((offer, index) => {
             const IconComponent = offer.icon;
             return (
@@ -165,40 +165,40 @@ const Offer = () => {
                       src={offer.image}
                       alt={offer.title}
                       width={400}
-                      height={200}
-                      className={`w-full h-40 object-cover transition-transform duration-300 ${
+                      height={280}
+                      className={`w-full h-64 object-cover transition-transform duration-300 ${
                         offer.title === "Współpraca Partnerska" ? "object-[center_35%]" : 
                         offer.title === "Oferta dla Firm" ? "object-[center_35%]" : ""
                       }`}
                     />
-                    <div className="absolute top-3 left-3">
-                      <div className="bg-accent text-accent-foreground p-2 rounded-full">
-                        <IconComponent size={20} />
+                    <div className="absolute top-4 left-4">
+                      <div className="bg-accent text-accent-foreground p-3 rounded-full">
+                        <IconComponent size={24} />
                       </div>
                     </div>
                   </div>
                   
-                  <CardContent className="p-4">
-                    <h3 className="font-staatliches text-lg text-card-foreground mb-2">
+                  <CardContent className="p-6">
+                    <h3 className="font-staatliches text-2xl text-card-foreground mb-4">
                       {offer.title}
                     </h3>
-                    <p className="text-muted-foreground mb-3 font-montserrat text-sm">
+                    <p className="text-muted-foreground mb-4 font-montserrat text-base">
                       {offer.description}
                     </p>
                     
-                    <ul className="space-y-1 mb-4">
+                    <ul className="space-y-2 mb-6">
                       {offer.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start text-xs text-muted-foreground font-montserrat">
-                          <Target size={12} className="text-accent mr-2 flex-shrink-0 mt-0.5" />
+                        <li key={featureIndex} className="flex items-start text-sm text-muted-foreground font-montserrat">
+                          <Target size={16} className="text-accent mr-2 flex-shrink-0 mt-0.5" />
                           {feature}
                         </li>
                       ))}
                     </ul>
                     
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-center pt-2">
                       <button 
                         onClick={scrollToContact}
-                        className="btn-offroad-primary font-montserrat px-3 py-2 text-sm" 
+                        className="btn-offroad-primary font-montserrat px-6 py-3 text-base" 
                       >
                         {offer.title === t('partnership') ? t('contactUs') : t('askForPrice')}
                       </button>
@@ -211,7 +211,7 @@ const Offer = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="hidden xl2:grid xl2:grid-cols-3 gap-6 items-stretch">
           {offers.map((offer, index) => {
             const IconComponent = offer.icon;
             return (

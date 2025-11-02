@@ -4,9 +4,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Car, Bike, Users, Target } from 'lucide-react';
 import Image from 'next/image';
 import { useTranslations } from '@/hooks/use-translations';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const Offer = () => {
   const { t } = useTranslations();
+  const { ref, isVisible } = useScrollAnimation(0);
   
   const offers = [
     {
@@ -55,7 +57,11 @@ const Offer = () => {
   };
 
   return (
-    <section id="offer" className="py-20 sm:py-32 md:py-40 bg-background bg-offroad z-10 -mt-32 sm:-mt-36 md:-mt-40 lg:-mt-44 xl:-mt-48 scroll-mt-[-400px]">
+    <section 
+      ref={ref as React.RefObject<HTMLElement>}
+      id="offer" 
+      className={`py-20 sm:py-32 md:py-40 bg-background bg-offroad z-10 -mt-32 sm:-mt-36 md:-mt-40 lg:-mt-44 xl:-mt-48 scroll-mt-[-400px] fade-in-up ${isVisible ? 'visible' : ''}`}
+    >
       {/* SVG Filter for Liquid Glass Effect */}
       <svg style={{ display: 'none' }}>
         <filter

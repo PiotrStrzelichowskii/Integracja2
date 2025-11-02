@@ -189,5 +189,6 @@ export const pl = {
   offerLink: 'Oferta',
   aboutLink: 'O nas',
   galleryLink: 'Galeria',
-  contactLink: 'Kontakt'
+  contactLink: 'Kontakt',
+  designedBy: 'Zaprojektowane i zbudowane przez',
 } as const;

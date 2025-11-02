@@ -186,5 +186,6 @@ export const en = {
   offerLink: 'Offer',
   aboutLink: 'About us',
   galleryLink: 'Gallery',
-  contactLink: 'Contact'
+  contactLink: 'Contact',
+  designedBy: 'Designed and built by',
 } as const;

@@ -145,6 +145,15 @@
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
   }
+  
+  .fade-in-up {
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+  }
+  
+  .fade-in-up.visible {
+    opacity: 1;
+  }
 }
 
 @layer utilities {

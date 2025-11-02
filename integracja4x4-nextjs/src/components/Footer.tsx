@@ -29,7 +29,7 @@ const Footer = () => {
               <h2 className="sr-only" aria-hidden="true">
                 Integracja firmowa w terenie | Prezent dla fana motoryzacji Kraków | Atrakcje motoryzacyjne Kraków
               </h2>
-      <div className="container mx-auto px-4 py-6 sm:py-8 md:py-12" id="footer-content">
+      <div className="w-full px-4 xs:px-4 sm:px-8 md:px-16 lg:px-16 xl:px-16 py-6 sm:py-8 md:py-12" id="footer-content">
         {/* Mobile Layout */}
         <div className="md:hidden">
           {/* Company Info - Compact */}
@@ -256,6 +256,21 @@ const Footer = () => {
               </button>
             </div>
           </div>
+        </div>
+
+        {/* Design Credit */}
+        <div className="text-center mt-4 lg:mt-0">
+          <p className="text-sand-light/50 font-montserrat text-xs">
+            {t('designedBy')}{' '}
+            <a 
+              href="https://s3eli.studio" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-accent hover:text-accent/80 transition-colors font-medium"
+            >
+              S3eli.studio
+            </a>
+          </p>
         </div>
       </div>
     </footer>

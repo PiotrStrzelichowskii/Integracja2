@@ -5,9 +5,11 @@ import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';
 import { useTranslations } from '@/hooks/use-translations';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const About = () => {
   const { t } = useTranslations();
+  const { ref, isVisible } = useScrollAnimation(100);
   
   const testimonials = [
     {
@@ -117,7 +119,10 @@ const About = () => {
   };
 
   return (
-    <section className="py-20 sm:py-32 md:py-40 bg-muted/30">
+    <section 
+      ref={ref as React.RefObject<HTMLElement>}
+      className={`py-20 sm:py-32 md:py-40 bg-muted/30 fade-in-up ${isVisible ? 'visible' : ''}`}
+    >
       <div className="container mx-auto px-4">
                 <h2 id="about" className="font-staatliches text-2xl sm:text-3xl md:text-5xl text-foreground mb-8 sm:mb-12 md:mb-16 text-center scroll-mt-[100px]">
                   {t('aboutTitle')} <span className="text-accent">{t('aboutTitleAccent')}</span>

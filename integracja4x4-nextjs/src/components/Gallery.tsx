@@ -5,9 +5,11 @@ import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useTranslations } from '@/hooks/use-translations';
+import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 
 const Gallery = () => {
   const { t } = useTranslations();
+  const { ref, isVisible } = useScrollAnimation(200);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -69,7 +71,10 @@ const Gallery = () => {
   ];
 
   return (
-    <section className="py-40 bg-background bg-offroad">
+    <section 
+      ref={ref as React.RefObject<HTMLElement>}
+      className={`py-40 bg-background bg-offroad fade-in-up ${isVisible ? 'visible' : ''}`}
+    >
       <div id="gallery" className="container mx-auto px-4 scroll-mt-[100px]">
         <div className="text-center mb-20">
                   <h2 className="font-staatliches text-3xl md:text-5xl text-foreground mb-8">

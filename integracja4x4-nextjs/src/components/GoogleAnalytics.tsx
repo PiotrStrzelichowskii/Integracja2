@@ -5,8 +5,14 @@ import { useEffect } from 'react';
 import { GA_MEASUREMENT_ID } from '@/lib/analytics';
 import { useCookieConsent } from '@/hooks/use-cookie-consent';
 
+// Domyślny Measurement ID - G-FLRT9P6QZD
+const DEFAULT_GA_MEASUREMENT_ID = 'G-FLRT9P6QZD';
+
 export default function GoogleAnalytics() {
   const { canUseAnalytics, isLoaded } = useCookieConsent();
+
+  // Użyj ID ze zmiennej środowiskowej lub domyślnego
+  const measurementId = GA_MEASUREMENT_ID || DEFAULT_GA_MEASUREMENT_ID;
 
   useEffect(() => {
     if (isLoaded && canUseAnalytics() && typeof window !== 'undefined' && window.gtag) {
@@ -22,17 +28,12 @@ export default function GoogleAnalytics() {
     }
   }, [isLoaded, canUseAnalytics]);
 
-  // Nie renderuj nic jeśli nie ma Measurement ID
-  if (!GA_MEASUREMENT_ID) {
-    return null;
-  }
-
   return (
     <>
-      {/* Google Analytics Script */}
+      {/* Google tag (gtag.js) */}
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
       />
       <Script
         id="google-analytics"
@@ -51,9 +52,7 @@ export default function GoogleAnalytics() {
             });
             
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_path: window.location.pathname,
-            });
+            gtag('config', '${measurementId}');
           `,
         }}
       />

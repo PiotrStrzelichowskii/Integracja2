@@ -25,7 +25,7 @@ const Footer = dynamic(() => import('@/components/Footer'), {
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-mud-dark overflow-x-hidden" id="app-root">
+    <div className="min-h-screen bg-mud-dark overflow-x-hidden" id="app-root" style={{ touchAction: 'pan-y' }}>
       <Header />
       <main 
         id="main-content" 
@@ -34,6 +34,7 @@ export default function HomePage() {
         aria-label="Główna zawartość strony"
         tabIndex={-1}
         aria-labelledby="main-content"
+        style={{ touchAction: 'pan-y' }}
       >
         <Hero />
         <Offer />

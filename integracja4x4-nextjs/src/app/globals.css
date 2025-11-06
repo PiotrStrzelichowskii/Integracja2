@@ -101,12 +101,38 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-mud-dark text-foreground font-montserrat overflow-x-hidden;
-  }
-  
   html {
     @apply overflow-x-hidden;
+    /* Poprawa przewijania na Androidzie */
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    overscroll-behavior-y: contain;
+    /* Zapobieganie problemom z viewport na Androidzie */
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    @apply bg-mud-dark text-foreground overflow-x-hidden;
+    font-family: var(--font-montserrat), sans-serif;
+    /* Poprawa przewijania na Androidzie */
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    overscroll-behavior-y: contain;
+    /* Zapobieganie blokowaniu przewijania */
+    position: relative;
+    min-height: 100vh;
+    min-height: -webkit-fill-available; /* Poprawka dla Safari/Android */
+    width: 100%;
+    /* Pozwól na naturalne przewijanie - nie ustawiaj overflow-y: auto */
+  }
+  
+  /* Główny kontener aplikacji */
+  #__next {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    position: relative;
+    touch-action: pan-y;
   }
   
   h1, h2, h3, h4, h5, h6 {

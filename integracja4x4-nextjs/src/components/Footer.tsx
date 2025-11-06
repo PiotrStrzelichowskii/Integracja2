@@ -114,7 +114,7 @@ const Footer = () => {
                 <div className="flex items-start text-sand-light/80">
                   <MapPin size={12} className="mr-2 text-accent mt-0.5 flex-shrink-0" />
                   <div className="text-xs">
-                    <div>ul. Powstania Styczniowego 12a</div>
+                    <div>ul. Powstania Styczniowego</div>
                     <div>30-298 Kraków</div>
                   </div>
                 </div>

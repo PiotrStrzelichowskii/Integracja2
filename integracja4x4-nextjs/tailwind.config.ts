@@ -18,12 +18,10 @@ export default {
       },
     },
     extend: {
-      screens: {
-        'xl2': '1100px',
-      },
       fontFamily: {
         'staatliches': ['var(--font-staatliches)', 'cursive'],
         'montserrat': ['var(--font-montserrat)', 'sans-serif'],
+        'roboto-slab': ['var(--font-roboto-slab)', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",

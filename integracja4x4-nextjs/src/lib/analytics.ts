@@ -7,7 +7,8 @@ declare global {
 }
 
 // Google Analytics Measurement ID
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+// Domyślnie używamy G-FLRT9P6QZD, ale można nadpisać przez zmienną środowiskową
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-FLRT9P6QZD';
 
 // Check if analytics consent is given
 const hasAnalyticsConsent = (): boolean => {

@@ -148,7 +148,7 @@ const Offer = () => {
         </div>
 
         {/* Mobile/Tablet Layout */}
-        <div className="xl2:hidden space-y-6">
+        <div className="lg:hidden space-y-6">
           {offers.map((offer, index) => {
             const IconComponent = offer.icon;
             return (
@@ -166,7 +166,7 @@ const Offer = () => {
                       alt={offer.title}
                       width={400}
                       height={280}
-                      className={`w-full h-64 object-cover transition-transform duration-300 ${
+                      className={`w-full h-48 sm:h-56 object-cover transition-transform duration-300 ${
                         offer.title === "Współpraca Partnerska" ? "object-[center_35%]" : 
                         offer.title === "Oferta dla Firm" ? "object-[center_35%]" : ""
                       }`}
@@ -178,18 +178,18 @@ const Offer = () => {
                     </div>
                   </div>
                   
-                  <CardContent className="p-6">
-                    <h3 className="font-staatliches text-2xl text-card-foreground mb-4">
+                  <CardContent className="p-4 sm:p-6">
+                    <h3 className="font-staatliches text-xl sm:text-2xl text-card-foreground mb-3 sm:mb-4">
                       {offer.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 font-montserrat text-base">
+                    <p className="text-muted-foreground mb-4 font-montserrat text-sm sm:text-base">
                       {offer.description}
                     </p>
                     
                     <ul className="space-y-2 mb-6">
                       {offer.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start text-sm text-muted-foreground font-montserrat">
-                          <Target size={16} className="text-accent mr-2 flex-shrink-0 mt-0.5" />
+                        <li key={featureIndex} className="flex items-start text-xs sm:text-sm text-muted-foreground font-montserrat">
+                          <Target size={14} className="text-accent mr-2 flex-shrink-0 mt-0.5" />
                           {feature}
                         </li>
                       ))}
@@ -198,7 +198,7 @@ const Offer = () => {
                     <div className="flex items-center justify-center pt-2">
                       <button 
                         onClick={scrollToContact}
-                        className="btn-offroad-primary font-montserrat px-6 py-3 text-base" 
+                        className="btn-offroad-primary font-montserrat px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base" 
                       >
                         {offer.title === t('partnership') ? t('contactUs') : t('askForPrice')}
                       </button>
@@ -211,7 +211,7 @@ const Offer = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden xl2:grid xl2:grid-cols-3 gap-6 items-stretch">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6 items-stretch">
           {offers.map((offer, index) => {
             const IconComponent = offer.icon;
             return (
@@ -229,39 +229,39 @@ const Offer = () => {
                       alt={offer.title}
                       width={400}
                       height={300}
-                      className={`w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300 ${
+                      className={`w-full h-40 lg:h-44 xl:h-48 object-cover group-hover:scale-105 transition-transform duration-300 ${
                         offer.title === "Współpraca Partnerska" ? "object-[center_35%]" : 
                         offer.title === "Oferta dla Firm" ? "object-[center_35%]" : ""
                       }`}
                     />
                     <div className="absolute top-4 left-4">
-                      <div className="bg-accent text-accent-foreground p-3 rounded-full">
-                        <IconComponent size={24} />
+                      <div className="bg-accent text-accent-foreground p-2 lg:p-3 rounded-full">
+                        <IconComponent size={20} className="lg:w-6 lg:h-6" />
                       </div>
                     </div>
                   </div>
                   
-                  <CardContent className="p-6 flex flex-col flex-1">
-                    <h3 className="font-staatliches text-xl text-card-foreground mb-3">
+                  <CardContent className="p-4 lg:p-5 xl:p-6 flex flex-col flex-1">
+                    <h3 className="font-staatliches text-lg lg:text-xl xl:text-xl text-card-foreground mb-2 lg:mb-3">
                       {offer.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 font-montserrat">
+                    <p className="text-muted-foreground mb-3 lg:mb-4 font-montserrat text-sm lg:text-base">
                       {offer.description}
                     </p>
                     
-                    <ul className="space-y-2 mb-6 flex-1">
+                    <ul className="space-y-1.5 lg:space-y-2 mb-4 lg:mb-6 flex-1">
                       {offer.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center text-sm text-muted-foreground font-montserrat">
-                          <Target size={16} className="text-accent mr-2 flex-shrink-0" />
+                        <li key={featureIndex} className="flex items-start text-xs lg:text-sm text-muted-foreground font-montserrat">
+                          <Target size={14} className="text-accent mr-2 flex-shrink-0 mt-0.5" />
                           {feature}
                         </li>
                       ))}
                     </ul>
                     
-                    <div className="flex items-center justify-center mt-auto pt-4">
+                    <div className="flex items-center justify-center mt-auto pt-2 lg:pt-4">
                       <button 
                         onClick={scrollToContact}
-                        className="btn-offroad-primary font-montserrat px-4 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5" 
+                        className="btn-offroad-primary font-montserrat px-4 lg:px-5 xl:px-6 py-2 lg:py-3 text-sm lg:text-base" 
                       >
                         {offer.title === t('partnership') ? t('contactUs') : t('askForPrice')}
                       </button>

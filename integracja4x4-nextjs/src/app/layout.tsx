@@ -112,7 +112,7 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="en" href="/?lang=en" />
         <link rel="alternate" hrefLang="x-default" href="/" />
       </head>
-      <body className={`${staatliches.variable} ${montserrat.variable} overflow-x-hidden`} lang="pl" dir="ltr">
+      <body className={`${staatliches.variable} ${montserrat.variable} overflow-x-hidden`} lang="pl" dir="ltr" style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' }}>
         <GoogleAnalytics />
         <Providers>
           <LanguageSetter />

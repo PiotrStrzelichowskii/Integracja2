@@ -149,7 +149,11 @@ const Header = () => {
         className={`lg:hidden fixed top-0 right-0 h-full w-full transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{ zIndex: 99999 }}
+        style={{ 
+          zIndex: 99999,
+          pointerEvents: isMenuOpen ? 'auto' : 'none',
+          touchAction: isMenuOpen ? 'auto' : 'none'
+        }}
         onClick={() => setIsMenuOpen(false)}
         role="dialog"
         aria-modal="true"

@@ -19,25 +19,34 @@
 3. Kliknij na swój strumień danych
 4. Skopiuj **Measurement ID** (format: `G-XXXXXXXXXX`)
 
-## Krok 3: Konfiguracja zmiennych środowiskowych
+**Aktualny Measurement ID:** `G-FLRT9P6QZD`
+
+> **Uwaga:** ID jest już skonfigurowane w kodzie jako domyślne. Jeśli chcesz użyć innego ID, możesz nadpisać je przez zmienną środowiskową.
+
+## Krok 3: Konfiguracja zmiennych środowiskowych (opcjonalnie)
 
 ### Lokalnie (development)
-Utwórz plik `.env.local` w głównym katalogu projektu:
+Jeśli chcesz użyć innego ID niż domyślne, utwórz plik `.env.local` w głównym katalogu projektu:
 
 ```bash
-NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-FLRT9P6QZD
 ```
 
-### Na Vercel (production)
+> **Uwaga:** Jeśli nie ustawisz tej zmiennej, aplikacja automatycznie użyje `G-FLRT9P6QZD`.
+
+### Na Vercel (production) - opcjonalnie
+Jeśli chcesz użyć innego ID niż domyślne:
 1. Przejdź do swojego projektu na [Vercel](https://vercel.com/)
 2. Kliknij na zakładkę "Settings"
 3. Przejdź do "Environment Variables"
 4. Dodaj nową zmienną:
    - **Name**: `NEXT_PUBLIC_GA_MEASUREMENT_ID`
-   - **Value**: `G-XXXXXXXXXX` (twój Measurement ID)
+   - **Value**: `G-FLRT9P6QZD` (lub inny Measurement ID)
    - **Environment**: Production, Preview, Development
 5. Kliknij "Save"
 6. Wdróż ponownie aplikację
+
+> **Uwaga:** Jeśli nie ustawisz tej zmiennej na Vercel, aplikacja automatycznie użyje `G-FLRT9P6QZD`.
 
 ## Krok 4: Weryfikacja
 
@@ -112,6 +121,9 @@ Pamiętaj o:
 - [Google Analytics 4 Documentation](https://developers.google.com/analytics/devguides/collection/ga4)
 - [Next.js Analytics Guide](https://nextjs.org/docs/advanced-features/measuring-performance)
 - [Vercel Analytics](https://vercel.com/analytics)
+
+
+
 
 
 

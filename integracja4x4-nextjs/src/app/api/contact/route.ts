@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     // Wysyłanie emaila
     console.log('Attempting to send email...');
     const { data, error } = await resend.emails.send({
-      from: 'Integracja 4x4 <onboarding@resend.dev>',
+      from: 'Integracja 4x4 <info@integracja4x4.pl>',
       to: ['info@integracja4x4.pl'],
       replyTo: email,
       subject: subject ? `[Kontakt] ${subject}` : '[Kontakt] Nowa wiadomość',

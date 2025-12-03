@@ -15,7 +15,8 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   experimental: {
-    optimizePackageImports: ['@react-three/fiber', '@react-three/drei'],
+    optimizePackageImports: ['@react-three/fiber', '@react-three/drei', 'lucide-react'],
+    serverComponentsExternalPackages: ['resend'], 
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

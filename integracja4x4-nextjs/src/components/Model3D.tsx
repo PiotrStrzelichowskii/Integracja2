@@ -1,222 +1,188 @@
 "use client";
 
-import React, { useRef, useEffect, Suspense } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OrbitControls } from '@react-three/drei';
+import React, { useRef, useEffect, useState, Suspense } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useGLTF, Html } from '@react-three/drei';
 import * as THREE from 'three';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import Image from 'next/image';
 
-function Model({ screenSize = 'mobile' }: { screenSize?: string }) {
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// --- Fallback Component if WebGL Crashes ---
+const WebGLFallback = () => (
+  <div className="w-full h-full absolute inset-0">
+    <Image 
+      src="/heropic.jpg" 
+      alt="Off-road Hero Fallback" 
+      fill 
+      className="object-cover object-[25%_center] sm:object-center"
+      priority
+    />
+    {/* Dark Overlay mirroring the one in Hero.tsx */}
+    <div className="absolute inset-0 bg-black/60 sm:bg-black/50" />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
+  </div>
+);
+
+function CarModel() {
   const meshRef = useRef<THREE.Group>(null);
-  const rotateIconRef = useRef<THREE.Group>(null);
-  const [modelLoaded, setModelLoaded] = React.useState(false);
-  
-  // Ładujemy model GLB (zawiera geometrię, materiały i tekstury)
-  const gltf = useLoader(GLTFLoader, '/models/Toyota70_2.glb');
-  
-  console.log('GLTF loaded:', gltf);
-  console.log('Model loaded state:', modelLoaded);
+  const { scene } = useGLTF('/models/Toyota70_2.glb');
+  const { viewport } = useThree();
+
+  const isMobile = viewport.width < 5;
+  const xPos = isMobile ? 0 : 1.8; // Move to right on desktop (approx 1/3 shift)
+
+  useGSAP(() => {
+    if (!meshRef.current) return;
+
+    // STAN POCZĄTKOWY (Po załadowaniu strony):
+    // Model jest daleko (z: -6), nisko i LEKKO obrócony
+    // Dodajemy offset X, żeby na starcie był bardziej z prawej (x: 1.0 dla grupy + offset xPos z prymitywu)
+    gsap.set(meshRef.current.position, { z: -6, y: -0.7, x: 1 }); 
+    gsap.set(meshRef.current.rotation, { y: 0.3 }); 
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#hero-section",
+        start: "top top",
+        end: "+=1500",
+        pin: true,
+        anticipatePin: 1, // <--- DODAJ TO (eliminuje mignięcie przy odpinaniu)
+        scrub: 1,
+      },
+    });
+
+    // ANIMACJA (Podczas scrollowania w dół):
+    // Auto podjeżdża (z: 0), wraca na środek (x: 0) i lekko skręca
+    tl.to(meshRef.current.position, {
+      z: 0, 
+      y: -0.2,
+      x: 0, // Animujemy grupę do zera (offset xPos jest w prymitywie)
+      ease: "none", // LINEARNA animacja (powoli przez cały czas)
+    }, 0)
+    .to(meshRef.current.rotation, {
+      y: -Math.PI / 14,
+      ease: "none", // LINEARNA animacja (jednostajny obrót przez cały scroll)
+    }, 0);
+
+  }, { dependencies: [scene] });
 
   useEffect(() => {
-    if (gltf && gltf.scene) {
-      const model = gltf.scene;
-      
-      // Wyśrodkuj model w przestrzeni 3D (tylko raz przy ładowaniu)
-      const box = new THREE.Box3().setFromObject(model);
-      const center = box.getCenter(new THREE.Vector3());
-      const size = box.getSize(new THREE.Vector3());
-      
-      // Przesuń model tak, żeby jego środek był w (0,0,0) - tylko X i Z
-      model.position.x -= center.x;
-      model.position.z -= center.z;
-      // Y zostanie ustawione w getPosition() - nie dotykamy tutaj
-      
-      console.log('Model center:', center);
-      console.log('Model size:', size);
-      
-      // GLB już ma materiały, ale możemy je dostosować
-      model.traverse((child) => {
+    if (scene) {
+      scene.traverse((child) => {
         if (child instanceof THREE.Mesh) {
-          if (child.material) {
-            // Ustaw materiały jako matowe i stonowane
-            if (child.material instanceof THREE.MeshStandardMaterial) {
-              // Wyłącz emissję
-              if (child.material.emissive) {
-                child.material.emissive.setHex(0x000000);
-              }
-              child.material.emissiveIntensity = 0;
-              
-              // Zmniejsz intensywność kolorów - stonowane kolory
-              if (child.material.color) {
-                // Przyciemnij kolor o 15% (mniej niż wcześniej)
-                child.material.color.multiplyScalar(0.85);
-              }
-              
-              // Ustaw jako matowy z większą szorstkością
-              child.material.metalness = 0.1;
-              child.material.roughness = 0.6;
-              
-              // Zwiększ intensywność światła odbijanego
-              child.material.envMapIntensity = 0.5;
-            }
-            
-            child.material.needsUpdate = true;
+           // OPTIMIZATION: Simplify materials to prevent crashes
+           if (child.material.map) {
+             child.material.map.generateMipmaps = false; // Save memory
+             child.material.map.minFilter = THREE.LinearFilter;
+           }
+           
+           // Use simpler material settings
+           if (child.material instanceof THREE.MeshStandardMaterial) {
+            child.material.roughness = 0.5;
+            child.material.metalness = 0.1; // Lower metalness is cheaper (less reflection calc)
+            child.material.envMapIntensity = 0.5;
           }
+          
+          // Disable shadow casting/receiving for performance
+          child.castShadow = false;
+          child.receiveShadow = false;
         }
       });
-      
-      // Oznacz model jako załadowany
-      setModelLoaded(true);
     }
-  }, [gltf]);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      // Model nie obraca się automatycznie - zatrzymany
-      // meshRef.current.rotation.y = state.clock.elapsedTime * 0.2;
-    }
-    
-    if (rotateIconRef.current) {
-      // Ikona obrotu obraca się szybko w drugą stronę
-      rotateIconRef.current.rotation.z = -state.clock.elapsedTime * 0.7;
-    }
-  });
-
-  const getScale = () => {
-    switch (screenSize) {
-      case 'mobile': return [2.5, 2.5, 2.5];
-      case 'xs': return [3, 3, 3];
-      case 'sm': return [3.5, 3.5, 3.5];
-      case 'md': return [3, 3, 3];
-      case 'lg': return [3, 3, 3];
-      default: return [3.5, 3.5, 3.5];
-    }
-  };
-  
-  const scale = getScale();
-  
-  const getPosition = () => {
-    switch (screenSize) {
-      case 'mobile': return [0, 0.5, 0]; // Wyżej na telefonie
-      case 'xs': return [0, 0.3, 0];
-      case 'sm': return [0, 0.2, 0];
-      case 'md': return [0, 0, 0];
-      case 'lg': return [0, 0, 0];
-      default: return [0, 0, 0];
-    }
-  };
-  
-  const position = getPosition();
-  
-  // Nie renderuj modelu dopóki się nie załaduje
-  if (!modelLoaded || !gltf || !gltf.scene) {
-    console.log('Model not ready:', { modelLoaded, gltf: !!gltf, scene: !!(gltf?.scene) });
-    return null;
-  }
+  }, [scene]);
 
   return (
-    <group ref={meshRef} rotation={[0, -Math.PI / 6, 0]}>
-      <primitive 
-        object={gltf.scene} 
-        scale={scale} 
-        position={position}
-      />
-      
-      {/* Ikona obrotu – elegancka, animowana */}
-     <group ref={rotateIconRef} position={[0, position[1] - (screenSize === 'mobile' ? 2 : 3), 0]} rotation={[Math.PI / 2, 0, 0]}>
-      {/* Delikatnie obracający się torus */}
-      <mesh rotation={[0, 0, -Math.PI / 2]}>
-        <torusGeometry args={[1.4, 0.08, 16, 100, Math.PI * 1.75]} />
-        <meshStandardMaterial
-          color="#F4A460"
-          metalness={0.6}
-          roughness={0.2}
-          emissive="#FFD39B"
-          emissiveIntensity={0.5}
-          envMapIntensity={0.8}
+    <group ref={meshRef}>
+      <ParallaxGroup>
+        <primitive 
+          object={scene} 
+          scale={[2.5, 2.5, 2.5]} 
+          position={[xPos, -0.2, 0]}
+          rotation={[0, -Math.PI / 14, 0]}
         />
-      </mesh>
-
-      {/* Czubek strzałki */}
-      <mesh position={[-0.1, -1.4, 0]} rotation={[0, 0, Math.PI / 2]}>
-        <coneGeometry args={[0.15, 0.5, 16]} />
-        <meshStandardMaterial
-          color="#FFB347"
-          metalness={0.6}
-          roughness={0.3}
-          emissive="#FFD39B"
-          emissiveIntensity={0.7}
-        />
-      </mesh>
-
-      
-    </group>
-
+      </ParallaxGroup>
     </group>
   );
 }
 
-export default function Model3D() {
-  // Sprawdź rozmiar ekranu
-  const [screenSize, setScreenSize] = React.useState('mobile');
+function ParallaxGroup({ children }: { children: React.ReactNode }) {
+  const groupRef = useRef<THREE.Group>(null);
   
-  React.useEffect(() => {
-    const updateScreenSize = () => {
-      if (typeof window !== 'undefined') {
-        if (window.innerWidth < 640) setScreenSize('mobile');
-        else if (window.innerWidth < 700) setScreenSize('xs');
-        else if (window.innerWidth < 1024) setScreenSize('sm');
-        else if (window.innerWidth < 1400) setScreenSize('md');
-        else if (window.innerWidth < 1700) setScreenSize('lg');
-        else setScreenSize('xl');
-      }
-    };
-    
-    updateScreenSize();
-    window.addEventListener('resize', updateScreenSize);
-    return () => window.removeEventListener('resize', updateScreenSize);
-  }, []);
-  
-  return (
-    <div className="w-[700px] h-[300px] sm:h-[400px] lg:h-[600px] relative flex items-center justify-center lg:-ml-48">
-      {/* Glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-500/30 via-transparent to-yellow-200/30 rounded-lg blur-2xl scale-x-125 scale-y-100"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-400/20 via-transparent to-yellow-100/20 rounded-lg blur-xl scale-x-110 scale-y-95"></div>
+  useFrame((state) => {
+    if (groupRef.current) {
+      const { mouse } = state;
+      // Very subtle parallax
+      const targetX = (mouse.y || 0) * 0.02;
+      const targetY = (mouse.x || 0) * 0.02;
       
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, targetX, 0.1);
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetY, 0.1);
+    }
+  });
+
+  return <group ref={groupRef}>{children}</group>;
+}
+
+export default function Model3D() {
+  const [contextLost, setContextLost] = useState(false);
+
+  useEffect(() => {
+    const handleContextLost = (event: Event) => {
+      event.preventDefault();
+      console.warn('WebGL Context Lost - Switching to Fallback');
+      setContextLost(true);
+    };
+
+    // Attach to window/canvas if possible, but R3F handles it internally usually.
+    // We can listen on the canvas element if we had a ref, but global listener helps.
+    const canvas = document.querySelector('canvas');
+    if (canvas) {
+      canvas.addEventListener('webglcontextlost', handleContextLost, false);
+    }
+
+    return () => {
+      if (canvas) canvas.removeEventListener('webglcontextlost', handleContextLost);
+    };
+  }, []);
+
+  if (contextLost) {
+    return <WebGLFallback />;
+  }
+
+  return (
+    <div className="w-full h-full absolute inset-0 z-0 pointer-events-none">
       <Canvas
-        camera={{ 
-          position: screenSize === 'mobile' ? [0, 0.8, 5] : [0, 1.2, 7], 
-          fov: screenSize === 'mobile' ? 60 : 60 
+        className="pointer-events-auto"
+        onCreated={({ gl }) => {
+          gl.domElement.addEventListener('webglcontextlost', (event) => {
+            event.preventDefault();
+            setContextLost(true);
+          }, false);
         }}
-        style={{ background: 'transparent' }}
-        className="relative z-10 w-full h-full"
+        gl={{ 
+          antialias: false,
+          powerPreference: "default", // Avoid forcing high-perf GPU which might be unstable
+          preserveDrawingBuffer: false,
+        }}
+        camera={{ position: [0, 1, 6], fov: 45 }}
+        dpr={[1, 1]} // Strict 1x DPI for stability
       >
-        {/* Światło - zmniejszona intensywność dla stonowanego wyglądu */}
-        <ambientLight intensity={1.2} />
-        <ambientLight intensity={0.8} color="#ffffff" />
-        <directionalLight position={[10, 10, 5]} intensity={1.5} />
-        <directionalLight position={[-10, 10, 5]} intensity={1.2} />
-        <directionalLight position={[0, -10, 5]} intensity={0.8} />
-        <pointLight position={[-10, -10, -5]} intensity={0.8} />
-        <pointLight position={[10, -10, 5]} intensity={0.6} />
-        <pointLight position={[0, 5, 10]} intensity={0.5} />
-        <spotLight position={[0, 15, 0]} intensity={1.0} angle={0.5} penumbra={0.3} />
+        {/* Replaced heavy Environment with simple Lights */}
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        <directionalLight position={[-10, 5, -5]} intensity={0.5} color="#aaddff" />
         
-        {/* Model */}
+        <fog attach="fog" args={['#000000', 5, 20]} /> 
+
         <Suspense fallback={null}>
-          <Model screenSize={screenSize} />
+          <CarModel />
         </Suspense>
-        
-        {/* Kontrola kamery */}
-        <OrbitControls 
-          enableZoom={false}
-          enablePan={false}
-          autoRotate={false}
-          autoRotateSpeed={0.5}
-          target={[0, 0, 0]}
-          minPolarAngle={Math.PI / 3}
-          maxPolarAngle={Math.PI / 2}
-        />
       </Canvas>
     </div>
   );

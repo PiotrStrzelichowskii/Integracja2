@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "@vercel/speed-insights": "^1.2.0"
+    "@gsap/react": "^2.1.2",
+    "@vercel/speed-insights": "^1.2.0",
+    "gsap": "^3.13.0"
   }
 }

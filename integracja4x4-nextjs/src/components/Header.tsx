@@ -25,7 +25,7 @@ const Header = () => {
         requestAnimationFrame(() => {
           const scrollTop = window.scrollY;
           // Efekt scrollowania tylko na desktop
-          setIsScrolled(isDesktop && scrollTop > 30);
+          setIsScrolled(isDesktop && scrollTop > 1500);
           ticking = false;
         });
         ticking = true;

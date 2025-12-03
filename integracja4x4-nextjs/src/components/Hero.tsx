@@ -1,26 +1,23 @@
 "use client";
 
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Play } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from '@/hooks/use-translations';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import Image from 'next/image';
 
-// Przywróć Model3D z dynamicznym importem
+// Dynamic import for 3D Model
 const Model3D = dynamic(() => import('./Model3D'), {
   ssr: false,
-  loading: () => (
-    <div className="w-full h-full bg-mud-dark/50 rounded-lg flex items-center justify-center">
-      <div className="text-center text-muted-foreground">
-        <div className="w-8 h-8 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
-        <p className="text-sm">Ładowanie modelu 3D...</p>
-      </div>
-    </div>
-  )
+  loading: () => null // Silent loading as we have a background image now
 });
 
 const Hero = () => {
   const { t } = useTranslations();
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
   
   const scrollToOffer = () => {
     const element = document.getElementById('offer');
@@ -36,76 +33,94 @@ const Hero = () => {
     }
   };
 
+  useEffect(() => {
+    // Entrance animation
+    const tl = gsap.timeline();
+    
+    tl.fromTo(titleRef.current, 
+      { y: 100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.5, ease: "power3.out", delay: 0.5 }
+    )
+    .fromTo(textRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
+      "-=1"
+    )
+    .fromTo(buttonsRef.current,
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+      "-=0.8"
+    );
+  }, []);
+
   return (
     <section 
-      className="relative w-full aspect-[16/9] flex items-center justify-center z-20 mt-[4rem] sm:mt-[4rem] md:mt-[4rem] lg:mt-[3rem] xl:mt-[2rem]"
-      aria-label="Sekcja główna - Szkoła jazdy terenowej 4x4"
-      role="banner"
       id="hero-section"
+      className="relative z-40 w-full h-screen overflow-hidden bg-neutral-950"
+      aria-label="Sekcja główna - Szkoła jazdy terenowej 4x4"
     >
-      {/* Background Image */}
-      <div className="absolute inset-0">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0">
         <Image 
-          src="/heroimg.png"
-          alt="Szkoła jazdy terenowej 4x4 w Krakowie - Toyota Land Cruiser 70 offroad training - Najlepsza jazda off-road w Polsce"
+          src="/heropic.jpg"
+          alt="Off-road terrain background"
           fill
-          className="object-cover"
+          className="object-cover object-[63%_center] sm:object-center" 
           priority
-          fetchPriority="high"
-          sizes="100vw"
+          quality={90}
         />
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 w-full px-4 mt-[8rem] sm:mt-[10rem] md:mt-[12rem] lg:mt-12 xl:-mt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 items-start lg:items-center px-4 sm:px-12 md:px-16 lg:px-20 xl:px-28 h-full">
-          {/* Left Column - Text Content */}
-          <div className="text-center lg:text-left animate-fade-in-up lg:col-span-2 flex flex-col justify-center">
-              <h1 className="font-staatliches text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl text-sand-light mb-2 sm:mb-4 leading-tight" style={{textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)'}}>
-              {t('heroTitle')}
-                <br />
-                <span className="text-rust-orange" style={{textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.6)'}}>{t('heroSubtitle')}</span>
-              </h1>
-              
-              {/* SEO H1 - ukryty wizualnie ale widoczny dla robotów */}
-              <h1 className="sr-only">
-                Szkoła jazdy terenowej 4x4 w Krakowie - Integracja4x4 | Najlepsza jazda off-road w Polsce
-              </h1>
-              
-              <p className="text-sm sm:text-md md:text-base text-gray-100 mb-3 sm:mb-6 max-w-lg mx-auto lg:mx-0 font-montserrat leading-relaxed" style={{textShadow: '0 4px 8px rgba(0,0,0,0.9), 0 2px 4px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.7)'}}>
-                {t('heroDescription')}
-              </p>
-              
-              <div className="flex flex-row gap-2 sm:gap-3 md:gap-4 items-center justify-center lg:justify-start">
-                <button 
-                  onClick={scrollToOffer}
-                  className="btn-offroad-primary font-montserrat flex items-center gap-2 text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
-                  aria-label="Przejdź do sekcji oferty"
-                >
-                  {t('seeOffer')}
-                </button>
-                
-                <button 
-                  onClick={scrollToContact}
-                  className="btn-offroad-outline font-montserrat flex items-center gap-2 text-xs sm:text-sm md:text-base px-3 sm:px-4 md:px-6 py-3 sm:py-3 md:py-5"
-                  aria-label="Przejdź do sekcji kontakt"
-                >
-                  {t('contactUs')}
-                </button>
-              </div>
-          </div>
+      {/* Dark Overlay for text readability */}
+      <div className="absolute inset-0 z-10 bg-black/60 sm:bg-black/50" />
+      
+      {/* Additional Gradient Overlay for depth */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
 
-          {/* Right Column - 3D Model */}
-          <div className="flex items-center justify-center h-full lg:justify-start lg:items-center">
-            <Model3D />
-          </div>
-        </div>
+      {/* 3D Model Layer */}
+      <div className="absolute inset-0 z-20 opacity-90 mix-blend-normal">
+        <Model3D />
       </div>
 
-      {/* Scroll Indicator - tylko na XL+ */}
-      <div className="hidden xl:block absolute bottom-8 left-1/2 transform -translate-x-1/2 z-15 mb-40">
-        <div className="w-6 h-10 border-2 border-sand-light rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-sand-light rounded-full mt-2 animate-bounce"></div>
+      {/* Content Layer */}
+      <div className="relative z-30 w-full h-full flex flex-col items-start justify-center px-4 sm:px-12 md:px-24 lg:px-32 pointer-events-none text-left">
+        <h1 
+          ref={titleRef}
+          className="font-staatliches text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white mb-6 leading-none tracking-wide drop-shadow-2xl opacity-0 translate-y-10"
+        >
+          {t('heroTitle')} <br />
+          <span className="text-accent">{t('heroSubtitle')}</span>
+        </h1>
+
+        <p 
+          ref={textRef}
+          className="font-montserrat text-gray-200 text-base sm:text-lg md:text-xl max-w-xl mb-10 leading-relaxed drop-shadow-lg opacity-0 translate-y-10 text-left"
+        >
+          {t('heroDescription')}
+        </p>
+
+        <div ref={buttonsRef} className="flex flex-wrap gap-4 justify-start opacity-0 translate-y-10 pointer-events-auto">
+          <button 
+            onClick={scrollToOffer}
+            className="btn-offroad-primary flex items-center gap-2 text-lg"
+          >
+            {t('seeOffer')}
+            <ArrowRight className="w-5 h-5" />
+          </button>
+          
+          <button 
+            onClick={scrollToContact}
+            className="btn-offroad-outline flex items-center gap-2 text-lg"
+          >
+            {t('contactUs')}
+          </button>
+        </div>
+          </div>
+
+      {/* Scroll Indicator */}
+      <div className="hidden sm:block absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 animate-bounce pointer-events-none opacity-70">
+        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+          <div className="w-1 h-2 bg-white rounded-full mt-2"></div>
         </div>
       </div>
     </section>
@@ -113,4 +128,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

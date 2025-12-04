@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { useGLTF, Html } from '@react-three/drei';
+import { useGLTF, Html, Point } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -33,6 +33,7 @@ function CarModel() {
   const meshRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF('/models/Toyota70_2.glb');
   const { viewport } = useThree();
+  const lightMeshesRef = useRef<THREE.Mesh[]>([]); // Store references to light meshes
 
   const isMobile = viewport.width < 5;
   const xPos = isMobile ? 0 : 1.8; // Move to right on desktop (approx 1/3 shift)
@@ -74,22 +75,105 @@ function CarModel() {
 
   useEffect(() => {
     if (scene) {
+      lightMeshesRef.current = []; // Reset array
+      
+      // Calculate bounding box to identify car position
+      const box = new THREE.Box3().setFromObject(scene);
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      
       scene.traverse((child) => {
         if (child instanceof THREE.Mesh) {
-           // OPTIMIZATION: Simplify materials to prevent crashes
-           if (child.material.map) {
-             child.material.map.generateMipmaps = false; // Save memory
-             child.material.map.minFilter = THREE.LinearFilter;
-           }
-           
-           // Use simpler material settings
-           if (child.material instanceof THREE.MeshStandardMaterial) {
-            child.material.roughness = 0.5;
-            child.material.metalness = 0.1; // Lower metalness is cheaper (less reflection calc)
-            child.material.envMapIntensity = 0.5;
+          // DIAGNOSTYKA - odkomentuj aby zobaczyć wszystkie obiekty:
+          // console.log('Mesh:', child.name, 'Material:', Array.isArray(child.material) ? child.material.map(m => m.name) : child.material.name, 'Position:', child.position, 'Scale:', child.scale);
+          
+          // UKRYJ niepotrzebne obiekty z modelu (np. ground plane, background)
+          const childName = child.name?.toLowerCase() || '';
+          const materialName = Array.isArray(child.material) 
+            ? child.material[0]?.name?.toLowerCase() || ''
+            : child.material?.name?.toLowerCase() || '';
+          
+          // Calculate mesh bounding box
+          const meshBox = new THREE.Box3().setFromObject(child);
+          const meshSize = meshBox.getSize(new THREE.Vector3());
+          const meshCenter = meshBox.getCenter(new THREE.Vector3());
+          
+          // Ukryj obiekty które mogą być tłem/podłogą - bardziej agresywne sprawdzanie
+          if (childName.includes('ground') || 
+              childName.includes('floor') || 
+              childName.includes('plane') ||
+              childName.includes('background') ||
+              childName.includes('base') ||
+              childName.includes('platform') ||
+              childName.includes('stand') ||
+              materialName.includes('ground') ||
+              materialName.includes('floor') ||
+              materialName.includes('plane') ||
+              // Ukryj bardzo duże obiekty (prawdopodobnie tło/podłoga)
+              (meshSize.x > size.x * 0.8 && meshSize.z > size.z * 0.8 && meshSize.y < size.y * 0.1) ||
+              // Ukryj obiekty bardzo nisko (poniżej samochodu)
+              (meshCenter.y < center.y - size.y * 0.3)) {
+            child.visible = false; // UKRYJ te obiekty
+            return; // Skip further processing
           }
           
-          // Disable shadow casting/receiving for performance
+          // Handle both single material and material arrays
+          const materials = Array.isArray(child.material) ? child.material : [child.material];
+          
+          materials.forEach((material, index) => {
+            // Check if material name contains "lamps2" (case insensitive)
+            const materialName = material.name?.toLowerCase() || '';
+            const meshName = child.name?.toLowerCase() || '';
+            
+            if (materialName.includes('lamps2') || meshName.includes('lamp') || meshName.includes('light')) {
+              // Store reference to this mesh for glow effect
+              lightMeshesRef.current.push(child);
+              
+              // Configure material for car lights
+              if (material instanceof THREE.MeshStandardMaterial) {
+                // Bright yellow/orange car light color
+                material.emissive = new THREE.Color(0xffaa00); // Warm yellow-orange
+                material.emissiveIntensity = 3.0; // Very bright
+                
+                // Keep other properties but make it glow
+                material.roughness = 0.1;
+                material.metalness = 0.0;
+                material.envMapIntensity = 2.0;
+                
+                // Ensure it's visible
+                material.transparent = false;
+                material.opacity = 1;
+                material.depthWrite = true;
+                
+                material.needsUpdate = true;
+              }
+            } else {
+              // Regular material handling (existing code)
+              if (material.map) {
+                material.map.generateMipmaps = false;
+                material.map.minFilter = THREE.LinearFilter;
+                material.map.premultiplyAlpha = false;
+              }
+              
+              if (material instanceof THREE.MeshStandardMaterial) {
+                material.roughness = 0.4;
+                material.metalness = 0.2; 
+                material.envMapIntensity = 1.5;
+                material.transparent = false; 
+                material.depthWrite = true; 
+                material.opacity = 1;
+                material.alphaTest = 0;
+                material.side = THREE.FrontSide;
+                if (material.map) {
+                  material.map.format = THREE.RGBAFormat;
+                }
+              }
+              
+              material.needsUpdate = true;
+            }
+          });
+          
+          child.renderOrder = 0; 
           child.castShadow = false;
           child.receiveShadow = false;
         }
@@ -106,6 +190,60 @@ function CarModel() {
           position={[xPos, -0.2, 0]}
           rotation={[0, -Math.PI / 14, 0]}
         />
+        
+        {/* Car Lights with Glow Effect */}
+        {lightMeshesRef.current.map((lightMesh, index) => {
+          // Get world position of the light mesh
+          const worldPos = new THREE.Vector3();
+          lightMesh.getWorldPosition(worldPos);
+          
+          // Check if light is in front of car (positive Z) - only render glow for front lights
+          // If you want all lights, remove this check
+          const isFrontLight = worldPos.z > -1; // Adjust threshold as needed
+          
+          if (!isFrontLight) return null; // Skip rear lights glow
+          
+          return (
+            <group key={`car-light-${index}`}>
+              {/* Point Light for illumination */}
+              <pointLight
+                position={worldPos}
+                color="#ffaa00"
+                intensity={5}
+                distance={10}
+                decay={2}
+              />
+              
+              {/* Glow Effect - Simple sphere with emissive material */}
+              <mesh position={worldPos} renderOrder={999}>
+                <sphereGeometry args={[0.3, 16, 16]} />
+                <meshStandardMaterial
+                  emissive="#ffaa00"
+                  emissiveIntensity={2}
+                  transparent
+                  opacity={0.6}
+                  side={THREE.DoubleSide}
+                  depthWrite={false}
+                  depthTest={true}
+                />
+              </mesh>
+              
+              {/* Outer glow halo */}
+              <mesh position={worldPos} scale={[1.5, 1.5, 0.5]} renderOrder={998}>
+                <sphereGeometry args={[0.3, 16, 16]} />
+                <meshStandardMaterial
+                  emissive="#ffaa00"
+                  emissiveIntensity={1}
+                  transparent
+                  opacity={0.3}
+                  side={THREE.DoubleSide}
+                  depthWrite={false}
+                  depthTest={true}
+                />
+              </mesh>
+            </group>
+          );
+        })}
       </ParallaxGroup>
     </group>
   );
@@ -174,9 +312,10 @@ export default function Model3D() {
         dpr={[1, 1]} // Strict 1x DPI for stability
       >
         {/* Replaced heavy Environment with simple Lights */}
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        <directionalLight position={[-10, 5, -5]} intensity={0.5} color="#aaddff" />
+        <ambientLight intensity={1.5} />
+        <directionalLight position={[10, 10, 5]} intensity={2.5} />
+        <directionalLight position={[-10, 5, -5]} intensity={1.5} color="#aaddff" />
+        <spotLight position={[0, 10, 0]} intensity={3} angle={0.5} penumbra={1} />
         
         <fog attach="fog" args={['#000000', 5, 20]} /> 
 

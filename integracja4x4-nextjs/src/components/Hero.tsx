@@ -78,7 +78,7 @@ const Hero = () => {
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none" />
 
       {/* 3D Model Layer */}
-      <div className="absolute inset-0 z-20 opacity-90 mix-blend-normal">
+      <div className="absolute inset-0 z-20">
         <Model3D />
       </div>
 
@@ -90,31 +90,31 @@ const Hero = () => {
         >
           {t('heroTitle')} <br />
           <span className="text-accent">{t('heroSubtitle')}</span>
-        </h1>
-
+              </h1>
+              
         <p 
           ref={textRef}
           className="font-montserrat text-gray-200 text-base sm:text-lg md:text-xl max-w-xl mb-10 leading-relaxed drop-shadow-lg opacity-0 translate-y-10 text-left"
         >
-          {t('heroDescription')}
-        </p>
-
+                {t('heroDescription')}
+              </p>
+              
         <div ref={buttonsRef} className="flex flex-wrap gap-4 justify-start opacity-0 translate-y-10 pointer-events-auto">
-          <button 
-            onClick={scrollToOffer}
+                <button 
+                  onClick={scrollToOffer}
             className="btn-offroad-primary flex items-center gap-2 text-lg"
-          >
-            {t('seeOffer')}
+                >
+                  {t('seeOffer')}
             <ArrowRight className="w-5 h-5" />
-          </button>
-          
-          <button 
-            onClick={scrollToContact}
+                </button>
+                
+                <button 
+                  onClick={scrollToContact}
             className="btn-offroad-outline flex items-center gap-2 text-lg"
-          >
-            {t('contactUs')}
-          </button>
-        </div>
+                >
+                  {t('contactUs')}
+                </button>
+              </div>
           </div>
 
       {/* Scroll Indicator */}

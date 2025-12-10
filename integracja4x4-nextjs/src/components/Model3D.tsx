@@ -40,7 +40,7 @@ function CarModel() {
 
   useGSAP(() => {
     if (!meshRef.current) return;
-
+  
     // STAN POCZĄTKOWY (Po załadowaniu strony):
     // Model jest daleko (z: -6), nisko i LEKKO obrócony
     // Dodajemy offset X, żeby na starcie był bardziej z prawej (x: 1.0 dla grupy + offset xPos z prymitywu)
@@ -92,7 +92,7 @@ function CarModel() {
           const materialName = Array.isArray(child.material) 
             ? child.material[0]?.name?.toLowerCase() || ''
             : child.material?.name?.toLowerCase() || '';
-          
+              
           // Calculate mesh bounding box
           const meshBox = new THREE.Box3().setFromObject(child);
           const meshSize = meshBox.getSize(new THREE.Vector3());
@@ -166,7 +166,7 @@ function CarModel() {
                 material.side = THREE.FrontSide;
                 if (material.map) {
                   material.map.format = THREE.RGBAFormat;
-                }
+    }
               }
               
               material.needsUpdate = true;
@@ -196,14 +196,14 @@ function CarModel() {
           // Get world position of the light mesh
           const worldPos = new THREE.Vector3();
           lightMesh.getWorldPosition(worldPos);
-          
+  
           // Check if light is in front of car (positive Z) - only render glow for front lights
           // If you want all lights, remove this check
           const isFrontLight = worldPos.z > -1; // Adjust threshold as needed
           
           if (!isFrontLight) return null; // Skip rear lights glow
-          
-          return (
+
+  return (
             <group key={`car-light-${index}`}>
               {/* Point Light for illumination */}
               <pointLight
@@ -217,7 +217,7 @@ function CarModel() {
               {/* Glow Effect - Simple sphere with emissive material */}
               <mesh position={worldPos} renderOrder={999}>
                 <sphereGeometry args={[0.3, 16, 16]} />
-                <meshStandardMaterial
+        <meshStandardMaterial
                   emissive="#ffaa00"
                   emissiveIntensity={2}
                   transparent
@@ -225,13 +225,13 @@ function CarModel() {
                   side={THREE.DoubleSide}
                   depthWrite={false}
                   depthTest={true}
-                />
-              </mesh>
-              
+        />
+      </mesh>
+
               {/* Outer glow halo */}
               <mesh position={worldPos} scale={[1.5, 1.5, 0.5]} renderOrder={998}>
                 <sphereGeometry args={[0.3, 16, 16]} />
-                <meshStandardMaterial
+        <meshStandardMaterial
                   emissive="#ffaa00"
                   emissiveIntensity={1}
                   transparent
@@ -239,9 +239,9 @@ function CarModel() {
                   side={THREE.DoubleSide}
                   depthWrite={false}
                   depthTest={true}
-                />
-              </mesh>
-            </group>
+        />
+      </mesh>
+    </group>
           );
         })}
       </ParallaxGroup>
@@ -269,7 +269,7 @@ function ParallaxGroup({ children }: { children: React.ReactNode }) {
 
 export default function Model3D() {
   const [contextLost, setContextLost] = useState(false);
-
+  
   useEffect(() => {
     const handleContextLost = (event: Event) => {
       event.preventDefault();
@@ -292,7 +292,7 @@ export default function Model3D() {
   if (contextLost) {
     return <WebGLFallback />;
   }
-
+  
   return (
     <div className="w-full h-full absolute inset-0 z-0 pointer-events-none">
       <Canvas

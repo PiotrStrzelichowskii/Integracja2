@@ -246,7 +246,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder={t('name')}
                       required
-                      className={`bg-input border-border font-montserrat text-sm transition-colors duration-200 ${
+                      className={`bg-input border-border font-montserrat text-base md:text-sm transition-colors duration-200 ${
                         formState.errors.name ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
                       }`}
                     />
@@ -270,7 +270,7 @@ const Contact = () => {
                       onChange={handleInputChange}
                       placeholder="twoj@email.com"
                       required
-                      className={`bg-input border-border font-montserrat text-sm transition-colors duration-200 ${
+                      className={`bg-input border-border font-montserrat text-base md:text-sm transition-colors duration-200 ${
                         formState.errors.email ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
                       }`}
                     />
@@ -292,7 +292,7 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       placeholder={t('subject')}
-                      className="bg-input border-border font-montserrat text-sm focus:border-accent transition-colors duration-200"
+                      className="bg-input border-border font-montserrat text-base md:text-sm focus:border-accent transition-colors duration-200"
                     />
                   </div>
 
@@ -308,7 +308,7 @@ const Contact = () => {
                       placeholder="Opisz czego potrzebujesz..."
                       rows={4}
                       required
-                      className={`bg-input border-border font-montserrat resize-none text-sm transition-colors duration-200 ${
+                      className={`bg-input border-border font-montserrat resize-none text-base md:text-sm transition-colors duration-200 ${
                         formState.errors.message ? 'border-red-500 focus:border-red-500' : 'focus:border-accent'
                       }`}
                     />

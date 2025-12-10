@@ -67,7 +67,7 @@ export const pl = {
   aboutDescription3: 'Specjalizujemy się w szkoleniach indywidualnych oraz eventach firmowych, oferując kompleksową obsługę od podstaw jazdy terenowej po zaawansowane techniki pokonywania najtrudniejszych przeszkód. Działamy na terenie całej Polski i zrealizowaliśmy już kilkaset imprez integracyjnych.',
   ourMotto: 'Nasze Motto',
   mottoText: '"Bezpieczeństwo, profesjonalizm i niezapomniane doświadczenia - to podstawy naszej pracy z każdym klientem."',
-  oldDaysCaption: 'Mariusz Strzelichowski lata 2000',
+  oldDaysCaption: 'Mariusz Strzelichowski lata 1999',
   testimonialsTitle: 'CO',
   testimonialsTitleAccent: 'MÓWIĄ',
   testimonialsTitleEnd: 'NASI KLIENCI',

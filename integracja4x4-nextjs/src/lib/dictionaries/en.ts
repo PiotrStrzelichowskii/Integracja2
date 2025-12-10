@@ -64,7 +64,7 @@ export const en = {
   aboutDescription3: 'We specialize in individual training and corporate events, offering comprehensive service from basic off-road driving to advanced techniques for overcoming the most difficult obstacles. We operate throughout Poland and have already organized hundreds of training completions.',
   ourMotto: 'Our Motto',
   mottoText: '"Safety, professionalism and unforgettable experiences - these are the foundations of our work with every client."',
-  oldDaysCaption: 'Mariusz Strzelichowski 2000s',
+  oldDaysCaption: 'Mariusz Strzelichowski 1999s',
   testimonialsTitle: 'WHAT',
   testimonialsTitleAccent: 'OUR',
   testimonialsTitleEnd: 'CLIENTS SAY',

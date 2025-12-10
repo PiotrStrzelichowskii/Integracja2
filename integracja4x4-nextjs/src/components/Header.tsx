@@ -55,6 +55,15 @@ const Header = () => {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    setIsMenuOpen(false);
+    trackEvent.navigationClick('home');
+  };
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-300 ${
@@ -67,7 +76,11 @@ const Header = () => {
     >
       <div className="w-full px-8 py-6 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-4">
+        <button
+          onClick={scrollToTop}
+          className="flex items-center space-x-4 hover:opacity-80 transition-opacity cursor-pointer"
+          aria-label="Przejdź do strony głównej"
+        >
           {/* Mobile logo - tylko zdjęcie, mniejsze */}
           <div className="lg:hidden">
             <div className="w-10 h-10 relative rounded-full overflow-hidden">
@@ -94,7 +107,7 @@ const Header = () => {
               Integracja4X4
             </div>
           </div>
-        </div>
+        </button>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-6">
@@ -166,7 +179,11 @@ const Header = () => {
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header with logo */}
-          <div className="flex items-center justify-center p-6 border-b border-accent/20">
+          <button
+            onClick={scrollToTop}
+            className="flex items-center justify-center p-6 border-b border-accent/20 hover:opacity-80 transition-opacity cursor-pointer"
+            aria-label="Przejdź do strony głównej"
+          >
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 relative rounded-full overflow-hidden">
                 <Image
@@ -180,7 +197,7 @@ const Header = () => {
                 Integracja4X4
               </div>
             </div>
-          </div>
+          </button>
 
           {/* Navigation Links */}
           <nav className="flex-1 flex flex-col justify-evenly p-6" role="navigation" aria-label="Menu mobilne" id="mobile-nav">

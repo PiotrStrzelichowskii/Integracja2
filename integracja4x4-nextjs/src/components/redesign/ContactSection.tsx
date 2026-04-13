@@ -188,10 +188,11 @@ export default function ContactSection() {
           <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <div className="space-y-2">
-                <label className="text-[10px] uppercase tracking-widest font-bold text-on-surface/60 ml-1">
+                <label htmlFor="contact-name" className="text-[10px] uppercase tracking-widest font-bold text-on-surface/60 ml-1">
                   {t('contactNameLabel')}
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   value={formData.name}
@@ -206,10 +207,11 @@ export default function ContactSection() {
                 )}
               </div>
               <div className="space-y-2">
-                <label className="text-[10px] uppercase tracking-widest font-bold text-on-surface/60 ml-1">
+                <label htmlFor="contact-email" className="text-[10px] uppercase tracking-widest font-bold text-on-surface/60 ml-1">
                   {t('contactEmailLabel')}
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   value={formData.email}
@@ -226,11 +228,12 @@ export default function ContactSection() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest font-bold text-on-surface/60 ml-1">
+              <label htmlFor="contact-subject" className="text-[10px] uppercase tracking-widest font-bold text-on-surface/60 ml-1">
                 {t('contactSubjectLabel')}
               </label>
               <div className="relative">
               <select
+                id="contact-subject"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
@@ -247,10 +250,11 @@ export default function ContactSection() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-widest font-bold text-on-surface/60 ml-1">
+              <label htmlFor="contact-message" className="text-[10px] uppercase tracking-widest font-bold text-on-surface/60 ml-1">
                 {t('contactMessageLabel')}
               </label>
               <textarea
+                id="contact-message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}

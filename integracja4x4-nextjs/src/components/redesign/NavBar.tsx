@@ -67,12 +67,12 @@ export default function NavBar() {
         >
           {/* Mobile */}
           <div className="lg:hidden w-14 h-14 relative rounded-full overflow-hidden">
-            <Image src="/assets/logo-Photoroom.webp" alt="Integracja4x4 Logo" fill className="object-contain" />
+            <Image src="/assets/logo-Photoroom.webp" alt="Integracja4x4 Logo" fill className="object-contain" sizes="56px" />
           </div>
           {/* Desktop */}
           <div className="hidden lg:flex items-center space-x-4">
             <div className="w-16 h-16 relative rounded-full overflow-hidden">
-              <Image src="/assets/logo-Photoroom.webp" alt="Integracja4x4 Logo" fill className="object-contain" />
+              <Image src="/assets/logo-Photoroom.webp" alt="Integracja4x4 Logo" fill className="object-contain" sizes="64px" />
             </div>
             <div className="font-staatliches text-3xl text-[#e5e2e1] tracking-wider">
               Integracja4X4

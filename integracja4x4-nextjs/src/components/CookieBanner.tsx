@@ -12,6 +12,7 @@ const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [analyticsConsent, setAnalyticsConsent] = useState(false);
+  const [hasChecked, setHasChecked] = useState(false);
 
   useEffect(() => {
     // Sprawdź czy użytkownik już wyraził zgodę
@@ -19,6 +20,7 @@ const CookieBanner = () => {
     if (!consent) {
       setIsVisible(true);
     }
+    setHasChecked(true);
   }, []);
 
   const handleAcceptAll = () => {
@@ -65,10 +67,15 @@ const CookieBanner = () => {
     setIsVisible(false);
   };
 
-  if (!isVisible) return null;
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[10000] p-4 bg-black/50 backdrop-blur-sm">
+    <div
+      className="fixed bottom-0 left-0 right-0 z-[10000] p-4 bg-black/50 backdrop-blur-sm transition-transform duration-300 ease-out will-change-transform"
+      style={{
+        transform: hasChecked && isVisible ? 'translateY(0)' : 'translateY(calc(100% + 24px))',
+        pointerEvents: hasChecked && isVisible ? 'auto' : 'none',
+      }}
+      aria-hidden={!(hasChecked && isVisible)}
+    >
       <Card className="max-w-4xl mx-auto border-accent/20 bg-mud-dark/95 backdrop-blur-sm">
         <CardContent className="p-6">
           {!showSettings ? (
@@ -133,7 +140,7 @@ const CookieBanner = () => {
               <div className="flex items-center justify-between">
                 <h3 className="font-staatliches text-lg text-foreground flex items-center gap-2">
                   <Settings className="w-5 h-5 text-accent" />
-                  Ustawienia cookies
+                  {t('cookieSettingsTitle')}
                 </h3>
                 <Button
                   onClick={() => setShowSettings(false)}
@@ -151,10 +158,10 @@ const CookieBanner = () => {
                     <Shield className="w-5 h-5 text-accent" />
                     <div>
                       <h4 className="font-montserrat font-medium text-foreground">
-                        Cookies analityczne
+                        {t('cookieAnalyticsTitle')}
                       </h4>
                       <p className="text-sm text-muted-foreground font-montserrat">
-                        Google Analytics - pomagają nam zrozumieć, jak użytkownicy korzystają ze strony
+                        {t('cookieAnalyticsDesc')}
                       </p>
                     </div>
                   </div>
@@ -176,7 +183,7 @@ const CookieBanner = () => {
                   className="bg-accent hover:bg-accent/90 text-white font-montserrat w-full"
                   size="sm"
                 >
-                  Zapisz preferencje
+                  {t('cookieSavePreferences')}
                 </Button>
                 <div className="flex gap-2">
                   <Button

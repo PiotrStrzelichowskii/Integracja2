@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { useTranslations } from "@/hooks/use-translations";
 import { TranslationKey } from "@/lib/dictionaries";
 import { motion, useReducedMotion } from "framer-motion";
@@ -9,31 +10,36 @@ const reels = [
   {
     src: "/assets/movies/filmiki_integracja 2(1).mp4",
     thumbTime: 49,
+    poster: "/assets/movies/posters/reel-1.webp",
     labelKey: "reel1Label" as TranslationKey,
   },
   {
     src: "/assets/movies/filmiki_integracja_2 2(1).mp4",
     thumbTime: 9,
+    poster: "/assets/movies/posters/reel-2.webp",
     labelKey: "reel2Label" as TranslationKey,
   },
   {
     src: "/assets/movies/filmiki_integracja_5.mp4",
     thumbTime: 9999,
+    poster: "/assets/movies/posters/reel-3.webp",
     labelKey: "reel3Label" as TranslationKey,
   },
   {
     src: "/assets/movies/filmiki_integracja_6.mp4",
     thumbTime: 7,
+    poster: "/assets/movies/posters/reel-4.webp",
     labelKey: "reel4Label" as TranslationKey,
   },
   {
     src: "/assets/movies/filmiki_integracja_7.mp4",
     thumbTime: 25,
+    poster: "/assets/movies/posters/reel-5.webp",
     labelKey: "reel5Label" as TranslationKey,
   },
 ];
 
-function ReelCard({ src, thumbTime, label, cornerLeft, cornerRight }: { src: string; thumbTime: number; label: string; cornerLeft?: boolean; cornerRight?: boolean }) {
+function ReelCard({ src, poster, label, cornerLeft, cornerRight }: { src: string; poster: string; label: string; cornerLeft?: boolean; cornerRight?: boolean }) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -75,10 +81,21 @@ function ReelCard({ src, thumbTime, label, cornerLeft, cornerRight }: { src: str
         />
       ) : (
         <>
+          <Image
+            src={poster}
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="288px"
+            quality={60}
+            className="object-cover brightness-75"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-black/40" />
           <div
             className="absolute inset-0 flex items-center justify-center"
             onClick={() => setPlaying(true)}
+            role="button"
+            aria-label={`Odtwórz: ${label}`}
           >
             <span className="material-symbols-outlined text-7xl text-white drop-shadow-lg group-hover:scale-110 transition-transform duration-200">
               play_circle
@@ -125,7 +142,7 @@ export default function ReelsSection() {
           <ReelCard
             key={reel.src}
             src={reel.src}
-            thumbTime={reel.thumbTime}
+            poster={reel.poster}
             label={t(reel.labelKey)}
             cornerLeft={i === 0}
             cornerRight={i === reels.length - 1}
@@ -138,6 +155,7 @@ export default function ReelsSection() {
           href="https://www.facebook.com/integracja4x4"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Facebook (otwiera się w nowej karcie)"
           className="flex items-center gap-2 text-on-surface/60 hover:text-[#F16523] transition-colors font-montserrat text-sm font-medium"
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -150,6 +168,7 @@ export default function ReelsSection() {
           href="https://www.instagram.com/integracja4x4.pl/"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Instagram (otwiera się w nowej karcie)"
           className="flex items-center gap-2 text-on-surface/60 hover:text-[#F16523] transition-colors font-montserrat text-sm font-medium"
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -162,6 +181,7 @@ export default function ReelsSection() {
           href="https://www.youtube.com/channel/UCJyTmHY9czMaXCd3HplVylQ"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="YouTube (otwiera się w nowej karcie)"
           className="flex items-center gap-2 text-on-surface/60 hover:text-[#F16523] transition-colors font-montserrat text-sm font-medium"
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

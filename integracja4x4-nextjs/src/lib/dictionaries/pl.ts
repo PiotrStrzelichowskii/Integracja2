@@ -94,6 +94,10 @@ export const pl = {
   acceptAll: 'Akceptuję wszystkie',
   settings: 'Ustawienia',
   rejectAll: 'Odrzuć wszystkie',
+  cookieSettingsTitle: 'Ustawienia cookies',
+  cookieAnalyticsTitle: 'Cookies analityczne',
+  cookieAnalyticsDesc: 'Google Analytics — pomagają nam zrozumieć, jak użytkownicy korzystają ze strony',
+  cookieSavePreferences: 'Zapisz preferencje',
   
   // Footer
   allRightsReserved: 'Wszelkie prawa zastrzeżone.',

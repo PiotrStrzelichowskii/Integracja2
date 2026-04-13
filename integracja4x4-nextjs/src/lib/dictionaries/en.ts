@@ -91,6 +91,10 @@ export const en = {
   acceptAll: 'Accept All',
   settings: 'Settings',
   rejectAll: 'Reject All',
+  cookieSettingsTitle: 'Cookie settings',
+  cookieAnalyticsTitle: 'Analytics cookies',
+  cookieAnalyticsDesc: 'Google Analytics — help us understand how users use the website',
+  cookieSavePreferences: 'Save preferences',
   
   // Footer
   allRightsReserved: 'All rights reserved.',

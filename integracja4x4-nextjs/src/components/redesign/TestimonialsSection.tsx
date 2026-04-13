@@ -157,6 +157,8 @@ export default function TestimonialsSection() {
             <button
               key={i}
               onClick={() => setCurrent(i)}
+              aria-label={`${t('testimonialsFullTitle')} — ${i + 1}/${total}`}
+              aria-current={i === current ? "true" : undefined}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === current ? "w-8 bg-[#F16523]" : "w-4 bg-on-surface/20 hover:bg-on-surface/40"
               }`}

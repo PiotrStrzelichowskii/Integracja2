@@ -91,6 +91,8 @@ export default function OfferSection() {
                   alt={card.alt}
                   width={600}
                   height={450}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  quality={70}
                 />
               </div>
               <div className="px-6 md:px-8 pt-4 md:pt-5 pb-6 md:pb-8 space-y-3 md:space-y-4 flex flex-col flex-1">

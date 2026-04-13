@@ -71,16 +71,11 @@ function ReelCard({ src, thumbTime, label, cornerLeft, cornerRight }: { src: str
           playsInline
           controlsList="nofullscreen"
           disablePictureInPicture
+          preload="metadata"
         />
       ) : (
         <>
-          <video
-            className="w-full h-full object-cover brightness-75"
-            src={`${src}#t=${thumbTime}`}
-            preload="metadata"
-            playsInline
-            muted
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-black/40" />
           <div
             className="absolute inset-0 flex items-center justify-center"
             onClick={() => setPlaying(true)}

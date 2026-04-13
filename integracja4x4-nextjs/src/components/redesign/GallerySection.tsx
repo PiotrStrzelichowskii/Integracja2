@@ -51,22 +51,22 @@ export default function GallerySection() {
 
             {/* wide 4×2 */}
             <div className="col-start-1 col-span-4 row-start-1 row-span-2 overflow-hidden group relative" style={{ clipPath: clip(14) }}>
-              <Image src="/assets/toyota6.webp" alt="Toyota Land Cruiser pokonuje błotnistą drogę terenową podczas szkolenia Integracja4x4" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" sizes="50vw" />
+              <Image src="/assets/toyota6.webp" alt="Toyota Land Cruiser pokonuje błotnistą drogę terenową podczas szkolenia Integracja4x4" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 100vw, 50vw" quality={70} />
             </div>
 
             {/* square 2×2 */}
             <div className="col-start-5 col-span-2 row-start-1 row-span-2 overflow-hidden group relative" style={{ clipPath: clip(12) }}>
-              <Image src="/assets/wykrzyz.webp" alt="Uczestnicy integracji firmowej 4x4 na skrzyżowaniu dróg terenowych" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" sizes="17vw" />
+              <Image src="/assets/wykrzyz.webp" alt="Uczestnicy integracji firmowej 4x4 na skrzyżowaniu dróg terenowych" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 50vw, 16vw" quality={70} />
             </div>
 
             {/* portrait 2×4 */}
             <div className="col-start-1 col-span-2 row-start-3 row-span-4 overflow-hidden group relative" style={{ clipPath: clip(12) }}>
-              <Image src="/assets/IMG_3318.webp" alt="Quad ATV podczas szkolenia offroad – widok z trasy terenowej" fill className="object-cover object-[center_60%] group-hover:scale-110 transition-transform duration-1000" sizes="17vw" />
+              <Image src="/assets/IMG_3318.webp" alt="Quad ATV podczas szkolenia offroad – widok z trasy terenowej" fill className="object-cover object-[center_60%] group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 50vw, 16vw" quality={70} />
             </div>
 
             {/* large 4×4 */}
             <div className="col-start-3 col-span-4 row-start-3 row-span-4 overflow-hidden group relative" style={{ clipPath: clip(16) }}>
-              <Image src="/assets/toyota7.webp" alt="Pojazd 4x4 pokonuje strome podejście podczas szkolenia jazdy terenowej Integracja4x4" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" sizes="33vw" />
+              <Image src="/assets/toyota7.webp" alt="Pojazd 4x4 pokonuje strome podejście podczas szkolenia jazdy terenowej Integracja4x4" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 100vw, 34vw" quality={70} />
             </div>
 
           </div>
@@ -76,32 +76,32 @@ export default function GallerySection() {
 
             {/* portrait 2×4 */}
             <div className="col-start-1 col-span-2 row-start-1 row-span-4 overflow-hidden group relative" style={{ clipPath: clip(12) }}>
-              <Image src="/assets/IMG_3344.png" alt="Instruktor Integracja4x4 prowadzi grupę podczas eventu firmowego off-road" fill className="object-cover object-[30%_center] group-hover:scale-110 transition-transform duration-1000" sizes="17vw" />
+              <Image src="/assets/IMG_3344.png" alt="Instruktor Integracja4x4 prowadzi grupę podczas eventu firmowego off-road" fill className="object-cover object-[30%_center] group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 50vw, 16vw" quality={70} />
             </div>
 
             {/* portrait 2×4 */}
             <div className="col-start-3 col-span-2 row-start-1 row-span-4 overflow-hidden group relative" style={{ clipPath: clip(12) }}>
-              <Image src="/assets/img8.webp" alt="Uczestnicy szkolenia offroad pokonują przeszkody terenowe podczas eventu firmowego" fill className="object-cover object-[70%_center] group-hover:scale-110 transition-transform duration-1000" sizes="17vw" />
+              <Image src="/assets/img8.webp" alt="Uczestnicy szkolenia offroad pokonują przeszkody terenowe podczas eventu firmowego" fill className="object-cover object-[70%_center] group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 50vw, 16vw" quality={70} />
             </div>
 
             {/* square 2×2 */}
             <div className="col-start-5 col-span-2 row-start-1 row-span-2 overflow-hidden group relative" style={{ clipPath: clip(10) }}>
-              <Image src="/assets/IMG_3401.webp" alt="Pojazdy terenowe 4x4 podczas akcji off-road – szkolenie Integracja4x4" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" sizes="17vw" />
+              <Image src="/assets/IMG_3401.webp" alt="Pojazdy terenowe 4x4 podczas akcji off-road – szkolenie Integracja4x4" fill className="object-cover group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 50vw, 16vw" quality={70} />
             </div>
 
             {/* square 2×2 */}
             <div className="col-start-5 col-span-2 row-start-3 row-span-2 overflow-hidden group relative" style={{ clipPath: clip(10) }}>
-              <Image src="/assets/wyciagarka.webp" alt="Instruktor pokazuje obsługę wyciągarki pojazdu terenowego podczas szkolenia offroad" fill className="object-cover object-[0%_center] group-hover:scale-110 transition-transform duration-1000" sizes="17vw" />
+              <Image src="/assets/wyciagarka.webp" alt="Instruktor pokazuje obsługę wyciągarki pojazdu terenowego podczas szkolenia offroad" fill className="object-cover object-[0%_center] group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 50vw, 16vw" quality={70} />
             </div>
 
             {/* square 2×2 */}
             <div className="col-start-1 col-span-2 row-start-5 row-span-2 overflow-hidden group relative" style={{ clipPath: clip(10) }}>
-              <Image src="/assets/img11.webp" alt="Grupa uczestników integracji firmowej podczas wyprawy terenowej 4x4 w terenie" fill className="object-cover object-[10%_center] group-hover:scale-110 transition-transform duration-1000" sizes="17vw" />
+              <Image src="/assets/img11.webp" alt="Grupa uczestników integracji firmowej podczas wyprawy terenowej 4x4 w terenie" fill className="object-cover object-[10%_center] group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 50vw, 16vw" quality={70} />
             </div>
 
             {/* wide 4×2 */}
             <div className="col-start-3 col-span-4 row-start-5 row-span-2 overflow-hidden group relative" style={{ clipPath: clip(14) }}>
-              <Image src="/assets/IMG_3368.png" alt="Pojazdy terenowe partnerów Integracja4x4 – współpraca eventowa off-road" fill className="object-cover object-[0%_60%] group-hover:scale-110 transition-transform duration-1000" sizes="33vw" />
+              <Image src="/assets/IMG_3368.png" alt="Pojazdy terenowe partnerów Integracja4x4 – współpraca eventowa off-road" fill className="object-cover object-[0%_60%] group-hover:scale-110 transition-transform duration-1000" sizes="(max-width: 1024px) 100vw, 34vw" quality={70} />
             </div>
 
           </div>

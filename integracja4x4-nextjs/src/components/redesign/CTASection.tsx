@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "@/hooks/use-translations";
 import { motion, useReducedMotion } from "framer-motion";
 export default function CTASection() {
@@ -21,10 +22,13 @@ export default function CTASection() {
       variants={{ show: { transition: { staggerChildren: 0.12 } } }}
     >
       <div className="absolute inset-0 z-0">
-        <img
-          className="w-full h-full object-cover object-[center_70%] brightness-[0.3]"
+        <Image
+          className="object-cover object-[center_70%] brightness-[0.3]"
           src="/assets/sunset.webp"
           alt="Pojazdy terenowe 4x4 na szczycie wzgórza o zachodzie słońca – Integracja4x4"
+          fill
+          sizes="100vw"
+          quality={70}
         />
         <div className="absolute inset-0 bg-primary-container/10" />
       </div>

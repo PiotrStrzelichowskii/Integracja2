@@ -27,7 +27,8 @@ export default function HeroSection() {
           fill
           className="object-cover object-[63%_center] sm:object-center brightness-[0.4]"
           priority
-          quality={90}
+          quality={75}
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#131313] via-transparent to-transparent" />
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 80% 40% at 50% 0%, rgba(241,101,35,0.12) 0%, transparent 70%)' }} />

@@ -109,7 +109,7 @@ export default function OfferSection() {
                 </ul>
                 <a
                   href="#kontakt"
-                  className="btn-offroad-primary font-montserrat uppercase tracking-tight md:tracking-wide text-xs sm:text-sm md:text-base inline-flex w-full mt-4 md:mt-6 items-center justify-center gap-1.5 sm:gap-2 [@media(min-height:1000px)]:md:text-lg [@media(min-height:1000px)]:md:py-4 [@media(min-height:1000px)]:md:px-10 px-2 min-[380px]:px-4"
+                  className="btn-offroad-primary font-montserrat uppercase tracking-tight md:tracking-wide text-xs sm:text-sm md:text-base inline-flex w-full mt-4 md:mt-6 items-center justify-center gap-1.5 sm:gap-2 [@media(min-height:1000px)]:md:text-lg [@media(min-height:1000px)]:md:py-4 [@media(min-height:1000px)]:md:px-10 px-2 min-[380px]:px-4 whitespace-nowrap"
                 >
                   {t(card.ctaKey)}{" "}
                   <ArrowRight className="w-3.5 h-3.5 min-[380px]:w-4 min-[380px]:h-4 md:w-5 md:h-5" aria-hidden="true" />

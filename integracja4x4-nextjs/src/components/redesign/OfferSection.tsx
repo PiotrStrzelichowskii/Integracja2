@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "@/hooks/use-translations";
 import { TranslationKey } from "@/lib/dictionaries";
 import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function OfferSection() {
   const { t } = useTranslations();
@@ -101,9 +102,7 @@ export default function OfferSection() {
                 <ul className="space-y-1.5 md:space-y-2 flex-1">
                   {card.featureKeys.map((key) => (
                     <li key={key} className="flex items-center gap-2 text-on-surface/60 text-xs">
-                      <span className="material-symbols-outlined text-primary-container flex-shrink-0" style={{ fontSize: "14px" }}>
-                        check_circle
-                      </span>
+                      <CheckCircle2 className="w-4 h-4 text-primary-container flex-shrink-0" aria-hidden="true" />
                       {t(key)}
                     </li>
                   ))}
@@ -113,7 +112,7 @@ export default function OfferSection() {
                   className="btn-offroad-primary font-montserrat uppercase tracking-tight md:tracking-wide text-xs sm:text-sm md:text-base inline-flex w-full mt-4 md:mt-6 items-center justify-center gap-1.5 sm:gap-2 [@media(min-height:1000px)]:md:text-lg [@media(min-height:1000px)]:md:py-4 [@media(min-height:1000px)]:md:px-10 px-2 min-[380px]:px-4"
                 >
                   {t(card.ctaKey)}{" "}
-                  <span className="material-symbols-outlined !text-[12px] min-[380px]:!text-[14px] md:!text-[20px]">arrow_forward</span>
+                  <ArrowRight className="w-3.5 h-3.5 min-[380px]:w-4 min-[380px]:h-4 md:w-5 md:h-5" aria-hidden="true" />
                 </a>
               </div>
             </motion.div>

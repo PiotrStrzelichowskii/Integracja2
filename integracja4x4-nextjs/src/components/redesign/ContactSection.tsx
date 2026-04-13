@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/lib/analytics";
 import { useTranslations } from "@/hooks/use-translations";
-import { Loader2, CheckCircle, AlertCircle } from "lucide-react";
+import { Loader2, CheckCircle, AlertCircle, ChevronDown, CreditCard, Mail, MapPin, Phone } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 interface FormErrors {
@@ -32,10 +32,10 @@ export default function ContactSection() {
   };
 
   const contactInfo = [
-    { icon: "call", label: t('contactCallLabel'), value: "+48 501 318 521", sub: "PS Bikes Mariusz Strzelichowski", href: "tel:+48501318521" },
-    { icon: "mail", label: t('contactMailLabel'), value: "info@integracja4x4.pl", sub: t('contactMailSub'), href: "mailto:info@integracja4x4.pl" },
-    { icon: "location_on", label: t('contactAddressLabel'), value: "ul. Powstania Styczniowego", sub: "30-298 Kraków", href: null },
-    { icon: "credit_card", label: t('contactAccountLabel'), value: "76 2490 0005 0000 4000 1600 9299", sub: t('contactAccountSub'), href: null },
+    { Icon: Phone, label: t('contactCallLabel'), value: "+48 501 318 521", sub: "PS Bikes Mariusz Strzelichowski", href: "tel:+48501318521" },
+    { Icon: Mail, label: t('contactMailLabel'), value: "info@integracja4x4.pl", sub: t('contactMailSub'), href: "mailto:info@integracja4x4.pl" },
+    { Icon: MapPin, label: t('contactAddressLabel'), value: "ul. Powstania Styczniowego", sub: "30-298 Kraków", href: null },
+    { Icon: CreditCard, label: t('contactAccountLabel'), value: "76 2490 0005 0000 4000 1600 9299", sub: t('contactAccountSub'), href: null },
   ];
 
   const subjectOptions = [t('contactSubject1'), t('contactSubject2'), t('contactSubject3'), t('contactSubject4')];
@@ -154,7 +154,7 @@ export default function ContactSection() {
             {contactInfo.map((item) => (
               <div key={item.label} className="flex items-start gap-6">
                 <div className="w-14 h-14 bg-surface-container-high rounded-full flex items-center justify-center text-primary-container border border-outline-variant/20 flex-shrink-0">
-                  <span className="material-symbols-outlined">{item.icon}</span>
+                  <item.Icon className="w-6 h-6" aria-hidden="true" />
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-on-surface/40 font-bold">
@@ -244,7 +244,7 @@ export default function ContactSection() {
                 ))}
               </select>
               <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#F16523] pointer-events-none material-symbols-outlined text-base">
-                expand_more
+                <ChevronDown className="w-4 h-4" aria-hidden="true" />
               </span>
               </div>
             </div>

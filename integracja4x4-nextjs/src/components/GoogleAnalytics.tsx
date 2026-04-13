@@ -15,18 +15,16 @@ export default function GoogleAnalytics() {
   const measurementId = GA_MEASUREMENT_ID || DEFAULT_GA_MEASUREMENT_ID;
 
   useEffect(() => {
-    if (isLoaded && canUseAnalytics() && typeof window !== 'undefined' && window.gtag) {
-      // Włącz Google Analytics gdy użytkownik wyraził zgodę
-      window.gtag('consent', 'update', {
-        analytics_storage: 'granted'
-      });
-    } else if (isLoaded && !canUseAnalytics() && typeof window !== 'undefined' && window.gtag) {
-      // Wyłącz Google Analytics gdy użytkownik nie wyraził zgody
-      window.gtag('consent', 'update', {
-        analytics_storage: 'denied'
-      });
-    }
+    // Gdy ładujemy skrypty dopiero po zgodzie, update consent
+    // jest potrzebny tylko w sytuacji, kiedy gtag już istnieje.
+    if (!isLoaded || typeof window === 'undefined' || !window.gtag) return;
+    window.gtag('consent', 'update', {
+      analytics_storage: canUseAnalytics() ? 'granted' : 'denied',
+    });
   }, [isLoaded, canUseAnalytics]);
+
+  // Dla wydajności: nie ładuj gtag.js zanim użytkownik wyrazi zgodę
+  if (!isLoaded || !canUseAnalytics()) return null;
 
   return (
     <>

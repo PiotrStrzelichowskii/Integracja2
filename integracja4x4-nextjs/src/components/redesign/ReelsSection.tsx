@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "@/hooks/use-translations";
 import { TranslationKey } from "@/lib/dictionaries";
 import { motion, useReducedMotion } from "framer-motion";
+import { PlayCircle } from "lucide-react";
 
 const reels = [
   {
@@ -97,9 +98,7 @@ function ReelCard({ src, poster, label, cornerLeft, cornerRight }: { src: string
             role="button"
             aria-label={`Odtwórz: ${label}`}
           >
-            <span className="material-symbols-outlined text-7xl text-white drop-shadow-lg group-hover:scale-110 transition-transform duration-200">
-              play_circle
-            </span>
+            <PlayCircle className="w-20 h-20 text-white drop-shadow-lg group-hover:scale-110 transition-transform duration-200" aria-hidden="true" />
           </div>
           <div className="absolute bottom-4 left-4 text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2 pointer-events-none">
             <span className="w-2 h-2 rounded-full bg-red-600" />

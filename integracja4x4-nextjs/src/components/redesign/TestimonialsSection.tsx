@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "@/hooks/use-translations";
 import { TranslationKey } from "@/lib/dictionaries";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Quote, Star } from "lucide-react";
 
 const testimonialKeys: { quoteKey: TranslationKey; nameKey: TranslationKey; role: "female" | "male" }[] = [
   { quoteKey: "t1quote", nameKey: "t1name", role: "female" },
@@ -14,11 +15,9 @@ const testimonialKeys: { quoteKey: TranslationKey; nameKey: TranslationKey; role
 ];
 
 const Stars = () => (
-  <div className="flex text-primary-container mb-6">
+  <div className="flex text-primary-container mb-6" aria-label="Ocena: 5 na 5" role="img">
     {[...Array(5)].map((_, i) => (
-      <span key={i} className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
-        star
-      </span>
+      <Star key={i} className="w-5 h-5" fill="currentColor" aria-hidden="true" />
     ))}
   </div>
 );
@@ -107,9 +106,7 @@ export default function TestimonialsSection() {
                 exit={{ opacity: 0, y: reduceMotion ? 0 : -10 }}
                 transition={{ duration: 0.35, ease: EASE }}
               >
-                <span className="material-symbols-outlined absolute top-6 md:top-10 right-6 md:right-10 text-primary-container/20 text-4xl md:text-6xl">
-                  format_quote
-                </span>
+                <Quote className="absolute top-6 md:top-10 right-6 md:right-10 w-10 h-10 md:w-14 md:h-14 text-primary-container/20" aria-hidden="true" />
                 <Stars />
                 <p className="text-on-surface/70 italic leading-relaxed mb-6 md:mb-8 text-base md:text-lg min-h-[240px] sm:min-h-[180px] md:min-h-[140px] lg:min-h-[120px]">
                   "{t(testimonialKeys[current].quoteKey)}"

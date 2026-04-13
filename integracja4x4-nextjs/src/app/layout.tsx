@@ -5,13 +5,13 @@ import { Space_Grotesk, Manrope } from "next/font/google";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
-  display: "swap",
+  display: "optional",
 });
 
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
-  display: "swap",
+  display: "optional",
 });
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -28,13 +28,13 @@ import LanguageSetter from "@/components/LanguageSetter";
 const staatliches = localFont({
   src: "../../public/fonts/Staatliches/Staatliches-Regular.ttf",
   variable: "--font-staatliches",
-  display: "swap",
+  display: "optional",
 });
 
 const montserrat = localFont({
   src: "../../public/fonts/Montserrat/Montserrat/Montserrat-VariableFont_wght.ttf",
   variable: "--font-montserrat",
-  display: "swap",
+  display: "optional",
 });
 
 const BASE_URL = "https://integracja4x4.pl";

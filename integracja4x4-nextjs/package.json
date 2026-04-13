@@ -2,6 +2,12 @@
   "name": "integracja4x4-nextjs",
   "version": "0.1.0",
   "private": true,
+  "browserslist": [
+    "chrome >= 100",
+    "firefox >= 100",
+    "safari >= 15",
+    "edge >= 100"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

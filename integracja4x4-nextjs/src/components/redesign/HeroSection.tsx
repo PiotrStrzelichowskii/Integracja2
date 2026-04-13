@@ -10,7 +10,6 @@ export default function HeroSection() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  // Subtelny parallax: w miarę przewijania hero treść lekko "ucieka" do góry
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],

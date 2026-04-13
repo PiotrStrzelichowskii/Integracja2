@@ -59,7 +59,7 @@ export default function AboutSection() {
                 height={600}
                 className="w-full h-auto object-cover"
                 loading="lazy"
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 600px"
               />
               <div
                 className="absolute bottom-3 right-3 flex items-center gap-2 bg-black/60 backdrop-blur-sm border border-[#F16523]/30 text-[#e5e2e1] px-3 py-1.5 text-xs font-montserrat uppercase tracking-widest"

@@ -92,7 +92,7 @@ export default function OfferSection() {
                   alt={card.alt}
                   width={600}
                   height={450}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 480px"
                   quality={70}
                 />
               </div>

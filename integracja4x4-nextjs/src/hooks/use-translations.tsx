@@ -17,7 +17,8 @@ export const useTranslations = () => {
   }, [language]);
   
   const t = (key: TranslationKey): string => {
-    return dictionary[key] || key;
+    const value = dictionary[key];
+    return value !== undefined && value !== null ? value : key;
   };
 
   return {
